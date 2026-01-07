@@ -1,0 +1,21 @@
+# Images Directory
+
+This directory should contain:
+
+## Profile Images
+- hero-image.jpg (500x600px) - Main hero section image
+- about-image.jpg (400x500px) - About section image
+- signature.png - Signature image (optional)
+
+## Portfolio Images
+- amazone-project.webp - Amazon clone project screenshot
+- netflix-project.webp - Netflix clone project screenshot
+- evandadi.jpg - Evangadi forum project screenshot
+- graeteee.png - Garage app project screenshot
+
+## Icons
+- favicon.ico - Website favicon
+- logo192.png - App icon (192x192px)
+- apple-touch-icon.png - Apple touch icon
+
+Note: All images should be optimized for web use. Use WebP format when possible for better performance.
