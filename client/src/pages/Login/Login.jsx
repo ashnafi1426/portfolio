@@ -22,6 +22,25 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
+
+    // Validation Regex Patterns
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    // Password regex: At least 8 chars, 1 uppercase, 1 lowercase, 1 number, 1 special character
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
+
+    // Validate Email
+    if (!emailRegex.test(formData.email)) {
+      setError('Please enter a valid email address');
+      return;
+    }
+
+    // Validate Password (optional for login usually, but requested by user)
+    // We can be slightly more lenient or strict. Sticking to strict as requested.
+    if (!passwordRegex.test(formData.password)) {
+      setError('Password must meet complexity requirements (8+ chars, uppercase, lowercase, number, special character)');
+      return;
+    }
+
     setLoading(true);
 
     const result = await login(formData);
