@@ -1,3 +1,5 @@
+import { motion } from 'framer-motion';
+
 const About = () => {
   const personalInfo = [
     { label: 'Name', value: 'Ashenafi Sileshi', icon: 'bi-person' },
@@ -8,33 +10,69 @@ const About = () => {
     { label: 'Nationality', value: 'Ethiopian', icon: 'bi-globe' }
   ];
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1
+    }
+  };
+
   return (
     <section id="about" className="py-20 bg-gray-50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Section Title */}
-        <div className="text-center mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-16"
+        >
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 tracking-tight">About Me</h2>
           <div className="w-20 h-1 bg-blue-600 mx-auto rounded-full mb-6"></div>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
             Passionate web developer with a curiosity for how things work and a drive to solve real-world problems through code.
           </p>
-        </div>
+        </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
 
           {/* Image Section */}
-          <div className="relative group">
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="relative group"
+          >
             <div className="absolute inset-0 bg-blue-600 rounded-3xl rotate-6 opacity-20 transition-transform duration-300 group-hover:rotate-3 group-hover:scale-105"></div>
             <img
               src="https://via.placeholder.com/600x800/2563eb/ffffff?text=Ashenafi+Sileshi"
               alt="Ashenafi Sileshi"
               className="relative w-full max-w-md mx-auto lg:max-w-full rounded-3xl shadow-2xl object-cover transform transition-transform duration-500 group-hover:-translate-y-2"
             />
-          </div>
+          </motion.div>
 
           {/* Content Section */}
-          <div className="flex flex-col h-full justify-center">
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="flex flex-col h-full justify-center"
+          >
             <span className="text-blue-600 font-semibold text-lg mb-2 uppercase tracking-wide">Who I Am</span>
             <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 leading-tight">
               Professional <span className="text-blue-600">Fullstack Developer</span> based in Ethiopia
@@ -46,10 +84,17 @@ const About = () => {
             </p>
 
             {/* Info Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <motion.div
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              className="grid grid-cols-1 sm:grid-cols-2 gap-4"
+            >
               {personalInfo.map((info, index) => (
-                <div
+                <motion.div
                   key={index}
+                  variants={itemVariants}
                   className="bg-white p-5 rounded-xl shadow-sm border border-gray-100 hover:shadow-md hover:border-blue-100 transition-all duration-300 flex items-center gap-4"
                 >
                   <div className="w-10 h-10 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center text-xl shrink-0">
@@ -59,12 +104,18 @@ const About = () => {
                     <p className="text-sm text-gray-500 font-medium mb-0.5">{info.label}</p>
                     <p className="text-gray-900 font-semibold truncate" title={info.value}>{info.value}</p>
                   </div>
-                </div>
+                </motion.div>
               ))}
-            </div>
+            </motion.div>
 
             {/* CTA Button */}
-            <div className="mt-10">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.4, duration: 0.5 }}
+              className="mt-10"
+            >
               <a
                 href="#contact"
                 className="inline-flex items-center justify-center px-8 py-3 text-base font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-all duration-300 shadow-lg hover:shadow-blue-500/30 transform hover:-translate-y-1"
@@ -72,8 +123,8 @@ const About = () => {
                 Download CV
                 <i className="bi bi-download ml-2"></i>
               </a>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
         </div>
       </div>
