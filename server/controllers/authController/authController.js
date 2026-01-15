@@ -1,4 +1,4 @@
-const User = require('../models/User');
+const User = require('../../models/User');
 const jwt = require('jsonwebtoken');
 
 // Generate JWT Token
@@ -7,10 +7,6 @@ const generateToken = (id) => {
     expiresIn: process.env.JWT_EXPIRE || '30d'
   });
 };
-
-// @desc    Register user
-// @route   POST /api/auth/register
-// @access  Public
 exports.register = async (req, res) => {
   try {
     const { name, email, password } = req.body;
