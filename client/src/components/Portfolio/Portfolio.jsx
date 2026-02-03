@@ -1,11 +1,13 @@
+
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { motion, AnimatePresence, useMotionValue, useTransform, useSpring } from 'framer-motion';
 
 const Portfolio = () => {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
   const [filter, setFilter] = useState('all');
+  const [hoveredIndex, setHoveredIndex] = useState(null);
 
   useEffect(() => {
     fetchProjects();
@@ -21,49 +23,48 @@ const Portfolio = () => {
       }
     } catch (err) {
       console.error('Error fetching projects:', err);
-      // Silently use fallback data without showing error
       // Fallback data
       setProjects([
         {
           id: 1,
-          title: "Amazon Clone Project",
-          description: "A full e-commerce frontend project built with React and modern web technologies.",
-          image: "/images/amazone-project.webp",
-          category: "Fullstack Project",
-          technologies: ["React", "CSS3", "JavaScript", "Responsive Design"],
+          title: "E-Commerce Website",
+          description: "A comprehensive full-stack e-commerce platform featuring advanced product management, intelligent shopping cart functionality, secure payment integration, user authentication, and an intuitive admin dashboard for inventory tracking and order management.",
+          image: "/images/ecomerce.png",
+          category: "Fullstack",
+          technologies: ["React", "Node.js", "Express", "PostgreSQL", "Tailwind CSS", "Vite"],
           liveUrl: "https://amazone-frontend-wod3.vercel.app/",
           githubUrl: "https://github.com/ashnafi1426/amazon-clone",
           featured: true
         },
         {
           id: 2,
-          title: "Netflix Clone Project",
-          description: "A responsive Netflix clone frontend built with HTML, CSS, and JavaScript.",
-          image: "/images/netflix-project.webp",
-          category: "Fullstack Project",
-          technologies: ["HTML5", "CSS3", "JavaScript", "API Integration"],
-          liveUrl: "https://ashnafi1426.github.io/Netflixclonee/",
-          githubUrl: "https://github.com/ashnafi1426/netflix-clone",
+          title: "Netflix Clone Website",
+          description: "A sophisticated streaming platform clone replicating Netflix's core features including user authentication, dynamic video browsing with categories, responsive design optimized for all devices, and an engaging user interface with smooth animations and transitions.",
+          image: "/images/netflix-project.png",
+          category: "Fullstack",
+          technologies: ["React", "Node.js", "Express", "PostgreSQL", "Tailwind CSS", "Vite"],
+          liveUrl: "https://github.com/ashnafi1426/Netflixclonee",
+          githubUrl: "https://github.com/ashnafi1426/Netflixclonee",
           featured: true
         },
         {
           id: 3,
-          title: "Evangadi Forum Project",
-          description: "A full-stack forum application with user authentication and real-time discussions.",
-          image: "/images/evandadi.jpg",
-          category: "Fullstack Project",
-          technologies: ["React", "Node.js", "MongoDB", "JWT", "Express"],
+          title: "Evangadi Forum",
+          description: "An interactive community forum application enabling users to post questions, provide answers, engage in discussions, and build knowledge collaboratively. Features include user authentication, real-time updates, voting system, and comprehensive search functionality.",
+          image: "/images/evangadi.jpg",
+          category: "Fullstack",
+          technologies: ["React", "Node.js", "Express", "PostgreSQL", "Tailwind CSS", "Vite"],
           liveUrl: "https://evangadi-forum-nu-tawny.vercel.app/",
           githubUrl: "https://github.com/ashnafi1426/evangadi-forum",
           featured: true
         },
         {
           id: 4,
-          title: "Garage Management App",
-          description: "A full garage app used for managing employees, customers and orders.",
-          image: "/images/graeteee.png",
-          category: "Fullstack Project",
-          technologies: ["React", "Node.js", "MySQL", "Express", "JWT"],
+          title: "Garage Management System",
+          description: "A comprehensive garage management solution designed to streamline operations including employee management, customer relationship tracking, service order processing, vehicle maintenance records, and detailed reporting for business analytics and performance monitoring.",
+          image: "/images/graeteee.png?v=1",
+          category: "Fullstack",
+          technologies: ["React", "Node.js", "Express", "PostgreSQL", "Tailwind CSS", "Vite"],
           liveUrl: "https://garagefrontend-lime.vercel.app/",
           githubUrl: "https://github.com/ashnafi1426/garage-app",
           featured: false
@@ -71,12 +72,23 @@ const Portfolio = () => {
         {
           id: 5,
           title: "Blog Website",
-          description: "A modern blog platform with clean design and smooth user experience.",
-          image: "/images/blog-website.webp",
-          category: "Fullstack Project",
-          technologies: ["HTML5", "CSS3", "JavaScript", "Responsive Design"],
+          description: "A modern and elegant blog platform featuring rich text editing, article categorization, tag management, comment system, and a clean reading experience. Includes admin panel for content management, SEO optimization, and social media integration for content sharing.",
+          image: "/images/blog.png?v=1",
+          category: "Fullstack",
+          technologies: ["React", "Node.js", "Express", "PostgreSQL", "Tailwind CSS", "Vite"],
           liveUrl: "https://blogwebsite55.netlify.app/",
           githubUrl: "https://github.com/ashnafi1426/blog-website",
+          featured: true
+        },
+        {
+          id: 6,
+          title: "Personal Portfolio Website",
+          description: "My latest personal portfolio showcasing professional projects, technical skills, and experience with cutting-edge web technologies. Features advanced animations using Framer Motion, responsive design, dark theme, interactive project cards, and smooth scrolling navigation.",
+          image: "/images/Ashu.jpg",
+          category: "Web Application",
+          technologies: ["React", "Node.js", "Tailwind CSS", "Framer Motion", "Vite"],
+          liveUrl: "https://ashenafi-portfolio-eta.vercel.app/",
+          githubUrl: "https://github.com/ashnafi1426/portfolio-v2",
           featured: true
         }
       ]);
@@ -86,21 +98,18 @@ const Portfolio = () => {
   };
 
   const categories = ['all', ...new Set(projects.map(project => project.category))];
-  
-  const filteredProjects = filter === 'all' 
-    ? projects 
+
+  const filteredProjects = filter === 'all'
+    ? projects
     : projects.filter(project => project.category === filter);
 
   if (loading) {
     return (
-      <section id="portfolio" className="section-padding bg-white">
+      <section id="portfolio" className="section-padding bg-gray-50 dark:bg-gray-950">
         <div className="container-custom">
-          <div className="section-title">
-            <h2>Portfolio</h2>
-          </div>
-          <div className="flex flex-col items-center justify-center py-16">
-            <div className="loading mb-4"></div>
-            <p className="text-gray-600 text-lg">Loading projects...</p>
+          <div className="flex flex-col items-center justify-center py-20">
+            <div className="w-16 h-16 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+            <p className="text-gray-600 dark:text-gray-400 text-lg mt-4 font-mono">Loading projects...</p>
           </div>
         </div>
       </section>
@@ -108,290 +117,261 @@ const Portfolio = () => {
   }
 
   return (
-    <section id="portfolio" className="section-padding bg-gray-950">
-      <div className="container-custom">
-        {/* Terminal-style Header */}
-        <div className="mb-8 flex justify-center animate-fade-in-down">
-          <div className="inline-flex items-center gap-3 bg-gray-900 border-2 border-pink-500/50 rounded-full px-6 py-2">
-            <div className="flex gap-2">
-              <div className="w-3 h-3 rounded-full bg-red-500 animate-pulse"></div>
-              <div className="w-3 h-3 rounded-full bg-yellow-500 animate-pulse" style={{ animationDelay: '0.2s' }}></div>
-              <div className="w-3 h-3 rounded-full bg-green-500 animate-pulse" style={{ animationDelay: '0.4s' }}></div>
-            </div>
-            <span className="text-blue-400 font-mono font-semibold">PORTFOLIO</span>
-            <span className="text-gray-500 font-mono">.jsx</span>
-          </div>
-        </div>
+    <section id="portfolio" className="relative py-24 bg-gradient-to-br from-gray-50 via-white to-gray-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 overflow-hidden transition-colors duration-300">
+      {/* Background Elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-600 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-blob"></div>
+        <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-pink-600 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-blob animation-delay-2000"></div>
+        <div className="absolute bottom-1/4 left-1/2 w-96 h-96 bg-blue-600 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-blob animation-delay-4000"></div>
+      </div>
 
-        {/* Tagline */}
-        <div className="text-center mb-6 animate-fade-in" style={{ animationDelay: '0.2s' }}>
-          <p className="text-green-400 font-mono text-lg">
-            <span className="text-gray-500">//</span>Turning Ideas Into Digital Reality
-          </p>
-        </div>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
-        {/* Featured Projects Title */}
-        <div className="text-center mb-8 animate-fade-in" style={{ animationDelay: '0.3s' }}>
-          <h2 className="text-5xl md:text-6xl font-bold mb-4">
-            <span className="text-gray-500 font-mono">{'{ '}</span>
-            <span className="text-red-500 inline-block hover:scale-125 transition-transform duration-300">F</span>
-            <span className="text-blue-500 inline-block hover:scale-125 transition-transform duration-300">e</span>
-            <span className="text-green-500 inline-block hover:scale-125 transition-transform duration-300">a</span>
-            <span className="text-yellow-500 inline-block hover:scale-125 transition-transform duration-300">t</span>
-            <span className="text-purple-500 inline-block hover:scale-125 transition-transform duration-300">u</span>
-            <span className="text-pink-500 inline-block hover:scale-125 transition-transform duration-300">r</span>
-            <span className="text-orange-500 inline-block hover:scale-125 transition-transform duration-300">e</span>
-            <span className="text-cyan-500 inline-block hover:scale-125 transition-transform duration-300">d</span>
-            <span className="text-red-400 inline-block hover:scale-125 transition-transform duration-300">P</span>
-            <span className="text-blue-400 inline-block hover:scale-125 transition-transform duration-300">r</span>
-            <span className="text-green-400 inline-block hover:scale-125 transition-transform duration-300">o</span>
-            <span className="text-yellow-400 inline-block hover:scale-125 transition-transform duration-300">j</span>
-            <span className="text-purple-400 inline-block hover:scale-125 transition-transform duration-300">e</span>
-            <span className="text-pink-400 inline-block hover:scale-125 transition-transform duration-300">c</span>
-            <span className="text-orange-400 inline-block hover:scale-125 transition-transform duration-300">t</span>
-            <span className="text-cyan-400 inline-block hover:scale-125 transition-transform duration-300">s</span>
-            <span className="text-gray-500 font-mono">{' }'}</span>
+        {/* Header Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-20"
+        >
+          <span className="inline-block px-4 py-2 bg-purple-100 dark:bg-purple-600/20 border border-purple-200 dark:border-purple-500/30 rounded-full text-purple-600 dark:text-purple-300 text-sm font-semibold tracking-wide mb-4">
+            🚀 My Work
+          </span>
+          <h2 className="text-5xl md:text-6xl font-bold mb-6">
+            <span className="bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 dark:from-purple-400 dark:via-pink-400 dark:to-blue-400 bg-clip-text text-transparent">
+              Featured Projects
+            </span>
           </h2>
-        </div>
-
-        {/* Import Statement */}
-        <div className="mb-12 flex justify-center animate-fade-in" style={{ animationDelay: '0.4s' }}>
-          <div className="bg-gray-900 border border-gray-800 rounded-lg px-6 py-3 font-mono text-sm hover:border-purple-500 transition-colors duration-300">
-            <span className="text-purple-400">import</span>
-            <span className="text-white"> {'{ '}</span>
-            <span className="text-yellow-400">innovation</span>
-            <span className="text-white">, </span>
-            <span className="text-yellow-400">creativity</span>
-            <span className="text-white">, </span>
-            <span className="text-yellow-400">excellence</span>
-            <span className="text-white"> {'} '}</span>
-            <span className="text-purple-400">from</span>
-            <span className="text-green-400"> "my_development_process"</span>
-            <span className="text-white">;</span>
-          </div>
-        </div>
+          <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+            A collection of projects showcasing my skills in full-stack development
+          </p>
+        </motion.div>
 
         {/* Filter Buttons */}
-        <div className="flex flex-wrap justify-center gap-4 mb-16 animate-fade-in" style={{ animationDelay: '0.5s' }}>
-          {categories.map(category => (
-            <button
+        <div className="flex flex-wrap justify-center gap-4 mb-16">
+          {categories.map((category, index) => (
+            <motion.button
               key={category}
-              className={`px-8 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 ${
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 + index * 0.05 }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className={`px-6 py-2 rounded-full font-semibold text-sm transition-all duration-300 ${
                 filter === category
-                  ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-lg'
-                  : 'bg-gray-800 text-gray-300 border-2 border-gray-700 hover:border-blue-500 hover:text-blue-400 shadow-sm'
+                  ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg shadow-purple-500/30'
+                  : 'bg-white dark:bg-gray-800/50 backdrop-blur-sm border border-gray-200 dark:border-gray-700/50 text-gray-700 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white hover:border-purple-300 dark:hover:border-purple-500/50'
               }`}
               onClick={() => setFilter(category)}
             >
               {category === 'all' ? 'All Projects' : category}
-            </button>
+            </motion.button>
           ))}
-        </div>
-
-        {/* Mission Statement Banner */}
-        <div className="mb-16 max-w-5xl mx-auto animate-fade-in-up" style={{ animationDelay: '0.6s' }}>
-          <div className="relative group">
-            {/* Gradient Border */}
-            <div className="absolute -inset-0.5 bg-gradient-to-r from-pink-500 via-purple-500 to-pink-500 rounded-2xl opacity-75 group-hover:opacity-100 blur transition duration-500 animate-pulse"></div>
-            
-            {/* Content */}
-            <div className="relative bg-gray-900 rounded-2xl p-8 border border-gray-800">
-              <div className="font-mono text-center">
-                <p className="text-gray-400 mb-2">
-                  <span className="text-purple-400">const</span>{' '}
-                  <span className="text-blue-400">myMission</span>{' '}
-                  <span className="text-white">=</span>{' '}
-                  <span className="text-green-400">"Creating digital experiences that blend"</span>
-                </p>
-                <p className="text-gray-400 mb-2 ml-8">
-                  <span className="text-white">+</span>{' '}
-                  <span className="text-pink-400">"cutting-edge technology"</span>{' '}
-                  <span className="text-white">+</span>{' '}
-                  <span className="text-green-400">" with "</span>
-                </p>
-                <p className="text-gray-400 ml-8">
-                  <span className="text-white">+</span>{' '}
-                  <span className="text-pink-400">"breathtaking design"</span>{' '}
-                  <span className="text-white">+</span>{' '}
-                  <span className="text-green-400">" to solve real-world problems."</span>
-                  <span className="text-white">;</span>
-                </p>
-              </div>
-            </div>
-          </div>
         </div>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredProjects.map((project, index) => (
-            <ProjectCard key={project.id} project={project} index={index} />
-          ))}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+          <AnimatePresence mode="wait">
+            {filteredProjects.map((project, index) => (
+              <Card
+                key={project.id}
+                project={project}
+                index={index}
+                hovered={hoveredIndex}
+                setHovered={setHoveredIndex}
+              />
+            ))}
+          </AnimatePresence>
         </div>
-
-        {filteredProjects.length === 0 && !loading && (
-          <div className="text-center py-16">
-            <i className="bi bi-folder-x text-6xl text-gray-600 mb-4"></i>
-            <p className="text-gray-400 text-lg">No projects found for the selected category.</p>
-          </div>
-        )}
       </div>
     </section>
   );
 };
 
-const ProjectCard = ({ project, index }) => {
+// Helper for Tech Styling
+const getTechStyle = (tech) => {
+  const t = tech.toLowerCase();
+  if (t.includes('react')) return 'bg-blue-500/20 text-blue-300 border border-blue-500/30';
+  if (t.includes('node')) return 'bg-green-500/20 text-green-300 border border-green-500/30';
+  if (t.includes('express')) return 'bg-gray-500/20 text-gray-300 border border-gray-500/30';
+  if (t.includes('postgres') || t.includes('postgresql')) return 'bg-blue-600/20 text-blue-400 border border-blue-600/30';
+  if (t.includes('mongo')) return 'bg-green-500/20 text-green-300 border border-green-500/30';
+  if (t.includes('mysql')) return 'bg-orange-500/20 text-orange-300 border border-orange-500/30';
+  if (t.includes('tailwind')) return 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/30';
+  if (t.includes('vite')) return 'bg-purple-500/20 text-purple-300 border border-purple-500/30';
+  if (t.includes('framer')) return 'bg-pink-500/20 text-pink-300 border border-pink-500/30';
+  if (t.includes('html') || t.includes('css') || t.includes('javascript')) return 'bg-orange-500/20 text-orange-300 border border-orange-500/30';
+  return 'bg-gray-700/50 text-gray-300 border border-gray-600/50';
+};
+
+const Card = ({ project, index, hovered, setHovered }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [imageSrc, setImageSrc] = useState('');
-  const [hasError, setHasError] = useState(false);
-  const [rotateX, setRotateX] = useState(0);
-  const [rotateY, setRotateY] = useState(0);
+
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+
+  const rotateX = useTransform(y, [-0.5, 0.5], [10, -10]);
+  const rotateY = useTransform(x, [-0.5, 0.5], [-10, 10]);
+
+  const springConfig = { damping: 25, stiffness: 300, mass: 0.5 };
+  const rotateXSpring = useSpring(rotateX, springConfig);
+  const rotateYSpring = useSpring(rotateY, springConfig);
 
   useEffect(() => {
-    // Set initial image source
     if (project.image && (project.image.startsWith('http') || project.image.startsWith('/images/'))) {
       setImageSrc(project.image);
     } else {
-      // Use ui-avatars as default
       const fallbackUrl = `https://ui-avatars.com/api/?name=${encodeURIComponent(project.title)}&size=400&background=1e293b&color=fff&bold=true&length=2`;
       setImageSrc(fallbackUrl);
     }
   }, [project.image, project.title]);
 
-  const handleImageError = () => {
-    if (!hasError) {
-      setHasError(true);
-      // Use ui-avatars as fallback
-      const fallbackUrl = `https://ui-avatars.com/api/?name=${encodeURIComponent(project.title)}&size=400&background=1e293b&color=fff&bold=true&length=2`;
-      setImageSrc(fallbackUrl);
-    }
-  };
-
   const handleMouseMove = (e) => {
-    const card = e.currentTarget;
-    const rect = card.getBoundingClientRect();
-    
-    const centerX = rect.left + rect.width / 2;
-    const centerY = rect.top + rect.height / 2;
-    
-    const mouseX = e.clientX - centerX;
-    const mouseY = e.clientY - centerY;
-    
-    const rotX = (mouseY / (rect.height / 2)) * -10;
-    const rotY = (mouseX / (rect.width / 2)) * 10;
-    
-    setRotateX(rotX);
-    setRotateY(rotY);
+    const rect = e.currentTarget.getBoundingClientRect();
+    const width = rect.width;
+    const height = rect.height;
+
+    const mouseX = e.clientX - rect.left;
+    const mouseY = e.clientY - rect.top;
+
+    const xPct = (mouseX / width) - 0.5;
+    const yPct = (mouseY / height) - 0.5;
+
+    x.set(xPct);
+    y.set(yPct);
   };
 
   const handleMouseLeave = () => {
-    setRotateX(0);
-    setRotateY(0);
+    setHovered(null);
+    x.set(0);
+    y.set(0);
   };
 
+  const isDimmed = hovered !== null && hovered !== index;
+
   return (
-    <div
-      className="perspective-container animate-fade-in-up"
-      style={{ 
-        animationDelay: `${index * 0.15}s`,
-        perspective: '1000px'
-      }}
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay: index * 0.1, duration: 0.5 }}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
+      onMouseEnter={() => setHovered(index)}
+      animate={{
+        scale: isDimmed ? 0.95 : 1,
+        opacity: isDimmed ? 0.5 : 1,
+        filter: isDimmed ? "blur(2px)" : "blur(0px)",
+      }}
+      style={{
+        rotateX: rotateXSpring,
+        rotateY: rotateYSpring,
+        transformStyle: "preserve-3d",
+      }}
+      className="relative h-[600px] w-full rounded-3xl bg-white dark:bg-gray-800/50 backdrop-blur-sm border border-gray-200 dark:border-gray-700/50 group cursor-pointer shadow-2xl hover:shadow-purple-500/20 transition-shadow duration-500"
     >
-      <div 
-        className="group relative bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 rounded-2xl overflow-hidden shadow-2xl hover:shadow-pink-500/40 border border-gray-800 h-full flex flex-col min-h-[650px] hover:border-pink-500/50"
-        style={{ 
-          transform: `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(${rotateX !== 0 || rotateY !== 0 ? 1.05 : 1})`,
-          transition: rotateX !== 0 || rotateY !== 0 ? 'box-shadow 0.3s, border-color 0.3s' : 'all 0.5s ease-out',
-          transformStyle: 'preserve-3d'
-        }}
+      {/* Content Container */}
+      <div
+        className="relative h-full w-full p-6 flex flex-col"
+        style={{ transformStyle: "preserve-3d" }}
       >
-      {/* Shine Effect - removed as it was causing issues */}
 
-      {/* Card Content */}
-      <div className="relative flex flex-col h-full">
-        {/* Project Image with GitHub Icon */}
-        <div className="relative h-64 overflow-hidden bg-gray-900 flex-shrink-0">
-          {imageSrc && (
-            <img 
+        {/* Browser Window - Top Half */}
+        <motion.div
+          className="relative w-full h-[280px] bg-gray-100 dark:bg-gray-900/80 rounded-2xl overflow-hidden mb-6 border border-gray-200 dark:border-gray-700/50 shadow-inner"
+          style={{ transform: "translateZ(30px)" }}
+        >
+          {/* Browser UI */}
+          <div className="absolute top-0 left-0 right-0 h-10 bg-gray-200 dark:bg-gray-900 flex items-center px-4 gap-2 z-20 border-b border-gray-300 dark:border-gray-700">
+            <div className="w-3 h-3 rounded-full bg-[#ff5f56] group-hover:animate-pulse"></div>
+            <div className="w-3 h-3 rounded-full bg-[#ffbd2e] group-hover:animate-pulse animation-delay-100"></div>
+            <div className="w-3 h-3 rounded-full bg-[#27c93f] group-hover:animate-pulse animation-delay-200"></div>
+            <div className="ml-4 flex-1 h-6 bg-gray-100 dark:bg-gray-800 rounded-lg text-[10px] text-gray-500 flex items-center px-3 font-mono truncate">
+              {project.liveUrl || 'localhost:3000'}
+            </div>
+          </div>
+
+          <div className="w-full h-full pt-10 relative">
+            <div className="absolute inset-0 bg-gray-200 dark:bg-gray-800 animate-pulse" style={{ display: imageLoaded ? 'none' : 'block' }}></div>
+            <img
               src={imageSrc}
               alt={project.title}
               onLoad={() => setImageLoaded(true)}
-              onError={handleImageError}
-              className={`w-full h-full object-cover transition-all duration-700 group-hover:scale-110 ${
-                imageLoaded ? 'opacity-100' : 'opacity-0'
-              }`}
+              className={`w-full h-full object-cover object-center transition-all duration-700 group-hover:scale-110 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
             />
-          )}
-          
-          {/* Loading State */}
-          {!imageLoaded && (
-            <div className="absolute inset-0 flex items-center justify-center bg-gray-900">
-              <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-blue-500"></div>
-            </div>
-          )}
-          
-          {/* GitHub Icon */}
-          <div className="absolute bottom-4 right-4 w-14 h-14 bg-white rounded-full flex items-center justify-center shadow-lg transform transition-all duration-300 group-hover:scale-125 group-hover:rotate-12">
-            <i className="bi bi-github text-gray-900 text-2xl"></i>
+            {/* Gradient Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent opacity-60"></div>
           </div>
-        </div>
-        
-        {/* Project Content */}
-        <div className="p-6 flex flex-col flex-grow">
-          <h3 className="text-xl font-bold text-white mb-2">
+        </motion.div>
+
+        {/* Text and Actions - Bottom Half */}
+        <motion.div
+          className="flex flex-col flex-grow"
+          style={{ transform: "translateZ(50px)" }}
+        >
+          {/* Title */}
+          <h3 className="text-2xl font-bold mb-3 bg-gradient-to-r from-pink-600 to-purple-600 dark:from-pink-400 dark:to-purple-400 bg-clip-text text-transparent drop-shadow-sm tracking-tight">
             {project.title}
           </h3>
-          
-          <p className="text-blue-400 text-sm leading-relaxed mb-4 flex-grow">
+
+          <p className="text-gray-600 dark:text-gray-400 text-sm mb-6 line-clamp-3 leading-relaxed">
             {project.description}
           </p>
-          
-          {/* Technology Tags */}
-          {project.technologies && (
-            <div className="flex flex-wrap gap-2 mb-6">
-              {project.technologies.map((tech, i) => (
-                <span 
-                  key={i} 
-                  className={`px-4 py-1.5 rounded-full text-sm font-semibold transform transition-transform duration-300 group-hover:scale-110 ${
-                    i === 0 ? 'bg-blue-500 text-white' :
-                    i === 1 ? 'bg-green-500 text-white' :
-                    i === 2 ? 'bg-yellow-500 text-gray-900' :
-                    'bg-purple-500 text-white'
-                  }`}
-                  style={{ transitionDelay: `${i * 50}ms` }}
-                >
-                  {tech}
-                </span>
-              ))}
-            </div>
-          )}
-          
+
+          {/* Technologies */}
+          <div className="flex flex-wrap gap-2 mb-auto">
+            {project.technologies?.slice(0, 4).map((tech, i) => (
+              <motion.span
+                key={i}
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.1 + i * 0.05 }}
+                className={`px-3 py-1.5 rounded-full text-xs font-bold tracking-wide ${getTechStyle(tech)}`}
+              >
+                {tech}
+              </motion.span>
+            ))}
+          </div>
+
           {/* Action Buttons */}
-          <div className="flex gap-3">
-            <a 
-              href={project.liveUrl} 
-              target="_blank" 
+          <div className="grid grid-cols-2 gap-4 mt-6">
+            <motion.a
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+              href={project.liveUrl}
+              target="_blank"
               rel="noopener noreferrer"
-              className="flex-1 bg-gradient-to-r from-pink-500 via-purple-500 to-pink-500 text-white px-4 py-3 rounded-xl font-semibold hover:from-pink-600 hover:via-purple-600 hover:to-pink-600 transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2 shadow-lg"
+              className="flex items-center justify-center gap-2 px-4 py-3 rounded-xl font-bold text-white bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 transition-all shadow-lg shadow-pink-500/30 text-sm"
             >
-              <i className="bi bi-box-arrow-up-right"></i>
-              viewDemo
-            </a>
-            <a 
-              href={project.githubUrl || project.liveUrl} 
-              target="_blank" 
+              <i className="bi bi-rocket-takeoff-fill"></i>
+              <span>viewDemo</span>
+            </motion.a>
+
+            <motion.a
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+              href={project.githubUrl || project.liveUrl}
+              target="_blank"
               rel="noopener noreferrer"
-              className="flex-1 bg-gray-900 border-2 border-blue-500 text-blue-400 px-4 py-3 rounded-xl font-semibold hover:bg-gray-800 transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2"
+              className="flex items-center justify-center gap-2 px-4 py-3 rounded-xl font-bold text-blue-600 dark:text-blue-400 bg-gray-100 dark:bg-gray-900/80 border border-blue-300 dark:border-blue-400/50 hover:bg-gray-200 dark:hover:bg-gray-800 hover:border-blue-400 transition-all text-sm shadow-lg shadow-blue-500/10"
             >
               <i className="bi bi-code-slash"></i>
-              sourceCode
-            </a>
+              <span>sourceCode</span>
+            </motion.a>
           </div>
-        </div>
+        </motion.div>
+
       </div>
-    </div>
-    </div>
+
+      {/* Glow Effect */}
+      <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none -z-10"
+        style={{
+          boxShadow: '0 0 60px rgba(168, 85, 247, 0.4)'
+        }}
+      />
+    </motion.div>
   );
 };
 

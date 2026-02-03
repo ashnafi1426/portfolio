@@ -1,36 +1,36 @@
-import { useState } from 'react';
+import { motion } from 'framer-motion';
 
 const Services = () => {
-  const [hoveredIndex, setHoveredIndex] = useState(null);
-
   const services = [
     {
       id: 1,
-      icon: "💻",
+      icon: "bi-code-slash",
       title: "Web Development",
-      description: "Building responsive and modern web applications using the latest technologies like React, Node.js, and MongoDB.",
+      description: "Building responsive and modern web applications using the latest technologies like React, Node.js, and PostgreSQL.",
       features: [
         "Responsive Design",
         "Modern UI/UX",
         "Fast Performance",
         "SEO Optimized"
-      ]
+      ],
+      color: "from-blue-500 to-blue-600"
     },
     {
       id: 2,
-      icon: "🎨",
+      icon: "bi-palette-fill",
       title: "Frontend Development",
       description: "Creating beautiful and intuitive user interfaces with React, Tailwind CSS, and modern JavaScript frameworks.",
       features: [
-        "React & Next.js",
+        "React & Vite",
         "Tailwind CSS",
         "Interactive UI",
         "Cross-browser Compatible"
-      ]
+      ],
+      color: "from-purple-500 to-purple-600"
     },
     {
       id: 3,
-      icon: "⚙️",
+      icon: "bi-server",
       title: "Backend Development",
       description: "Developing robust server-side applications with Node.js, Express, and database management systems.",
       features: [
@@ -38,11 +38,12 @@ const Services = () => {
         "Database Design",
         "Authentication",
         "Server Management"
-      ]
+      ],
+      color: "from-green-500 to-green-600"
     },
     {
       id: 4,
-      icon: "🚀",
+      icon: "bi-rocket-takeoff-fill",
       title: "Full-Stack Solutions",
       description: "End-to-end development services from concept to deployment, handling both frontend and backend.",
       features: [
@@ -50,11 +51,12 @@ const Services = () => {
         "Cloud Deployment",
         "Maintenance",
         "Technical Support"
-      ]
+      ],
+      color: "from-orange-500 to-red-500"
     },
     {
       id: 5,
-      icon: "📱",
+      icon: "bi-phone-fill",
       title: "Responsive Design",
       description: "Ensuring your website looks perfect on all devices - desktop, tablet, and mobile.",
       features: [
@@ -62,11 +64,12 @@ const Services = () => {
         "Adaptive Layouts",
         "Touch Optimized",
         "Performance Tuned"
-      ]
+      ],
+      color: "from-pink-500 to-rose-600"
     },
     {
       id: 6,
-      icon: "🔧",
+      icon: "bi-tools",
       title: "Website Maintenance",
       description: "Ongoing support and maintenance to keep your website running smoothly and up-to-date.",
       features: [
@@ -74,125 +77,162 @@ const Services = () => {
         "Updates",
         "Security Patches",
         "Performance Monitoring"
-      ]
+      ],
+      color: "from-cyan-500 to-blue-500"
     }
   ];
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { y: 30, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.5
+      }
+    }
+  };
+
   return (
-    <section id="services" className="py-20 bg-white">
-      <div className="w-full px-8 sm:px-12 lg:px-16">
+    <section id="services" className="relative py-20 md:py-28 bg-gradient-to-br from-gray-50 via-white to-gray-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 overflow-hidden transition-colors duration-300">
+      {/* Background Decoration */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-1/4 right-0 w-96 h-96 bg-blue-100 dark:bg-blue-900/20 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
+        <div className="absolute bottom-1/4 left-0 w-96 h-96 bg-purple-100 dark:bg-purple-900/20 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
+      </div>
+
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
         {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-16"
+        >
+          <span className="inline-block px-4 py-2 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full text-sm font-semibold mb-4">
+            What I Do
+          </span>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-4 tracking-tight">
             Services I Offer
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
             Comprehensive web development services to bring your ideas to life
           </p>
-        </div>
+        </motion.div>
 
         {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.map((service, index) => (
-            <div
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-7xl mx-auto"
+        >
+          {services.map((service) => (
+            <motion.div
               key={service.id}
+              variants={itemVariants}
+              whileHover={{ y: -10 }}
               className="group relative"
-              onMouseEnter={() => setHoveredIndex(index)}
-              onMouseLeave={() => setHoveredIndex(null)}
             >
-              {/* Card Background with Gradient Border */}
-              <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl opacity-0 group-hover:opacity-100 blur transition duration-500" />
-              
-              {/* Card Content */}
-              <div className="relative bg-white border border-gray-200 rounded-2xl p-8 h-full transition-all duration-300 group-hover:border-transparent group-hover:shadow-2xl">
+              {/* Card */}
+              <div className="relative bg-white dark:bg-gray-800 rounded-3xl p-8 h-full shadow-lg border border-gray-100 dark:border-gray-700 hover:shadow-2xl transition-all duration-300 overflow-hidden">
+                
+                {/* Gradient Background on Hover */}
+                <div className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-5 transition-opacity duration-300`}></div>
+                
                 {/* Icon */}
-                <div className="text-6xl mb-6 transform transition-transform duration-300 group-hover:scale-110">
-                  {service.icon}
+                <div className="relative mb-6">
+                  <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${service.color} flex items-center justify-center text-white text-2xl transform group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 shadow-lg`}>
+                    <i className={`bi ${service.icon}`}></i>
+                  </div>
                 </div>
 
                 {/* Title */}
-                <h3 className="text-2xl font-bold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors duration-300">
+                <h3 className="relative text-2xl font-bold text-gray-900 dark:text-white mb-4 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-purple-600 transition-all duration-300">
                   {service.title}
                 </h3>
 
                 {/* Description */}
-                <p className="text-gray-600 mb-6 leading-relaxed">
+                <p className="relative text-gray-600 dark:text-gray-300 mb-6 leading-relaxed text-base">
                   {service.description}
                 </p>
 
                 {/* Features List */}
-                <ul className="space-y-3">
+                <ul className="relative space-y-3">
                   {service.features.map((feature, idx) => (
                     <li
                       key={idx}
-                      className="flex items-center text-sm text-gray-700"
-                      style={{
-                        animation: hoveredIndex === index ? `slideIn 0.3s ease-out ${idx * 0.1}s both` : 'none'
-                      }}
+                      className="flex items-center text-sm text-gray-700 dark:text-gray-300"
                     >
-                      <svg
-                        className="w-5 h-5 text-green-500 mr-3 flex-shrink-0"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M5 13l4 4L19 7"
-                        />
-                      </svg>
-                      {feature}
+                      <span className={`inline-flex items-center justify-center w-5 h-5 rounded-full bg-gradient-to-br ${service.color} text-white mr-3 flex-shrink-0`}>
+                        <i className="bi bi-check2 text-xs font-bold"></i>
+                      </span>
+                      <span className="font-medium">{feature}</span>
                     </li>
                   ))}
                 </ul>
 
-                {/* Hover Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-600/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+                {/* Decorative Corner */}
+                <div className={`absolute -bottom-8 -right-8 w-32 h-32 bg-gradient-to-br ${service.color} rounded-full opacity-10 group-hover:opacity-20 transition-opacity duration-300`}></div>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         {/* Call to Action */}
-        <div className="mt-16 text-center">
-          <p className="text-gray-600 mb-6 text-lg">
-            Ready to start your project?
-          </p>
-          <a
-            href="#contact"
-            className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold rounded-full hover:shadow-lg transform hover:scale-105 transition-all duration-300"
-          >
-            Get In Touch
-            <svg
-              className="w-5 h-5 ml-2"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.3, duration: 0.5 }}
+          className="mt-20 text-center"
+        >
+          <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-3xl p-8 md:p-12 max-w-4xl mx-auto shadow-2xl">
+            <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
+              Ready to Start Your Project?
+            </h3>
+            <p className="text-blue-100 text-lg mb-8 max-w-2xl mx-auto">
+              Let's work together to bring your ideas to life with modern web technologies
+            </p>
+            <a
+              href="#contact"
+              className="inline-flex items-center px-10 py-5 bg-white text-blue-600 font-bold text-lg rounded-2xl hover:bg-gray-50 transform hover:-translate-y-1 transition-all duration-300 shadow-xl group"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M17 8l4 4m0 0l-4 4m4-4H3"
-              />
-            </svg>
-          </a>
-        </div>
+              Get In Touch
+              <i className="bi bi-arrow-right ml-3 text-xl group-hover:translate-x-2 transition-transform duration-300"></i>
+            </a>
+          </div>
+        </motion.div>
       </div>
 
-      {/* Add animation keyframes */}
+      {/* CSS for animations */}
       <style>{`
-        @keyframes slideIn {
-          from {
-            opacity: 0;
-            transform: translateX(-10px);
-          }
-          to {
-            opacity: 1;
-            transform: translateX(0);
-          }
+        @keyframes blob {
+          0%, 100% { transform: translate(0, 0) scale(1); }
+          25% { transform: translate(20px, -50px) scale(1.1); }
+          50% { transform: translate(-20px, 20px) scale(0.9); }
+          75% { transform: translate(50px, 50px) scale(1.05); }
+        }
+
+        .animate-blob {
+          animation: blob 20s infinite;
+        }
+
+        .animation-delay-2000 {
+          animation-delay: 2s;
         }
       `}</style>
     </section>

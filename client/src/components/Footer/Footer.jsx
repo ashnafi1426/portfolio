@@ -4,10 +4,9 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   const socialLinks = [
-    { href: 'https://twitter.com', icon: 'bi bi-twitter-x', label: 'Twitter' },
-    { href: 'https://facebook.com', icon: 'bi bi-facebook', label: 'Facebook' },
-    { href: 'https://instagram.com', icon: 'bi bi-instagram', label: 'Instagram' },
-    { href: 'https://linkedin.com', icon: 'bi bi-linkedin', label: 'LinkedIn' },
+    { href: 'https://github.com/ashnafi1426', icon: 'bi bi-github', label: 'GitHub' },
+    { href: 'https://www.linkedin.com/in/ashenafi-sileshi-3736aa362/', icon: 'bi bi-linkedin', label: 'LinkedIn' },
+    { href: 'https://t.me/ashe1426', icon: 'bi bi-telegram', label: 'Telegram' },
   ];
 
   const quickLinks = [

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const Resume = () => {
   const [activeTab, setActiveTab] = useState('experience');
@@ -8,255 +9,488 @@ const Resume = () => {
       id: 1,
       title: "Full-Stack Developer",
       company: "Freelance",
-      period: "2023 - Present",
+      period: "2024 - 2026 (Present)",
       location: "Remote",
-      description: "Building modern web applications using React, Node.js, and MongoDB. Delivering end-to-end solutions for clients.",
+      description: "Building modern, scalable web applications using React, Node.js, Express, and PostgreSQL. Delivering end-to-end solutions for clients across various industries.",
       achievements: [
-        "Developed 10+ full-stack web applications",
-        "Implemented RESTful APIs and database designs",
-        "Improved application performance by 40%"
-      ]
+        "Developed 10+ full-stack web applications with responsive designs and optimal performance",
+        "Implemented RESTful APIs and database designs using Node.js, Express, and PostgreSQL",
+        "Improved application performance by 40% through code optimization and caching strategies",
+        "Collaborated with clients to gather requirements and deliver tailored solutions",
+        "Integrated third-party APIs and services including payment gateways and authentication systems"
+      ],
+      technologies: ["React", "Node.js", "Express", "PostgreSQL", "Tailwind CSS", "Vite"]
     },
     {
       id: 2,
       title: "Frontend Developer",
       company: "Various Projects",
-      period: "2022 - 2023",
+      period: "2024 - 2025",
       location: "Remote",
-      description: "Created responsive and interactive user interfaces using React and modern CSS frameworks.",
+      description: "Created responsive and interactive user interfaces using React, Vite, and Tailwind CSS.",
       achievements: [
-        "Built responsive UIs for 15+ projects",
-        "Implemented modern design patterns",
-        "Collaborated with backend teams"
-      ]
+        "Built responsive user interfaces for 15+ projects using React and Tailwind CSS",
+        "Implemented modern design patterns and component-based architecture",
+        "Collaborated with backend teams to integrate RESTful APIs",
+        "Ensured cross-browser compatibility and mobile responsiveness",
+        "Utilized state management solutions including Redux and Context API"
+      ],
+      technologies: ["React", "JavaScript", "Tailwind CSS", "Vite", "Redux"]
     }
   ];
 
   const education = [
     {
       id: 1,
-      degree: "Bachelor of Science in Software Engineering",
-      institution: "Kombolcha University",
-      period: "2020 - 2024",
-      location: "Kombolcha, Ethiopia",
-      description: "Focused on software development, algorithms, and web technologies.",
+      degree: "Undergraduate in Software Engineering",
+      institution: "Ethiopian University",
+      period: "2024 - 2026 (Present)",
+      location: "Ethiopia",
+      description: "Currently pursuing comprehensive study of software development principles, algorithms, data structures, and web technologies. Gaining hands-on experience through academic projects and collaborative team work.",
       highlights: [
-        "Graduated with honors",
-        "Led multiple team projects",
-        "Active in coding competitions"
-      ]
+        "Building strong foundation in computer science fundamentals and software engineering principles",
+        "Completing multiple full-stack web development projects",
+        "Active participation in coding competitions and hackathons",
+        "Collaborating on team projects using Agile methodologies"
+      ],
+      gpa: "3.6/4.0"
     }
   ];
 
   const certifications = [
     {
       id: 1,
-      name: "Full-Stack Web Development",
-      issuer: "Evangadi Tech",
+      name: "Full-Stack Web Development Specialization",
+      issuer: "Online Learning Platform",
       date: "2023",
-      icon: "🎓"
+      icon: "bi-award-fill",
+      color: "from-blue-500 to-blue-600",
+      description: "Comprehensive training in modern web development"
     },
     {
       id: 2,
-      name: "React Developer",
-      issuer: "Online Course",
-      date: "2023",
-      icon: "⚛️"
+      name: "React - The Complete Guide",
+      issuer: "Udemy",
+      date: "2022",
+      icon: "bi-code-square",
+      color: "from-purple-500 to-purple-600",
+      description: "Advanced React patterns and best practices"
     },
     {
       id: 3,
-      name: "Node.js Backend Development",
+      name: "Node.js, Express, PostgreSQL & More",
       issuer: "Online Course",
       date: "2022",
-      icon: "🟢"
+      icon: "bi-server",
+      color: "from-green-500 to-green-600",
+      description: "Backend development with Node.js ecosystem"
+    },
+    {
+      id: 4,
+      name: "Modern JavaScript Development",
+      issuer: "Online Course",
+      date: "2022",
+      icon: "bi-braces",
+      color: "from-yellow-500 to-orange-500",
+      description: "ES6+ features and modern JavaScript"
     }
   ];
 
+  const skills = {
+    frontend: [
+      { name: "React.js", level: 90 },
+      { name: "JavaScript (ES6+)", level: 85 },
+      { name: "TypeScript", level: 75 },
+      { name: "HTML5 & CSS3", level: 95 },
+      { name: "Tailwind CSS", level: 90 },
+      { name: "Vite", level: 85 }
+    ],
+    backend: [
+      { name: "Node.js", level: 85 },
+      { name: "Express.js", level: 85 },
+      { name: "PostgreSQL", level: 80 },
+      { name: "RESTful APIs", level: 90 },
+      { name: "JWT Authentication", level: 85 },
+      { name: "MongoDB", level: 75 }
+    ],
+    tools: [
+      { name: "Git & GitHub", level: 90 },
+      { name: "VS Code", level: 95 },
+      { name: "Vercel", level: 85 },
+      { name: "npm/yarn", level: 90 },
+      { name: "Postman", level: 85 },
+      { name: "Chrome DevTools", level: 90 }
+    ]
+  };
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.08
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.5
+      }
+    }
+  };
+
+  const handleDownloadCV = () => {
+    // Direct download approach
+    const link = document.createElement('a');
+    link.href = '/cv/pro.pdf';
+    link.setAttribute('download', 'Ashenafi_Sileshi_Resume.pdf');
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
-    <section id="resume" className="py-20 bg-gradient-to-b from-white to-gray-50">
-      <div className="w-full px-8 sm:px-12 lg:px-16">
+    <section id="resume" className="relative py-20 md:py-28 bg-gradient-to-br from-gray-50 via-white to-gray-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 overflow-hidden transition-colors duration-300">
+      {/* Background Decoration */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-1/4 right-0 w-96 h-96 bg-purple-100 dark:bg-purple-900/20 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
+        <div className="absolute bottom-1/4 left-0 w-96 h-96 bg-blue-100 dark:bg-blue-900/20 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
+      </div>
+
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
         {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-16"
+        >
+          <span className="inline-block px-4 py-2 bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 rounded-full text-sm font-semibold mb-4">
+            My Journey
+          </span>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-4 tracking-tight">
             Resume
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            My professional journey and educational background
+          <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
+            Professional experience, education, and certifications
           </p>
-        </div>
+        </motion.div>
 
         {/* Tab Navigation */}
         <div className="flex justify-center mb-12">
-          <div className="inline-flex bg-white rounded-full p-2 shadow-lg">
-            <button
-              onClick={() => setActiveTab('experience')}
-              className={`px-8 py-3 rounded-full font-semibold transition-all duration-300 ${activeTab === 'experience'
-                  ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-lg'
-                  : 'text-gray-600 hover:text-gray-900'
+          <div className="inline-flex bg-white dark:bg-gray-800 rounded-2xl p-1.5 shadow-lg border border-gray-100 dark:border-gray-700">
+            {[
+              { id: 'experience', label: 'Experience', icon: 'bi-briefcase-fill' },
+              { id: 'education', label: 'Education', icon: 'bi-mortarboard-fill' },
+              { id: 'skills', label: 'Skills', icon: 'bi-lightning-charge-fill' },
+              { id: 'certifications', label: 'Certifications', icon: 'bi-award-fill' }
+            ].map((tab) => (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id)}
+                className={`px-4 sm:px-6 py-3 rounded-xl font-semibold text-sm sm:text-base transition-all duration-300 relative ${
+                  activeTab === tab.id
+                    ? 'text-white'
+                    : 'text-gray-600 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400'
                 }`}
-            >
-              💼 Experience
-            </button>
-            <button
-              onClick={() => setActiveTab('education')}
-              className={`px-8 py-3 rounded-full font-semibold transition-all duration-300 ${activeTab === 'education'
-                  ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-lg'
-                  : 'text-gray-600 hover:text-gray-900'
-                }`}
-            >
-              🎓 Education
-            </button>
-            <button
-              onClick={() => setActiveTab('certifications')}
-              className={`px-8 py-3 rounded-full font-semibold transition-all duration-300 ${activeTab === 'certifications'
-                  ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-lg'
-                  : 'text-gray-600 hover:text-gray-900'
-                }`}
-            >
-              🏆 Certifications
-            </button>
+              >
+                {activeTab === tab.id && (
+                  <motion.div
+                    layoutId="activeTab"
+                    className="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-600 rounded-xl"
+                    transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                  />
+                )}
+                <span className="relative z-10 flex items-center gap-2">
+                  <i className={`bi ${tab.icon}`}></i>
+                  <span className="hidden sm:inline">{tab.label}</span>
+                </span>
+              </button>
+            ))}
           </div>
         </div>
 
         {/* Content */}
-        <div className="max-w-4xl mx-auto">
-          {/* Experience Tab */}
-          {activeTab === 'experience' && (
-            <div className="space-y-8 animate-resume-fade-in">
-              {experience.map((item, index) => (
-                <div
-                  key={item.id}
-                  className="relative pl-8 pb-8 border-l-2 border-blue-500 last:pb-0"
-                  style={{ animationDelay: `${index * 0.1}s` }}
-                >
-                  {/* Timeline Dot */}
-                  <div className="absolute -left-3 top-0 w-6 h-6 bg-blue-500 rounded-full border-4 border-white shadow-lg" />
+        <div className="max-w-5xl mx-auto min-h-[500px]">
+          <AnimatePresence mode="wait">
 
-                  {/* Content Card */}
-                  <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-shadow duration-300 ml-4">
-                    <div className="flex flex-wrap justify-between items-start mb-4">
-                      <div>
-                        <h3 className="text-2xl font-bold text-gray-900 mb-1">
-                          {item.title}
-                        </h3>
-                        <p className="text-lg text-blue-600 font-semibold">
-                          {item.company}
-                        </p>
+            {/* Experience Tab */}
+            {activeTab === 'experience' && (
+              <motion.div
+                key="experience"
+                variants={containerVariants}
+                initial="hidden"
+                animate="visible"
+                exit={{ opacity: 0, y: -20 }}
+                className="space-y-8"
+              >
+                {experience.map((item, index) => (
+                  <motion.div
+                    key={item.id}
+                    variants={itemVariants}
+                    className="relative"
+                  >
+                    <div className="bg-white dark:bg-gray-800 rounded-3xl p-6 md:p-8 shadow-lg border border-gray-100 dark:border-gray-700 hover:shadow-xl transition-all duration-300 group">
+                      {/* Header */}
+                      <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-6 gap-4">
+                        <div className="flex-1">
+                          <div className="flex items-start gap-3 mb-2">
+                            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-600 to-blue-600 flex items-center justify-center text-white shrink-0 group-hover:scale-110 transition-transform duration-300">
+                              <i className="bi bi-briefcase-fill text-xl"></i>
+                            </div>
+                            <div>
+                              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-1">{item.title}</h3>
+                              <p className="text-purple-600 dark:text-purple-400 font-semibold text-lg">{item.company}</p>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="flex flex-col items-start md:items-end gap-2">
+                          <span className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-purple-50 to-blue-50 dark:from-purple-900/30 dark:to-blue-900/30 text-purple-700 dark:text-purple-300 text-sm font-semibold rounded-full border border-purple-200 dark:border-purple-700">
+                            <i className="bi bi-calendar-event mr-2"></i>
+                            {item.period}
+                          </span>
+                          <span className="inline-flex items-center text-sm text-gray-500 dark:text-gray-400">
+                            <i className="bi bi-geo-alt-fill mr-1"></i>
+                            {item.location}
+                          </span>
+                        </div>
                       </div>
-                      <div className="text-right">
-                        <p className="text-gray-600 font-medium">{item.period}</p>
-                        <p className="text-sm text-gray-500">{item.location}</p>
+
+                      {/* Description */}
+                      <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed text-base">{item.description}</p>
+
+                      {/* Achievements */}
+                      <div className="mb-6">
+                        <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-3 uppercase tracking-wide">Key Achievements</h4>
+                        <ul className="space-y-3">
+                          {item.achievements.map((achievement, idx) => (
+                            <li key={idx} className="flex items-start text-gray-600 dark:text-gray-300">
+                              <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 mr-3 mt-0.5 shrink-0">
+                                <i className="bi bi-check2 text-sm font-bold"></i>
+                              </span>
+                              <span className="text-sm leading-relaxed">{achievement}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      {/* Technologies */}
+                      <div>
+                        <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-3 uppercase tracking-wide">Technologies Used</h4>
+                        <div className="flex flex-wrap gap-2">
+                          {item.technologies.map((tech, idx) => (
+                            <span
+                              key={idx}
+                              className="px-3 py-1.5 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs font-medium rounded-lg border border-gray-200 dark:border-gray-600 hover:bg-purple-50 dark:hover:bg-purple-900/30 hover:text-purple-700 dark:hover:text-purple-300 hover:border-purple-200 dark:hover:border-purple-700 transition-colors duration-200"
+                            >
+                              {tech}
+                            </span>
+                          ))}
+                        </div>
                       </div>
                     </div>
 
-                    <p className="text-gray-600 mb-4">{item.description}</p>
-
-                    <ul className="space-y-2">
-                      {item.achievements.map((achievement, idx) => (
-                        <li key={idx} className="flex items-start text-gray-700">
-                          <span className="text-green-500 mr-2">✓</span>
-                          {achievement}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
-
-          {/* Education Tab */}
-          {activeTab === 'education' && (
-            <div className="space-y-8 animate-resume-fade-in">
-              {education.map((item, index) => (
-                <div
-                  key={item.id}
-                  className="relative pl-8 pb-8 border-l-2 border-purple-500 last:pb-0"
-                  style={{ animationDelay: `${index * 0.1}s` }}
-                >
-                  <div className="absolute -left-3 top-0 w-6 h-6 bg-purple-500 rounded-full border-4 border-white shadow-lg" />
-
-                  <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-shadow duration-300 ml-4">
-                    <div className="flex flex-wrap justify-between items-start mb-4">
-                      <div>
-                        <h3 className="text-2xl font-bold text-gray-900 mb-1">
-                          {item.degree}
-                        </h3>
-                        <p className="text-lg text-purple-600 font-semibold">
-                          {item.institution}
-                        </p>
+                    {/* Timeline connector */}
+                    {index < experience.length - 1 && (
+                      <div className="flex justify-center my-6">
+                        <div className="w-0.5 h-8 bg-gradient-to-b from-purple-300 to-blue-300 dark:from-purple-700 dark:to-blue-700"></div>
                       </div>
-                      <div className="text-right">
-                        <p className="text-gray-600 font-medium">{item.period}</p>
-                        <p className="text-sm text-gray-500">{item.location}</p>
+                    )}
+                  </motion.div>
+                ))}
+              </motion.div>
+            )}
+
+            {/* Education Tab */}
+            {activeTab === 'education' && (
+              <motion.div
+                key="education"
+                variants={containerVariants}
+                initial="hidden"
+                animate="visible"
+                exit={{ opacity: 0, y: -20 }}
+                className="space-y-8"
+              >
+                {education.map((item) => (
+                  <motion.div
+                    key={item.id}
+                    variants={itemVariants}
+                    className="bg-white dark:bg-gray-800 rounded-3xl p-6 md:p-8 shadow-lg border border-gray-100 dark:border-gray-700 hover:shadow-xl transition-all duration-300 group"
+                  >
+                    {/* Header */}
+                    <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-6 gap-4">
+                      <div className="flex-1">
+                        <div className="flex items-start gap-3 mb-2">
+                          <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center text-white shrink-0 group-hover:scale-110 transition-transform duration-300">
+                            <i className="bi bi-mortarboard-fill text-xl"></i>
+                          </div>
+                          <div>
+                            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-1">{item.degree}</h3>
+                            <p className="text-blue-600 dark:text-blue-400 font-semibold text-lg">{item.institution}</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="flex flex-col items-start md:items-end gap-2">
+                        <span className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/30 dark:to-purple-900/30 text-blue-700 dark:text-blue-300 text-sm font-semibold rounded-full border border-blue-200 dark:border-blue-700">
+                          <i className="bi bi-calendar-event mr-2"></i>
+                          {item.period}
+                        </span>
+                        <span className="inline-flex items-center text-sm text-gray-500 dark:text-gray-400">
+                          <i className="bi bi-geo-alt-fill mr-1"></i>
+                          {item.location}
+                        </span>
                       </div>
                     </div>
 
-                    <p className="text-gray-600 mb-4">{item.description}</p>
+                    {/* Description */}
+                    <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed text-base">{item.description}</p>
 
-                    <ul className="space-y-2">
-                      {item.highlights.map((highlight, idx) => (
-                        <li key={idx} className="flex items-start text-gray-700">
-                          <span className="text-green-500 mr-2">✓</span>
-                          {highlight}
-                        </li>
+                    {/* Highlights */}
+                    <div className="mb-6">
+                      <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-3 uppercase tracking-wide">Highlights</h4>
+                      <ul className="space-y-3">
+                        {item.highlights.map((highlight, idx) => (
+                          <li key={idx} className="flex items-start text-gray-600 dark:text-gray-300">
+                            <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 mr-3 mt-0.5 shrink-0">
+                              <i className="bi bi-check2 text-sm font-bold"></i>
+                            </span>
+                            <span className="text-sm leading-relaxed">{highlight}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    {/* GPA */}
+                    {item.gpa && (
+                      <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-yellow-50 to-orange-50 dark:from-yellow-900/30 dark:to-orange-900/30 text-orange-700 dark:text-orange-300 rounded-xl border border-orange-200 dark:border-orange-700">
+                        <i className="bi bi-star-fill mr-2"></i>
+                        <span className="font-semibold">GPA: {item.gpa}</span>
+                      </div>
+                    )}
+                  </motion.div>
+                ))}
+              </motion.div>
+            )}
+
+            {/* Skills Tab */}
+            {activeTab === 'skills' && (
+              <motion.div
+                key="skills"
+                variants={containerVariants}
+                initial="hidden"
+                animate="visible"
+                exit={{ opacity: 0, y: -20 }}
+                className="space-y-8"
+              >
+                {Object.entries(skills).map(([category, skillList]) => (
+                  <motion.div
+                    key={category}
+                    variants={itemVariants}
+                    className="bg-white dark:bg-gray-800 rounded-3xl p-6 md:p-8 shadow-lg border border-gray-100 dark:border-gray-700"
+                  >
+                    <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 capitalize flex items-center gap-3">
+                      <span className="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-600 to-blue-600 flex items-center justify-center text-white">
+                        <i className={`bi ${category === 'frontend' ? 'bi-palette-fill' : category === 'backend' ? 'bi-server' : 'bi-tools'}`}></i>
+                      </span>
+                      {category} Development
+                    </h3>
+                    <div className="space-y-4">
+                      {skillList.map((skill, idx) => (
+                        <div key={idx}>
+                          <div className="flex justify-between items-center mb-2">
+                            <span className="text-gray-700 dark:text-gray-300 font-medium">{skill.name}</span>
+                            <span className="text-purple-600 dark:text-purple-400 font-semibold text-sm">{skill.level}%</span>
+                          </div>
+                          <div className="w-full h-2.5 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden">
+                            <motion.div
+                              initial={{ width: 0 }}
+                              whileInView={{ width: `${skill.level}%` }}
+                              viewport={{ once: true }}
+                              transition={{ duration: 1, delay: idx * 0.1 }}
+                              className="h-full bg-gradient-to-r from-purple-600 to-blue-600 rounded-full"
+                            />
+                          </div>
+                        </div>
                       ))}
-                    </ul>
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
+                    </div>
+                  </motion.div>
+                ))}
+              </motion.div>
+            )}
 
-          {/* Certifications Tab */}
-          {activeTab === 'certifications' && (
-            <div className="grid md:grid-cols-2 gap-6 animate-resume-fade-in">
-              {certifications.map((cert, index) => (
-                <div
-                  key={cert.id}
-                  className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105"
-                  style={{ animationDelay: `${index * 0.1}s` }}
-                >
-                  <div className="text-5xl mb-4">{cert.icon}</div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">
-                    {cert.name}
-                  </h3>
-                  <p className="text-blue-600 font-semibold mb-1">{cert.issuer}</p>
-                  <p className="text-gray-500 text-sm">{cert.date}</p>
-                </div>
-              ))}
-            </div>
-          )}
+            {/* Certifications Tab */}
+            {activeTab === 'certifications' && (
+              <motion.div
+                key="certifications"
+                variants={containerVariants}
+                initial="hidden"
+                animate="visible"
+                exit={{ opacity: 0, y: -20 }}
+                className="grid sm:grid-cols-2 gap-6"
+              >
+                {certifications.map((cert) => (
+                  <motion.div
+                    key={cert.id}
+                    variants={itemVariants}
+                    className="bg-white dark:bg-gray-800 rounded-3xl p-6 shadow-lg border border-gray-100 dark:border-gray-700 hover:shadow-xl transition-all duration-300 group"
+                  >
+                    <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${cert.color} flex items-center justify-center text-white mb-4 group-hover:scale-110 transition-transform duration-300`}>
+                      <i className={`bi ${cert.icon} text-2xl`}></i>
+                    </div>
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">{cert.name}</h3>
+                    <p className="text-purple-600 dark:text-purple-400 font-semibold text-sm mb-2">{cert.issuer}</p>
+                    <p className="text-gray-600 dark:text-gray-300 text-sm mb-3">{cert.description}</p>
+                    <div className="flex items-center text-gray-500 dark:text-gray-400 text-sm">
+                      <i className="bi bi-calendar-check mr-2"></i>
+                      {cert.date}
+                    </div>
+                  </motion.div>
+                ))}
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
 
         {/* Download Resume Button */}
-        <div className="text-center mt-12">
-          <a
-            href="/cv/Ashenafi_CV.pdf"
-            download="Ashenafi_Resume.pdf"
-            className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold rounded-full hover:shadow-lg transform hover:scale-105 transition-all duration-300"
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.3 }}
+          className="text-center mt-16"
+        >
+          <button
+            onClick={handleDownloadCV}
+            className="inline-flex items-center px-10 py-5 bg-gradient-to-r from-purple-600 to-blue-600 text-white font-bold text-lg rounded-2xl shadow-2xl hover:shadow-purple-500/50 hover:-translate-y-1 transition-all duration-300 group"
           >
-            <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-            </svg>
-            Download Resume
-          </a>
-        </div>
+            <i className="bi bi-download mr-3 text-2xl group-hover:animate-bounce"></i>
+            Download Full Resume
+          </button>
+        </motion.div>
       </div>
 
+      {/* CSS for animations */}
       <style>{`
-        @keyframes resume-fade-in {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
+        @keyframes blob {
+          0%, 100% { transform: translate(0, 0) scale(1); }
+          25% { transform: translate(20px, -50px) scale(1.1); }
+          50% { transform: translate(-20px, 20px) scale(0.9); }
+          75% { transform: translate(50px, 50px) scale(1.05); }
         }
-        .animate-resume-fade-in {
-          animation: resume-fade-in 0.6s ease-out forwards;
+
+        .animate-blob {
+          animation: blob 20s infinite;
+        }
+
+        .animation-delay-2000 {
+          animation-delay: 2s;
         }
       `}</style>
     </section>

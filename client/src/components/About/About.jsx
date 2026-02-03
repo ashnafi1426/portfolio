@@ -2,12 +2,18 @@ import { motion } from 'framer-motion';
 
 const About = () => {
   const personalInfo = [
-    { label: 'Name', value: 'Ashenafi Sileshi', icon: 'bi-person' },
-    { label: 'Phone', value: '+251968277909', icon: 'bi-phone' },
-    { label: 'Age', value: '21 Years', icon: 'bi-calendar3' },
-    { label: 'Email', value: 'ashenafisileshi7@gmail.com', icon: 'bi-envelope' },
-    { label: 'Occupation', value: 'Fullstack Developer', icon: 'bi-code-slash' },
-    { label: 'Nationality', value: 'Ethiopian', icon: 'bi-globe' }
+    { label: 'Name', value: 'Ashenafi Sileshi', icon: 'bi-person-fill' },
+    { label: 'Phone', value: '+251 968 277 909', icon: 'bi-telephone-fill' },
+    { label: 'Email', value: 'ashenafisileshi7@gmail.com', icon: 'bi-envelope-fill' },
+    { label: 'Location', value: 'Addis Ababa, Ethiopia', icon: 'bi-geo-alt-fill' },
+    { label: 'Age', value: '21 Years', icon: 'bi-calendar-check-fill' },
+    { label: 'Occupation', value: 'Fullstack Developer', icon: 'bi-code-square' }
+  ];
+
+  const stats = [
+    { number: '10+', label: 'Projects Completed' },
+    { number: '3+', label: 'Years Experience' },
+    { number: '100%', label: 'Client Satisfaction' }
   ];
 
   const containerVariants = {
@@ -28,9 +34,25 @@ const About = () => {
     }
   };
 
+  const handleDownloadCV = () => {
+    // Direct download approach
+    const link = document.createElement('a');
+    link.href = '/cv/pro.pdf';
+    link.setAttribute('download', 'Ashenafi_Sileshi_Resume.pdf');
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
-    <section id="about" className="py-20 bg-gray-50">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="about" className="relative py-20 md:py-28 bg-white dark:bg-gray-900 overflow-hidden">
+      {/* Background Decoration */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-purple-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
+      </div>
+
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
         {/* Section Title */}
         <motion.div
@@ -40,14 +62,18 @@ const About = () => {
           transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 tracking-tight">About Me</h2>
-          <div className="w-20 h-1 bg-blue-600 mx-auto rounded-full mb-6"></div>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
-            Passionate web developer with a curiosity for how things work and a drive to solve real-world problems through code.
+          <span className="inline-block px-4 py-2 bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 rounded-full text-sm font-semibold mb-4">
+            About Me
+          </span>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-4 tracking-tight">
+            Who I Am
+          </h2>
+          <p className="text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed">
+            Passionate Fullstack Developer crafting elegant digital solutions
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center max-w-7xl mx-auto">
 
           {/* Image Section */}
           <motion.div
@@ -55,14 +81,24 @@ const About = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="relative group"
+            className="relative group flex justify-center lg:justify-start"
           >
-            <div className="absolute inset-0 bg-blue-600 rounded-3xl rotate-6 opacity-20 transition-transform duration-300 group-hover:rotate-3 group-hover:scale-105"></div>
-            <img
-              src="https://via.placeholder.com/600x800/2563eb/ffffff?text=Ashenafi+Sileshi"
-              alt="Ashenafi Sileshi"
-              className="relative w-full max-w-md mx-auto lg:max-w-full rounded-3xl shadow-2xl object-cover transform transition-transform duration-500 group-hover:-translate-y-2"
-            />
+            <div className="relative">
+              {/* Main Image */}
+              <div className="relative w-full max-w-md aspect-[3/4] rounded-3xl overflow-hidden shadow-2xl">
+                <img
+                  src="/images/Ashu.jpg"
+                  alt="Ashenafi Sileshi"
+                  className="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-500"
+                />
+                {/* Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-purple-900/40 via-transparent to-transparent"></div>
+              </div>
+
+              {/* Decorative Elements */}
+              <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-gradient-to-br from-purple-600 to-blue-600 rounded-3xl -z-10 opacity-20"></div>
+              <div className="absolute -top-6 -left-6 w-32 h-32 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-3xl -z-10 opacity-20"></div>
+            </div>
           </motion.div>
 
           {/* Content Section */}
@@ -71,63 +107,120 @@ const About = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="flex flex-col h-full justify-center"
+            className="flex flex-col justify-center"
           >
-            <span className="text-blue-600 font-semibold text-lg mb-2 uppercase tracking-wide">Who I Am</span>
-            <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 leading-tight">
-              Professional <span className="text-blue-600">Fullstack Developer</span> based in Ethiopia
-            </h3>
-            <p className="text-gray-600 text-lg mb-8 leading-relaxed">
-              When I began studying Software Engineering, I was deeply curious about how websites work.
-              What started as a simple curiosity turned into a burning passion for building elegant,
-              efficient, and scalable web applications. I love turning complex problems into simple, beautiful interface designs.
-            </p>
+            {/* Description */}
+            <div className="mb-8">
+              <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4">
+                Fullstack Developer & Problem Solver
+              </h3>
+              <p className="text-gray-600 dark:text-gray-400 text-base md:text-lg mb-4 leading-relaxed">
+                I am a third-year Software Engineering student at KIOT (Kombolcha Institute of Technology). 
+                When I began my studies, I was deeply curious about how websites work. What started as a simple 
+                curiosity turned into a burning passion for building elegant, efficient, and scalable web applications.
+              </p>
+              <p className="text-gray-600 dark:text-gray-400 text-base md:text-lg leading-relaxed">
+                I specialize in creating modern web applications using React, Node.js, Express, and PostgreSQL. 
+                My focus is on writing clean, maintainable code that solves real-world problems.
+              </p>
+            </div>
 
-            {/* Info Grid */}
+            {/* Stats */}
             <motion.div
               variants={containerVariants}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              className="grid grid-cols-1 sm:grid-cols-2 gap-4"
+              className="grid grid-cols-3 gap-4 mb-8 pb-8 border-b border-gray-200 dark:border-gray-700"
             >
-              {personalInfo.map((info, index) => (
+              {stats.map((stat, index) => (
                 <motion.div
                   key={index}
                   variants={itemVariants}
-                  className="bg-white p-5 rounded-xl shadow-sm border border-gray-100 hover:shadow-md hover:border-blue-100 transition-all duration-300 flex items-center gap-4"
+                  className="text-center"
                 >
-                  <div className="w-10 h-10 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center text-xl shrink-0">
-                    <i className={`bi ${info.icon}`}></i>
+                  <div className="text-3xl md:text-4xl font-bold text-purple-600 dark:text-purple-400 mb-1">
+                    {stat.number}
                   </div>
-                  <div className="overflow-hidden">
-                    <p className="text-sm text-gray-500 font-medium mb-0.5">{info.label}</p>
-                    <p className="text-gray-900 font-semibold truncate" title={info.value}>{info.value}</p>
+                  <div className="text-xs md:text-sm text-gray-600 dark:text-gray-400 font-medium">
+                    {stat.label}
                   </div>
                 </motion.div>
               ))}
             </motion.div>
 
-            {/* CTA Button */}
+            {/* Personal Info Grid */}
+            <motion.div
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8"
+            >
+              {personalInfo.map((info, index) => (
+                <motion.div
+                  key={index}
+                  variants={itemVariants}
+                  className="flex items-center gap-3 bg-gray-50 dark:bg-gray-800 p-4 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-300"
+                >
+                  <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-purple-600 to-blue-600 flex items-center justify-center text-white shrink-0">
+                    <i className={`bi ${info.icon} text-lg`}></i>
+                  </div>
+                  <div className="overflow-hidden">
+                    <p className="text-xs text-gray-500 dark:text-gray-400 font-medium mb-0.5">{info.label}</p>
+                    <p className="text-sm md:text-base text-gray-900 dark:text-white font-semibold truncate" title={info.value}>
+                      {info.value}
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
+
+            {/* CTA Buttons */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.4, duration: 0.5 }}
-              className="mt-10"
+              className="flex flex-col sm:flex-row gap-4"
             >
+              <button
+                onClick={handleDownloadCV}
+                className="inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-white bg-gradient-to-r from-purple-600 to-blue-600 rounded-xl hover:from-purple-700 hover:to-blue-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+              >
+                <i className="bi bi-download mr-2"></i>
+                Download CV
+              </button>
               <a
                 href="#contact"
-                className="inline-flex items-center justify-center px-8 py-3 text-base font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-all duration-300 shadow-lg hover:shadow-blue-500/30 transform hover:-translate-y-1"
+                className="inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-gray-900 dark:text-white bg-white dark:bg-gray-800 border-2 border-gray-900 dark:border-gray-600 rounded-xl hover:bg-gray-900 dark:hover:bg-gray-700 hover:text-white transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
               >
-                Download CV
-                <i className="bi bi-download ml-2"></i>
+                <i className="bi bi-envelope mr-2"></i>
+                Contact Me
               </a>
             </motion.div>
           </motion.div>
 
         </div>
       </div>
+
+      {/* CSS for animations */}
+      <style>{`
+        @keyframes blob {
+          0%, 100% { transform: translate(0, 0) scale(1); }
+          25% { transform: translate(20px, -50px) scale(1.1); }
+          50% { transform: translate(-20px, 20px) scale(0.9); }
+          75% { transform: translate(50px, 50px) scale(1.05); }
+        }
+
+        .animate-blob {
+          animation: blob 20s infinite;
+        }
+
+        .animation-delay-2000 {
+          animation-delay: 2s;
+        }
+      `}</style>
     </section>
   );
 };

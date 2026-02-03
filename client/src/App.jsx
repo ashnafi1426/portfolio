@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
+import { ThemeProvider } from './context/ThemeContext';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import Home from './pages/Home/Home';
@@ -12,34 +13,36 @@ import ScrollToTop from './components/ScrollToTop/ScrollToTop';
 function App() {
   return (
     <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
-      <AuthProvider>
-        <div className="App min-h-screen flex flex-col">
-          <Routes>
-            {/* Public Routes */}
-            <Route path="/" element={
-              <>
-                <Header />
-                <main className="flex-1">
-                  <Home />
-                </main>
-                <Footer />
-              </>
-            } />
-            
-            {/* Auth Routes */}
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            
-            {/* Protected Routes */}
-            <Route path="/dashboard" element={
-              <ProtectedRoute>
-                <Dashboard />
-              </ProtectedRoute>
-            } />
-          </Routes>
-          <ScrollToTop />
-        </div>
-      </AuthProvider>
+      <ThemeProvider>
+        <AuthProvider>
+          <div className="App min-h-screen flex flex-col bg-white dark:bg-gray-900 transition-colors duration-300">
+            <Routes>
+              {/* Public Routes */}
+              <Route path="/" element={
+                <>
+                  <Header />
+                  <main className="flex-1 bg-white dark:bg-gray-900">
+                    <Home />
+                  </main>
+                  <Footer />
+                </>
+              } />
+              
+              {/* Auth Routes */}
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+              
+              {/* Protected Routes */}
+              <Route path="/dashboard" element={
+                <ProtectedRoute>
+                  <Dashboard />
+                </ProtectedRoute>
+              } />
+            </Routes>
+            <ScrollToTop />
+          </div>
+        </AuthProvider>
+      </ThemeProvider>
     </Router>
   );
 }
