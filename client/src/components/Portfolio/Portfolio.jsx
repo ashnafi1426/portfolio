@@ -88,7 +88,7 @@ const Portfolio = () => {
           category: "Web Application",
           technologies: ["React", "Node.js", "Tailwind CSS", "Framer Motion", "Vite"],
           liveUrl: "https://ashenafi-portfolio-eta.vercel.app/",
-          githubUrl: "https://github.com/ashnafi1426/portfolio",
+          githubUrl: "https://github.com/ashnafi1426/Ashenafi_portfolio",
           featured: true
         }
       ]);
