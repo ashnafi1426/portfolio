@@ -169,13 +169,6 @@ const Hero = () => {
               >
                 <i className="bi bi-telegram text-xl"></i>
               </motion.a>
-              <motion.a 
-                whileHover={{ scale: 1.2, y: -3 }}
-                href="mailto:ashenafisileshi7@gmail.com" 
-                className="w-12 h-12 bg-gray-200 dark:bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center text-gray-900 dark:text-white hover:bg-red-600 hover:text-white transition-all duration-300"
-              >
-                <i className="bi bi-envelope text-xl"></i>
-              </motion.a>
             </motion.div>
           </motion.div>
 
