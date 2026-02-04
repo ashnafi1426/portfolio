@@ -1,0 +1,24 @@
+Dear Hiring Team at Doxa Innovations,
+
+I hope this message finds you well. I am writing to express my interest in the Full-Stack Developer Internship opportunity at Doxa Innovations.
+
+I am a third-year undergraduate Software Engineering student with hands-on experience in building full-stack web applications using the PERN stack (PostgreSQL, Express.js, React, Node.js). Through academic and personal projects, I have developed and deployed more than six web applications, including a chat application, blog platform, e-commerce website, Netflix-style UI, Evangadi forum system, and a garage management system.
+
+These projects strengthened my understanding of frontend development with React, backend API development using Node.js and Express, database design, and secure authentication using JWT.
+
+I am particularly interested in Doxa Innovations because of your focus on innovation and real world software solutions. I am eager to contribute my skills, learn from experienced professionals, and grow as a full-stack developer while adding value to your development team.
+
+I am highly motivated, adaptable, and passionate about learning modern web technologies. I believe this internship will provide an excellent opportunity to enhance my technical skills while contributing meaningfully to your projects.
+
+Thank you for considering my application. I would welcome the opportunity to further discuss how my skills and enthusiasm align with the goals of Doxa Innovations.
+
+Kind regards,
+
+Ashenafi Sileshi
+Undergraduate Software Engineering Student
+Full-Stack Developer (PERN)
+
+Email: ashenafisileshi7@gmail.com
+Phone: +251-968277909
+LinkedIn: https://www.linkedin.com/in/ashenafi-sileshi-3736aa362/
+GitHub: https://github.com/ashnafi1426

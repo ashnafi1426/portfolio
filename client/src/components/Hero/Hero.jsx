@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+import { downloadCV } from '../../utils/downloadCV';
 
 const Hero = () => {
   const [displayText, setDisplayText] = useState('');
@@ -44,14 +45,8 @@ const Hero = () => {
     }
   };
 
-  const handleDownloadCV = () => {
-    // Direct download approach
-    const link = document.createElement('a');
-    link.href = '/cv/pro.pdf';
-    link.setAttribute('download', 'Ashenafi_Sileshi_Resume.pdf');
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+  const handleDownloadCV = async () => {
+    await downloadCV('Ashenafi_Sileshi_Resume.pdf');
   };
 
   return (

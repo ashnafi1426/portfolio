@@ -16,6 +16,9 @@ export default defineConfig({
   },
   build: {
     outDir: 'dist',
-    sourcemap: true
-  }
+    sourcemap: true,
+    assetsInlineLimit: 0, // Don't inline assets, keep them as separate files
+  },
+  assetsInclude: ['**/*.pdf'], // Explicitly include PDF files as assets
+  publicDir: 'public', // Ensure public directory is recognized
 })

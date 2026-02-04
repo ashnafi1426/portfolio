@@ -1,0 +1,14 @@
+IMPORTANT: Add your resume PDF here!
+
+The file 'pro.pdf' is missing or corrupted.
+
+To fix this:
+
+1. Create or export your resume as a PDF file
+2. Name it: pro.pdf
+3. Place it in this directory: portfolio/client/public/cv/
+4. Restart your dev server
+
+The download buttons on your portfolio will then work correctly.
+
+Your resume will be downloaded with the filename: Ashenafi_Sileshi_Resume.pdf

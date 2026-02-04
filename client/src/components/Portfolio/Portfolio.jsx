@@ -33,18 +33,7 @@ const Portfolio = () => {
           category: "Fullstack",
           technologies: ["React", "Node.js", "Express", "PostgreSQL", "Tailwind CSS", "Vite"],
           liveUrl: "https://amazone-frontend-wod3.vercel.app/",
-          githubUrl: "https://github.com/ashnafi1426/amazon-clone",
-          featured: true
-        },
-        {
-          id: 2,
-          title: "Netflix Clone Website",
-          description: "A sophisticated streaming platform clone replicating Netflix's core features including user authentication, dynamic video browsing with categories, responsive design optimized for all devices, and an engaging user interface with smooth animations and transitions.",
-          image: "/images/netflix-project.png",
-          category: "Fullstack",
-          technologies: ["React", "Node.js", "Express", "PostgreSQL", "Tailwind CSS", "Vite"],
-          liveUrl: "https://github.com/ashnafi1426/Netflixclonee",
-          githubUrl: "https://github.com/ashnafi1426/Netflixclonee",
+          githubUrl: "https://github.com/ashnafi1426/amazone-frontend",
           featured: true
         },
         {
@@ -66,7 +55,7 @@ const Portfolio = () => {
           category: "Fullstack",
           technologies: ["React", "Node.js", "Express", "PostgreSQL", "Tailwind CSS", "Vite"],
           liveUrl: "https://garagefrontend-lime.vercel.app/",
-          githubUrl: "https://github.com/ashnafi1426/garage-app",
+          githubUrl: "https://github.com/ashnafi1426/garagefrontend",
           featured: false
         },
         {
@@ -81,6 +70,17 @@ const Portfolio = () => {
           featured: true
         },
         {
+          id: 2,
+          title: "Netflix Clone Website",
+          description: "A sophisticated streaming platform clone replicating Netflix's core features including user authentication, dynamic video browsing with categories, responsive design optimized for all devices, and an engaging user interface with smooth animations and transitions.",
+          image: "/images/netflix-project.png",
+          category: "Fullstack",
+          technologies: ["React", "Node.js", "Express", "PostgreSQL", "Tailwind CSS", "Vite"],
+          liveUrl: "https://github.com/ashnafi1426/Netflixclonee",
+          githubUrl: "https://github.com/ashnafi1426/Netflixclonee",
+          featured: true
+        },
+        {
           id: 6,
           title: "Personal Portfolio Website",
           description: "My latest personal portfolio showcasing professional projects, technical skills, and experience with cutting-edge web technologies. Features advanced animations using Framer Motion, responsive design, dark theme, interactive project cards, and smooth scrolling navigation.",
@@ -88,7 +88,7 @@ const Portfolio = () => {
           category: "Web Application",
           technologies: ["React", "Node.js", "Tailwind CSS", "Framer Motion", "Vite"],
           liveUrl: "https://ashenafi-portfolio-eta.vercel.app/",
-          githubUrl: "https://github.com/ashnafi1426/portfolio-v2",
+          githubUrl: "https://github.com/ashnafi1426/portfolio",
           featured: true
         }
       ]);

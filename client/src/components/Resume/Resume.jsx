@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { downloadCV } from '../../utils/downloadCV';
 
 const Resume = () => {
   const [activeTab, setActiveTab] = useState('experience');
@@ -144,14 +145,8 @@ const Resume = () => {
     }
   };
 
-  const handleDownloadCV = () => {
-    // Direct download approach
-    const link = document.createElement('a');
-    link.href = '/cv/pro.pdf';
-    link.setAttribute('download', 'Ashenafi_Sileshi_Resume.pdf');
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+  const handleDownloadCV = async () => {
+    await downloadCV('Ashenafi_Sileshi_Resume.pdf');
   };
 
   return (
