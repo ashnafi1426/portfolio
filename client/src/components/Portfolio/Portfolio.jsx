@@ -27,7 +27,7 @@ const Portfolio = () => {
       setProjects([
         {
           id: 1,
-          title: "E-Commerce Website",
+          title: "Amazon Clone",
           description: "A comprehensive full-stack e-commerce platform featuring advanced product management, intelligent shopping cart functionality, secure payment integration, user authentication, and an intuitive admin dashboard for inventory tracking and order management.",
           image: "/images/ecomerce.png",
           category: "Fullstack",
@@ -100,6 +100,28 @@ const Portfolio = () => {
           technologies: ["Laravel", "React", "WebSocket", "PHP", "MySQL", "Tailwind CSS"],
           liveUrl: "https://github.com/ashnafi1426/crypto_websites",
           githubUrl: "https://github.com/ashnafi1426/crypto_websites",
+          featured: true
+        },
+        {
+          id: 8,
+          title: "FatShop E-Commerce",
+          description: "A modern e-commerce platform built with React and Node.js, featuring real-time inventory updates via WebSocket, seamless shopping experience, product catalog with advanced filtering, secure checkout process, and responsive design optimized for all devices.",
+          image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcI3liz4WZWQwpYyENgHz8dvit8xFylliTmg&s",
+          category: "Fullstack",
+          technologies: ["React", "Node.js", "WebSocket", "Tailwind CSS", "Express", "PostgreSQL"],
+          liveUrl: "https://ecomerce-pearl-nine.vercel.app/",
+          githubUrl: "https://github.com/ashnafi1426/fatshop",
+          featured: true
+        },
+        {
+          id: 9,
+          title: "Real-Time Chat Application",
+          description: "A feature-rich real-time chat application built with React and Node.js, featuring instant messaging with WebSocket integration, user authentication, online status indicators, message history with Supabase database, typing indicators, and a modern responsive interface for seamless communication. Frontend: github.com/ashnafi1426/chat_application_12 | Backend: github.com/ashnafi1426/chat_app_backend",
+          image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZOMhp5JW1FpJQis_dsvZ4HPXRBNT5tZDOuQ&s",
+          category: "Fullstack",
+          technologies: ["React", "Node.js", "WebSocket", "Supabase", "Tailwind CSS", "Express"],
+          liveUrl: "https://github.com/ashnafi1426/chat_app_backend",
+          githubUrl: "https://github.com/ashnafi1426/chat_application_12",
           featured: true
         }
       ]);
@@ -223,12 +245,14 @@ const Card = ({ project, index, hovered, setHovered }) => {
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
-  const rotateX = useTransform(y, [-0.5, 0.5], [10, -10]);
-  const rotateY = useTransform(x, [-0.5, 0.5], [-10, 10]);
+  const rotateX = useTransform(y, [-0.5, 0.5], [15, -15]);
+  const rotateY = useTransform(x, [-0.5, 0.5], [-15, 15]);
+  const scale = useTransform(x, [-0.5, 0, 0.5], [1.02, 1, 1.02]);
 
-  const springConfig = { damping: 25, stiffness: 300, mass: 0.5 };
+  const springConfig = { damping: 20, stiffness: 200, mass: 0.5 };
   const rotateXSpring = useSpring(rotateX, springConfig);
   const rotateYSpring = useSpring(rotateY, springConfig);
+  const scaleSpring = useSpring(scale, springConfig);
 
   useEffect(() => {
     if (project.image && (project.image.startsWith('http') || project.image.startsWith('/images/'))) {
@@ -279,7 +303,9 @@ const Card = ({ project, index, hovered, setHovered }) => {
       style={{
         rotateX: rotateXSpring,
         rotateY: rotateYSpring,
+        scale: scaleSpring,
         transformStyle: "preserve-3d",
+        perspective: "1000px",
       }}
       className="relative h-[600px] w-full rounded-3xl bg-white dark:bg-gray-800/50 backdrop-blur-sm border border-gray-200 dark:border-gray-700/50 group cursor-pointer shadow-2xl hover:shadow-purple-500/20 transition-shadow duration-500"
     >
@@ -292,13 +318,36 @@ const Card = ({ project, index, hovered, setHovered }) => {
         {/* Browser Window - Top Half */}
         <motion.div
           className="relative w-full h-[280px] bg-gray-100 dark:bg-gray-900/80 rounded-2xl overflow-hidden mb-6 border border-gray-200 dark:border-gray-700/50 shadow-inner"
-          style={{ transform: "translateZ(30px)" }}
+          style={{ transform: "translateZ(40px)" }}
+          whileHover={{ scale: 1.02 }}
+          transition={{ duration: 0.3 }}
         >
           {/* Browser UI */}
           <div className="absolute top-0 left-0 right-0 h-10 bg-gray-200 dark:bg-gray-900 flex items-center px-4 gap-2 z-20 border-b border-gray-300 dark:border-gray-700">
-            <div className="w-3 h-3 rounded-full bg-[#ff5f56] group-hover:animate-pulse"></div>
-            <div className="w-3 h-3 rounded-full bg-[#ffbd2e] group-hover:animate-pulse animation-delay-100"></div>
-            <div className="w-3 h-3 rounded-full bg-[#27c93f] group-hover:animate-pulse animation-delay-200"></div>
+            <motion.div 
+              className="w-3 h-3 rounded-full bg-[#ff5f56]"
+              whileHover={{ scale: 1.3 }}
+              animate={{ 
+                boxShadow: ["0 0 0 0 rgba(255, 95, 86, 0.7)", "0 0 0 8px rgba(255, 95, 86, 0)"]
+              }}
+              transition={{ duration: 2, repeat: Infinity }}
+            ></motion.div>
+            <motion.div 
+              className="w-3 h-3 rounded-full bg-[#ffbd2e]"
+              whileHover={{ scale: 1.3 }}
+              animate={{ 
+                boxShadow: ["0 0 0 0 rgba(255, 189, 46, 0.7)", "0 0 0 8px rgba(255, 189, 46, 0)"]
+              }}
+              transition={{ duration: 2, repeat: Infinity, delay: 0.2 }}
+            ></motion.div>
+            <motion.div 
+              className="w-3 h-3 rounded-full bg-[#27c93f]"
+              whileHover={{ scale: 1.3 }}
+              animate={{ 
+                boxShadow: ["0 0 0 0 rgba(39, 201, 63, 0.7)", "0 0 0 8px rgba(39, 201, 63, 0)"]
+              }}
+              transition={{ duration: 2, repeat: Infinity, delay: 0.4 }}
+            ></motion.div>
             <div className="ml-4 flex-1 h-6 bg-gray-100 dark:bg-gray-800 rounded-lg text-[10px] text-gray-500 flex items-center px-3 font-mono truncate">
               {project.liveUrl || 'localhost:3000'}
             </div>
@@ -306,14 +355,48 @@ const Card = ({ project, index, hovered, setHovered }) => {
 
           <div className="w-full h-full pt-10 relative">
             <div className="absolute inset-0 bg-gray-200 dark:bg-gray-800 animate-pulse" style={{ display: imageLoaded ? 'none' : 'block' }}></div>
-            <img
+            <motion.img
               src={imageSrc}
               alt={project.title}
               onLoad={() => setImageLoaded(true)}
-              className={`w-full h-full object-cover object-center transition-all duration-700 group-hover:scale-110 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
+              className={`w-full h-full object-cover object-center transition-all duration-700 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
+              whileHover={{ scale: 1.15 }}
+              transition={{ duration: 0.5 }}
             />
             {/* Gradient Overlay */}
             <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent opacity-60"></div>
+            
+            {/* Floating particles effect */}
+            <motion.div
+              className="absolute top-1/4 left-1/4 w-2 h-2 bg-purple-400 rounded-full"
+              animate={{
+                y: [0, -30, 0],
+                x: [0, 20, 0],
+                opacity: [0, 1, 0],
+              }}
+              transition={{ duration: 3, repeat: Infinity, delay: 0 }}
+              style={{ transform: "translateZ(60px)" }}
+            />
+            <motion.div
+              className="absolute top-1/3 right-1/3 w-2 h-2 bg-blue-400 rounded-full"
+              animate={{
+                y: [0, -40, 0],
+                x: [0, -20, 0],
+                opacity: [0, 1, 0],
+              }}
+              transition={{ duration: 3, repeat: Infinity, delay: 1 }}
+              style={{ transform: "translateZ(60px)" }}
+            />
+            <motion.div
+              className="absolute bottom-1/3 left-1/2 w-2 h-2 bg-pink-400 rounded-full"
+              animate={{
+                y: [0, -35, 0],
+                x: [0, 15, 0],
+                opacity: [0, 1, 0],
+              }}
+              transition={{ duration: 3, repeat: Infinity, delay: 2 }}
+              style={{ transform: "translateZ(60px)" }}
+            />
           </div>
         </motion.div>
 
@@ -323,9 +406,13 @@ const Card = ({ project, index, hovered, setHovered }) => {
           style={{ transform: "translateZ(50px)" }}
         >
           {/* Title */}
-          <h3 className="text-2xl font-bold mb-3 bg-gradient-to-r from-pink-600 to-purple-600 dark:from-pink-400 dark:to-purple-400 bg-clip-text text-transparent drop-shadow-sm tracking-tight">
+          <motion.h3 
+            className="text-2xl font-bold mb-3 bg-gradient-to-r from-pink-600 to-purple-600 dark:from-pink-400 dark:to-purple-400 bg-clip-text text-transparent drop-shadow-sm tracking-tight"
+            whileHover={{ scale: 1.05 }}
+            transition={{ duration: 0.2 }}
+          >
             {project.title}
-          </h3>
+          </motion.h3>
 
           <p className="text-gray-600 dark:text-gray-400 text-sm mb-6 line-clamp-3 leading-relaxed">
             {project.description}
@@ -338,8 +425,10 @@ const Card = ({ project, index, hovered, setHovered }) => {
                 key={i}
                 initial={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 1, scale: 1 }}
+                whileHover={{ scale: 1.1, y: -2 }}
                 transition={{ delay: 0.1 + i * 0.05 }}
                 className={`px-3 py-1.5 rounded-full text-xs font-bold tracking-wide ${getTechStyle(tech)}`}
+                style={{ transform: "translateZ(30px)" }}
               >
                 {tech}
               </motion.span>
@@ -349,24 +438,26 @@ const Card = ({ project, index, hovered, setHovered }) => {
           {/* Action Buttons */}
           <div className="grid grid-cols-2 gap-4 mt-6">
             <motion.a
-              whileHover={{ scale: 1.05, y: -2 }}
+              whileHover={{ scale: 1.08, y: -4 }}
               whileTap={{ scale: 0.95 }}
               href={project.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center justify-center gap-2 px-4 py-3 rounded-xl font-bold text-white bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 transition-all shadow-lg shadow-pink-500/30 text-sm"
+              style={{ transform: "translateZ(60px)" }}
             >
               <i className="bi bi-rocket-takeoff-fill"></i>
               <span>viewDemo</span>
             </motion.a>
 
             <motion.a
-              whileHover={{ scale: 1.05, y: -2 }}
+              whileHover={{ scale: 1.08, y: -4 }}
               whileTap={{ scale: 0.95 }}
               href={project.githubUrl || project.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center justify-center gap-2 px-4 py-3 rounded-xl font-bold text-blue-600 dark:text-blue-400 bg-gray-100 dark:bg-gray-900/80 border border-blue-300 dark:border-blue-400/50 hover:bg-gray-200 dark:hover:bg-gray-800 hover:border-blue-400 transition-all text-sm shadow-lg shadow-blue-500/10"
+              style={{ transform: "translateZ(60px)" }}
             >
               <i className="bi bi-code-slash"></i>
               <span>sourceCode</span>
@@ -376,12 +467,24 @@ const Card = ({ project, index, hovered, setHovered }) => {
 
       </div>
 
-      {/* Glow Effect */}
-      <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none -z-10"
-        style={{
-          boxShadow: '0 0 60px rgba(168, 85, 247, 0.4)'
+      {/* Enhanced Glow Effect */}
+      <motion.div 
+        className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none -z-10"
+        animate={{
+          boxShadow: [
+            '0 0 60px rgba(168, 85, 247, 0.4)',
+            '0 0 80px rgba(236, 72, 153, 0.4)',
+            '0 0 60px rgba(168, 85, 247, 0.4)',
+          ]
         }}
+        transition={{ duration: 3, repeat: Infinity }}
       />
+      
+      {/* 3D depth indicator lines */}
+      <div className="absolute inset-0 rounded-3xl pointer-events-none opacity-0 group-hover:opacity-20 transition-opacity duration-500">
+        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-purple-500 to-transparent" style={{ transform: "translateZ(70px)" }}></div>
+        <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-500 to-transparent" style={{ transform: "translateZ(70px)" }}></div>
+      </div>
     </motion.div>
   );
 };
