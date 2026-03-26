@@ -90,6 +90,17 @@ const Portfolio = () => {
           liveUrl: "https://ashenafi-portfolio-eta.vercel.app/",
           githubUrl: "https://github.com/ashnafi1426/Ashenafi_portfolio",
           featured: true
+        },
+        {
+          id: 7,
+          title: "Cryptocurrency Website",
+          description: "A comprehensive cryptocurrency platform built with Laravel and React, featuring real-time crypto price tracking with WebSocket integration, live market analysis, user portfolio management, and secure transaction handling. Includes responsive design, interactive charts, and real-time data updates.",
+          image: "https://t3.ftcdn.net/jpg/04/24/53/50/360_F_424535039_f0HgjloFjZodjP0qDErF6HZrVm7qJ7mo.jpg",
+          category: "Fullstack",
+          technologies: ["Laravel", "React", "WebSocket", "PHP", "MySQL", "Tailwind CSS"],
+          liveUrl: "https://github.com/ashnafi1426/crypto_websites",
+          githubUrl: "https://github.com/ashnafi1426/crypto_websites",
+          featured: true
         }
       ]);
     } finally {

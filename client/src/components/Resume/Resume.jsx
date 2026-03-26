@@ -12,18 +12,36 @@ const Resume = () => {
       company: "Freelance",
       period: "2024 - 2026 (Present)",
       location: "Remote",
-      description: "Building modern, scalable web applications using React, Node.js, Express, and PostgreSQL. Delivering end-to-end solutions for clients across various industries.",
+      description: "Building modern, scalable web applications using React, Node.js, Laravel, and PostgreSQL. Delivering end-to-end solutions for clients across various industries with expertise in both frontend and backend technologies.",
       achievements: [
         "Developed 10+ full-stack web applications with responsive designs and optimal performance",
-        "Implemented RESTful APIs and database designs using Node.js, Express, and PostgreSQL",
+        "Built cryptocurrency platform using Laravel and React with real-time WebSocket integration",
+        "Implemented RESTful APIs and database designs using Node.js, Express, Laravel, and PostgreSQL",
         "Improved application performance by 40% through code optimization and caching strategies",
         "Collaborated with clients to gather requirements and deliver tailored solutions",
         "Integrated third-party APIs and services including payment gateways and authentication systems"
       ],
-      technologies: ["React", "Node.js", "Express", "PostgreSQL", "Tailwind CSS", "Vite"]
+      technologies: ["React", "Laravel", "Node.js", "Express", "PostgreSQL", "WebSocket", "Tailwind CSS", "Vite"]
     },
     {
       id: 2,
+      title: "Laravel Developer",
+      company: "Freelance Projects",
+      period: "2024 - 2026",
+      location: "Remote",
+      description: "Specialized in building robust backend systems and full-stack applications using Laravel framework, implementing secure authentication, real-time features, and scalable architectures.",
+      achievements: [
+        "Developed cryptocurrency tracking platform with Laravel backend and React frontend",
+        "Implemented real-time data synchronization using WebSocket and Laravel Broadcasting",
+        "Built secure RESTful APIs with Laravel Sanctum for authentication and authorization",
+        "Designed and optimized MySQL database schemas for high-performance applications",
+        "Integrated third-party cryptocurrency APIs for live market data",
+        "Implemented caching strategies using Redis to improve response times"
+      ],
+      technologies: ["Laravel", "PHP", "MySQL", "WebSocket", "Redis", "React", "Tailwind CSS"]
+    },
+    {
+      id: 3,
       title: "Frontend Developer",
       company: "Various Projects",
       period: "2024 - 2025",
@@ -70,6 +88,15 @@ const Resume = () => {
     },
     {
       id: 2,
+      name: "Laravel - The Complete Guide",
+      issuer: "Online Course",
+      date: "2023",
+      icon: "bi-code-square",
+      color: "from-red-500 to-red-600",
+      description: "Advanced Laravel patterns and best practices"
+    },
+    {
+      id: 3,
       name: "React - The Complete Guide",
       issuer: "Udemy",
       date: "2022",
@@ -78,7 +105,7 @@ const Resume = () => {
       description: "Advanced React patterns and best practices"
     },
     {
-      id: 3,
+      id: 4,
       name: "Node.js, Express, PostgreSQL & More",
       issuer: "Online Course",
       date: "2022",
@@ -87,7 +114,7 @@ const Resume = () => {
       description: "Backend development with Node.js ecosystem"
     },
     {
-      id: 4,
+      id: 5,
       name: "Modern JavaScript Development",
       issuer: "Online Course",
       date: "2022",
@@ -107,16 +134,22 @@ const Resume = () => {
       { name: "Vite", level: 85 }
     ],
     backend: [
+      { name: "Laravel", level: 85 },
+      { name: "PHP", level: 85 },
       { name: "Node.js", level: 85 },
       { name: "Express.js", level: 85 },
       { name: "PostgreSQL", level: 80 },
+      { name: "MySQL", level: 85 },
       { name: "RESTful APIs", level: 90 },
+      { name: "WebSocket", level: 80 },
       { name: "JWT Authentication", level: 85 },
       { name: "MongoDB", level: 75 }
     ],
     tools: [
       { name: "Git & GitHub", level: 90 },
       { name: "VS Code", level: 95 },
+      { name: "Composer", level: 85 },
+      { name: "Redis", level: 75 },
       { name: "Vercel", level: 85 },
       { name: "npm/yarn", level: 90 },
       { name: "Postman", level: 85 },

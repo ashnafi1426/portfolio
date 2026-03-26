@@ -9,6 +9,7 @@ const Hero = () => {
   
   const titles = [
     'Fullstack Developer',
+    'Laravel Developer',
     'React Developer',
     'Node.js Developer',
     'Problem Solver'
