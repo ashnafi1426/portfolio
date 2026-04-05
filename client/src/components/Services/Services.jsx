@@ -138,7 +138,7 @@ const Services = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-7xl mx-auto"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 md:gap-8 max-w-7xl mx-auto"
         >
           {services.map((service) => (
             <motion.div
@@ -148,25 +148,25 @@ const Services = () => {
               className="group relative"
             >
               {/* Card */}
-              <div className="relative bg-white dark:bg-gray-800 rounded-3xl p-8 h-full shadow-lg border border-gray-100 dark:border-gray-700 hover:shadow-2xl transition-all duration-300 overflow-hidden">
+              <div className="relative bg-white dark:bg-gray-800 rounded-2xl sm:rounded-3xl p-6 sm:p-8 h-full shadow-lg border border-gray-100 dark:border-gray-700 hover:shadow-2xl transition-all duration-300 overflow-hidden">
                 
                 {/* Gradient Background on Hover */}
                 <div className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-5 transition-opacity duration-300`}></div>
                 
                 {/* Icon */}
-                <div className="relative mb-6">
-                  <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${service.color} flex items-center justify-center text-white text-2xl transform group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 shadow-lg`}>
+                <div className="relative mb-4 sm:mb-6">
+                  <div className={`w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-xl sm:rounded-2xl bg-gradient-to-br ${service.color} flex items-center justify-center text-white text-xl sm:text-2xl transform group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 shadow-lg`}>
                     <i className={`bi ${service.icon}`}></i>
                   </div>
                 </div>
 
                 {/* Title */}
-                <h3 className="relative text-2xl font-bold text-gray-900 dark:text-white mb-4 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-purple-600 transition-all duration-300">
+                <h3 className="relative text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-purple-600 transition-all duration-300">
                   {service.title}
                 </h3>
 
                 {/* Description */}
-                <p className="relative text-gray-600 dark:text-gray-300 mb-6 leading-relaxed text-base">
+                <p className="relative text-gray-600 dark:text-gray-300 mb-4 sm:mb-6 leading-relaxed text-sm sm:text-base">
                   {service.description}
                 </p>
 
@@ -198,21 +198,21 @@ const Services = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.3, duration: 0.5 }}
-          className="mt-20 text-center"
+          className="mt-12 sm:mt-16 md:mt-20 text-center"
         >
-          <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-3xl p-8 md:p-12 max-w-4xl mx-auto shadow-2xl">
-            <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
+          <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-12 max-w-4xl mx-auto shadow-2xl">
+            <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-3 sm:mb-4">
               Ready to Start Your Project?
             </h3>
-            <p className="text-blue-100 text-lg mb-8 max-w-2xl mx-auto">
+            <p className="text-blue-100 text-base sm:text-lg mb-6 sm:mb-8 max-w-2xl mx-auto">
               Let's work together to bring your ideas to life with modern web technologies
             </p>
             <a
               href="#contact"
-              className="inline-flex items-center px-10 py-5 bg-white text-blue-600 font-bold text-lg rounded-2xl hover:bg-gray-50 transform hover:-translate-y-1 transition-all duration-300 shadow-xl group"
+              className="inline-flex items-center px-8 sm:px-10 py-4 sm:py-5 bg-white text-blue-600 font-bold text-base sm:text-lg rounded-xl sm:rounded-2xl hover:bg-gray-50 transform hover:-translate-y-1 transition-all duration-300 shadow-xl group"
             >
               Get In Touch
-              <i className="bi bi-arrow-right ml-3 text-xl group-hover:translate-x-2 transition-transform duration-300"></i>
+              <i className="bi bi-arrow-right ml-2 sm:ml-3 text-lg sm:text-xl group-hover:translate-x-2 transition-transform duration-300"></i>
             </a>
           </div>
         </motion.div>

@@ -51,34 +51,85 @@ const Skills = () => {
   }
 
   return (
-    <section id="skills" className="relative py-24 bg-gray-50 dark:bg-gray-900 overflow-hidden transition-colors duration-300">
-      <div className="w-full px-4 sm:px-6 lg:px-8 relative z-10">
+    <section id="skills" className="relative py-16 sm:py-20 md:py-24 bg-gray-50 dark:bg-gray-900 overflow-hidden transition-colors duration-300">
+      <div className="w-full relative z-10">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-20"
+          className="text-center mb-12 sm:mb-16 md:mb-20 px-4 sm:px-6 lg:px-8"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4">
             Technical Skills
           </h2>
-          <div className="w-20 h-1 bg-blue-600 dark:bg-blue-500 mx-auto rounded-full mb-6"></div>
-          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+          <div className="w-16 sm:w-20 h-1 bg-blue-600 dark:bg-blue-500 mx-auto rounded-full mb-4 sm:mb-6"></div>
+          <p className="text-base sm:text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
             Technologies and tools I use to bring ideas to life
           </p>
         </motion.div>
 
-        {/* Horizontal Scrolling Skills - Full Width */}
-        <div className="relative mb-16">
+        {/* Mobile: Manual Horizontal Scroll (< 768px) */}
+        <div className="block md:hidden relative mb-12">
+          {/* Scroll Hint Text */}
+          <div className="text-center mb-4 px-4">
+            <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 flex items-center justify-center gap-2">
+              <span>👉</span>
+              <span>Swipe to see all skills</span>
+              <span>👈</span>
+            </p>
+          </div>
+
           {/* Gradient Overlays */}
-          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-gray-50 dark:from-gray-900 to-transparent z-10 pointer-events-none"></div>
-          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-gray-50 dark:from-gray-900 to-transparent z-10 pointer-events-none"></div>
+          <div className="absolute left-0 top-0 bottom-0 w-8 sm:w-12 bg-gradient-to-r from-gray-50 dark:from-gray-900 to-transparent z-10 pointer-events-none"></div>
+          <div className="absolute right-0 top-0 bottom-0 w-8 sm:w-12 bg-gradient-to-l from-gray-50 dark:from-gray-900 to-transparent z-10 pointer-events-none"></div>
           
-          {/* Scrolling Container */}
+          {/* Scrollable Container */}
+          <div className="overflow-x-auto overflow-y-hidden scrollbar-hide py-6 px-4">
+            <div className="flex gap-6 sm:gap-8 min-w-max">
+              {skills.map((skill, index) => (
+                <motion.div
+                  key={skill.id}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.05 }}
+                  className="flex-shrink-0 group relative"
+                >
+                  {/* Circular Skill Icon */}
+                  <div className="w-24 h-24 xs:w-28 xs:h-28 sm:w-32 sm:h-32 rounded-full bg-white dark:bg-gray-800 shadow-lg flex items-center justify-center transition-all duration-300 active:scale-95 border-4 border-gray-100 dark:border-gray-700">
+                    <img 
+                      src={skill.logo || skill.icon} 
+                      alt={skill.name}
+                      className="w-12 h-12 xs:w-14 xs:h-14 sm:w-16 sm:h-16 object-contain"
+                      style={{
+                        filter: skill.name === 'Express.js' ? 'brightness(0.2)' : 'none'
+                      }}
+                    />
+                  </div>
+
+                  {/* Skill Name - Always Visible on Mobile */}
+                  <div className="mt-3 text-center">
+                    <span className="bg-gray-900 dark:bg-gray-700 text-white text-xs px-3 py-1.5 rounded-full font-medium inline-block">
+                      {skill.name}
+                    </span>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Desktop: Auto-scrolling Animation (>= 768px) */}
+        <div className="hidden md:block relative mb-12 sm:mb-16">
+          {/* Gradient Overlays */}
+          <div className="absolute left-0 top-0 bottom-0 w-24 lg:w-32 bg-gradient-to-r from-gray-50 dark:from-gray-900 to-transparent z-10 pointer-events-none"></div>
+          <div className="absolute right-0 top-0 bottom-0 w-24 lg:w-32 bg-gradient-to-l from-gray-50 dark:from-gray-900 to-transparent z-10 pointer-events-none"></div>
+          
+          {/* Auto-scrolling Container */}
           <div className="overflow-hidden py-8">
-            <div className="flex animate-scroll-horizontal hover:pause-animation gap-12">
+            <div className="flex animate-scroll-horizontal hover:pause-animation gap-10 lg:gap-12">
               {/* Duplicate skills 3 times for seamless loop */}
               {[...skills, ...skills, ...skills].map((skill, index) => (
                 <div
@@ -86,11 +137,11 @@ const Skills = () => {
                   className="flex-shrink-0 group relative"
                 >
                   {/* Circular Skill Icon */}
-                  <div className="w-28 h-28 sm:w-32 sm:h-32 rounded-full bg-white dark:bg-gray-800 shadow-lg flex items-center justify-center transition-all duration-300 group-hover:shadow-2xl border-4 border-gray-100 dark:border-gray-700 group-hover:border-blue-100 dark:group-hover:border-blue-500 group-hover:scale-110">
+                  <div className="w-28 h-28 lg:w-32 lg:h-32 rounded-full bg-white dark:bg-gray-800 shadow-lg flex items-center justify-center transition-all duration-300 group-hover:shadow-2xl border-4 border-gray-100 dark:border-gray-700 group-hover:border-blue-100 dark:group-hover:border-blue-500 group-hover:scale-110">
                     <img 
                       src={skill.logo || skill.icon} 
                       alt={skill.name}
-                      className="w-14 h-14 sm:w-16 sm:h-16 object-contain transition-transform duration-300 group-hover:scale-110"
+                      className="w-14 h-14 lg:w-16 lg:h-16 object-contain transition-transform duration-300 group-hover:scale-110"
                       style={{
                         filter: skill.name === 'Express.js' ? 'brightness(0.2)' : 'none'
                       }}
@@ -115,22 +166,22 @@ const Skills = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.6, duration: 0.6 }}
-          className="mt-20 text-center"
+          className="mt-12 sm:mt-16 md:mt-20 text-center px-4 sm:px-6 lg:px-8"
         >
-          <p className="text-gray-600 dark:text-gray-300 mb-8 text-lg">
+          <p className="text-gray-600 dark:text-gray-300 mb-6 sm:mb-8 text-base sm:text-lg">
             Always learning and exploring new technologies
           </p>
-          <div className="flex justify-center gap-4 flex-wrap">
-            <span className="px-6 py-3 bg-white dark:bg-gray-800 rounded-full shadow-sm text-sm text-gray-700 dark:text-gray-300 hover:shadow-md transition-all duration-300 border border-gray-200 dark:border-gray-700">
+          <div className="flex justify-center gap-2 sm:gap-3 md:gap-4 flex-wrap">
+            <span className="px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 md:py-3 bg-white dark:bg-gray-800 rounded-full shadow-sm text-xs sm:text-sm text-gray-700 dark:text-gray-300 hover:shadow-md transition-all duration-300 border border-gray-200 dark:border-gray-700">
               🚀 Fast Learner
             </span>
-            <span className="px-6 py-3 bg-white dark:bg-gray-800 rounded-full shadow-sm text-sm text-gray-700 dark:text-gray-300 hover:shadow-md transition-all duration-300 border border-gray-200 dark:border-gray-700">
+            <span className="px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 md:py-3 bg-white dark:bg-gray-800 rounded-full shadow-sm text-xs sm:text-sm text-gray-700 dark:text-gray-300 hover:shadow-md transition-all duration-300 border border-gray-200 dark:border-gray-700">
               🎯 Problem Solver
             </span>
-            <span className="px-6 py-3 bg-white dark:bg-gray-800 rounded-full shadow-sm text-sm text-gray-700 dark:text-gray-300 hover:shadow-md transition-all duration-300 border border-gray-200 dark:border-gray-700">
+            <span className="px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 md:py-3 bg-white dark:bg-gray-800 rounded-full shadow-sm text-xs sm:text-sm text-gray-700 dark:text-gray-300 hover:shadow-md transition-all duration-300 border border-gray-200 dark:border-gray-700">
               💡 Creative Thinker
             </span>
-            <span className="px-6 py-3 bg-white dark:bg-gray-800 rounded-full shadow-sm text-sm text-gray-700 dark:text-gray-300 hover:shadow-md transition-all duration-300 border border-gray-200 dark:border-gray-700">
+            <span className="px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 md:py-3 bg-white dark:bg-gray-800 rounded-full shadow-sm text-xs sm:text-sm text-gray-700 dark:text-gray-300 hover:shadow-md transition-all duration-300 border border-gray-200 dark:border-gray-700">
               🤝 Team Player
             </span>
           </div>
@@ -139,6 +190,23 @@ const Skills = () => {
 
       {/* CSS Animation */}
       <style>{`
+        /* Hide scrollbar for mobile */
+        .scrollbar-hide {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+        
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+        }
+
+        /* Smooth scrolling for touch devices */
+        .overflow-x-auto {
+          -webkit-overflow-scrolling: touch;
+          scroll-behavior: smooth;
+        }
+
+        /* Desktop auto-scroll animation */
         @keyframes scroll-horizontal {
           0% {
             transform: translateX(0);
@@ -149,19 +217,11 @@ const Skills = () => {
         }
 
         .animate-scroll-horizontal {
-          animation: scroll-horizontal 20s linear infinite;
+          animation: scroll-horizontal 25s linear infinite;
         }
 
         .hover\\:pause-animation:hover {
           animation-play-state: paused;
-        }
-
-        .animation-delay-100 {
-          animation-delay: 0.1s;
-        }
-
-        .animation-delay-200 {
-          animation-delay: 0.2s;
         }
       `}</style>
     </section>

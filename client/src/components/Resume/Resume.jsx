@@ -212,8 +212,8 @@ const Resume = () => {
         </motion.div>
 
         {/* Tab Navigation */}
-        <div className="flex justify-center mb-12">
-          <div className="inline-flex bg-white dark:bg-gray-800 rounded-2xl p-1.5 shadow-lg border border-gray-100 dark:border-gray-700">
+        <div className="flex justify-center mb-8 sm:mb-10 md:mb-12 overflow-x-auto px-4">
+          <div className="inline-flex bg-white dark:bg-gray-800 rounded-xl sm:rounded-2xl p-1 sm:p-1.5 shadow-lg border border-gray-100 dark:border-gray-700 min-w-max">
             {[
               { id: 'experience', label: 'Experience', icon: 'bi-briefcase-fill' },
               { id: 'education', label: 'Education', icon: 'bi-mortarboard-fill' },
@@ -223,7 +223,7 @@ const Resume = () => {
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`px-4 sm:px-6 py-3 rounded-xl font-semibold text-sm sm:text-base transition-all duration-300 relative ${
+                className={`px-3 sm:px-4 md:px-6 py-2 sm:py-2.5 md:py-3 rounded-lg sm:rounded-xl font-semibold text-xs sm:text-sm md:text-base transition-all duration-300 relative whitespace-nowrap ${
                   activeTab === tab.id
                     ? 'text-white'
                     : 'text-gray-600 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400'
@@ -232,13 +232,13 @@ const Resume = () => {
                 {activeTab === tab.id && (
                   <motion.div
                     layoutId="activeTab"
-                    className="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-600 rounded-xl"
+                    className="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg sm:rounded-xl"
                     transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                   />
                 )}
-                <span className="relative z-10 flex items-center gap-2">
-                  <i className={`bi ${tab.icon}`}></i>
-                  <span className="hidden sm:inline">{tab.label}</span>
+                <span className="relative z-10 flex items-center gap-1 sm:gap-2">
+                  <i className={`bi ${tab.icon} text-xs sm:text-sm`}></i>
+                  <span className="hidden xs:inline">{tab.label}</span>
                 </span>
               </button>
             ))}
@@ -492,13 +492,13 @@ const Resume = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.3 }}
-          className="text-center mt-16"
+          className="text-center mt-12 sm:mt-14 md:mt-16"
         >
           <button
             onClick={handleDownloadCV}
-            className="inline-flex items-center px-10 py-5 bg-gradient-to-r from-purple-600 to-blue-600 text-white font-bold text-lg rounded-2xl shadow-2xl hover:shadow-purple-500/50 hover:-translate-y-1 transition-all duration-300 group"
+            className="inline-flex items-center px-8 sm:px-10 py-4 sm:py-5 bg-gradient-to-r from-purple-600 to-blue-600 text-white font-bold text-base sm:text-lg rounded-xl sm:rounded-2xl shadow-2xl hover:shadow-purple-500/50 hover:-translate-y-1 transition-all duration-300 group"
           >
-            <i className="bi bi-download mr-3 text-2xl group-hover:animate-bounce"></i>
+            <i className="bi bi-download mr-2 sm:mr-3 text-xl sm:text-2xl group-hover:animate-bounce"></i>
             Download Full Resume
           </button>
         </motion.div>

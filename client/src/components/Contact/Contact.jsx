@@ -120,30 +120,30 @@ const Contact = () => {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 max-w-7xl mx-auto">
+        <div className="grid lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-12 xl:gap-16 max-w-7xl mx-auto">
           {/* Contact Info */}
-          <div className="space-y-8">
-            <div className="bg-white dark:bg-gray-900 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300">
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Let's Connect</h3>
-              <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-8">
+          <div className="space-y-6 sm:space-y-8">
+            <div className="bg-white dark:bg-gray-900 rounded-xl sm:rounded-2xl p-6 sm:p-8 shadow-lg hover:shadow-xl transition-shadow duration-300">
+              <h3 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">Let's Connect</h3>
+              <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-6 sm:mb-8 text-sm sm:text-base">
                 I'm always interested in new opportunities and exciting projects.
                 Whether you have a question, want to collaborate, or just want to say hi,
                 I'd love to hear from you!
               </p>
 
-              <div className="space-y-6">
+              <div className="space-y-4 sm:space-y-6">
                 {contactInfo.map((info, index) => (
-                  <div key={index} className="flex items-center gap-5 p-4 rounded-xl hover:bg-blue-50 dark:hover:bg-gray-800 transition-colors duration-300 group cursor-pointer">
-                    <div className="w-14 h-14 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-all duration-300">
-                      <i className={`${info.icon} text-2xl`}></i>
+                  <div key={index} className="flex items-center gap-3 sm:gap-5 p-3 sm:p-4 rounded-lg sm:rounded-xl hover:bg-blue-50 dark:hover:bg-gray-800 transition-colors duration-300 group cursor-pointer">
+                    <div className="w-12 h-12 sm:w-14 sm:h-14 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-all duration-300">
+                      <i className={`${info.icon} text-xl sm:text-2xl`}></i>
                     </div>
                     <div>
-                      <h4 className="font-semibold text-gray-900 dark:text-white mb-1">{info.title}</h4>
+                      <h4 className="font-semibold text-gray-900 dark:text-white mb-1 text-sm sm:text-base">{info.title}</h4>
                       <a
                         href={info.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300"
+                        className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300 text-xs sm:text-sm break-all"
                       >
                         {info.value}
                       </a>
@@ -154,9 +154,9 @@ const Contact = () => {
             </div>
 
             {/* Social Links */}
-            <div className="bg-white dark:bg-gray-900 rounded-2xl p-8 shadow-lg">
-              <h4 className="font-semibold text-gray-900 dark:text-white mb-6 text-lg">Follow Me</h4>
-              <div className="flex gap-4">
+            <div className="bg-white dark:bg-gray-900 rounded-xl sm:rounded-2xl p-6 sm:p-8 shadow-lg">
+              <h4 className="font-semibold text-gray-900 dark:text-white mb-4 sm:mb-6 text-base sm:text-lg">Follow Me</h4>
+              <div className="flex gap-3 sm:gap-4">
                 {socialLinks.map((social, index) => (
                   <a
                     key={index}
@@ -164,9 +164,9 @@ const Contact = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={social.label}
-                    className="w-12 h-12 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded-full flex items-center justify-center hover:bg-blue-600 hover:text-white transition-all duration-300 hover:-translate-y-1 shadow-sm hover:shadow-md"
+                    className="w-10 h-10 sm:w-12 sm:h-12 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded-full flex items-center justify-center hover:bg-blue-600 hover:text-white transition-all duration-300 hover:-translate-y-1 shadow-sm hover:shadow-md"
                   >
-                    <i className={`${social.icon} text-xl`}></i>
+                    <i className={`${social.icon} text-lg sm:text-xl`}></i>
                   </a>
                 ))}
               </div>
@@ -174,10 +174,10 @@ const Contact = () => {
           </div>
 
           {/* Contact Form */}
-          <div className="bg-white dark:bg-gray-900 rounded-2xl p-8 shadow-lg h-fit">
-            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Send a Message</h3>
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="bg-white dark:bg-gray-900 rounded-xl sm:rounded-2xl p-6 sm:p-8 shadow-lg h-fit">
+            <h3 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">Send a Message</h3>
+            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Name</label>
                   <input
@@ -252,7 +252,7 @@ const Contact = () => {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full bg-blue-600 text-white font-semibold py-4 px-8 rounded-lg hover:bg-blue-700 focus:ring-4 focus:ring-blue-200 transition-all duration-300 transform hover:-translate-y-0.5 disabled:opacity-70 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center gap-2"
+                className="w-full bg-blue-600 text-white font-semibold py-3 sm:py-4 px-6 sm:px-8 rounded-lg hover:bg-blue-700 focus:ring-4 focus:ring-blue-200 transition-all duration-300 transform hover:-translate-y-0.5 disabled:opacity-70 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center gap-2 text-sm sm:text-base"
               >
                 {loading ? (
                   <>

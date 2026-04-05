@@ -128,6 +128,74 @@
     animation-delay: 0.8s;
   }
   
+  /* Responsive text utilities */
+  .text-responsive-xs {
+    @apply text-xs sm:text-sm md:text-base;
+  }
+  
+  .text-responsive-sm {
+    @apply text-sm sm:text-base md:text-lg;
+  }
+  
+  .text-responsive-base {
+    @apply text-base sm:text-lg md:text-xl;
+  }
+  
+  .text-responsive-lg {
+    @apply text-lg sm:text-xl md:text-2xl;
+  }
+  
+  .text-responsive-xl {
+    @apply text-xl sm:text-2xl md:text-3xl;
+  }
+  
+  .text-responsive-2xl {
+    @apply text-2xl sm:text-3xl md:text-4xl;
+  }
+  
+  .text-responsive-3xl {
+    @apply text-3xl sm:text-4xl md:text-5xl;
+  }
+  
+  /* Responsive spacing utilities */
+  .spacing-responsive-sm {
+    @apply space-y-2 sm:space-y-3 md:space-y-4;
+  }
+  
+  .spacing-responsive-md {
+    @apply space-y-4 sm:space-y-6 md:space-y-8;
+  }
+  
+  .spacing-responsive-lg {
+    @apply space-y-6 sm:space-y-8 md:space-y-10;
+  }
+  
+  /* Responsive padding utilities */
+  .padding-responsive-sm {
+    @apply p-3 sm:p-4 md:p-6;
+  }
+  
+  .padding-responsive-md {
+    @apply p-4 sm:p-6 md:p-8;
+  }
+  
+  .padding-responsive-lg {
+    @apply p-6 sm:p-8 md:p-12;
+  }
+  
+  /* Responsive gap utilities */
+  .gap-responsive-sm {
+    @apply gap-2 sm:gap-3 md:gap-4;
+  }
+  
+  .gap-responsive-md {
+    @apply gap-4 sm:gap-6 md:gap-8;
+  }
+  
+  .gap-responsive-lg {
+    @apply gap-6 sm:gap-8 md:gap-12;
+  }
+  
   /* Fade in animation */
   @keyframes fadeIn {
     from {
@@ -174,6 +242,16 @@
   
   .card-3d-content {
     transform: translateZ(50px);
+  }
+  
+  /* Touch-friendly tap targets */
+  .tap-target {
+    @apply min-h-[44px] min-w-[44px];
+  }
+  
+  /* Responsive container */
+  .container-responsive {
+    @apply w-full px-4 sm:px-6 lg:px-8 mx-auto;
   }
 }
 

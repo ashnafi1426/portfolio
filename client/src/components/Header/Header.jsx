@@ -55,24 +55,24 @@ const Header = () => {
       }`}
     >
       <div className="container-custom">
-        <div className="flex items-center justify-between py-4">
+        <div className="flex items-center justify-between py-3 sm:py-4">
           {/* Logo */}
           <div className="logo">
             <button
               onClick={() => scrollToSection('hero')}
-              className="text-2xl font-bold text-secondary-900 hover:text-primary-500 transition-colors duration-300 dark:text-white"
+              className="text-lg sm:text-xl md:text-2xl font-bold text-secondary-900 hover:text-primary-500 transition-colors duration-300 dark:text-white truncate"
             >
               Ashenafi Portfolio
             </button>
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-8">
+          <nav className="hidden lg:flex items-center space-x-6 xl:space-x-8">
             {navItems.map((item) => (
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className="relative text-gray-700 hover:text-primary-500 font-medium transition-colors duration-300 group dark:text-gray-300 dark:hover:text-primary-400"
+                className="relative text-gray-700 hover:text-primary-500 font-medium transition-colors duration-300 group dark:text-gray-300 dark:hover:text-primary-400 text-sm xl:text-base"
               >
                 {item.label}
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-500 transition-all duration-300 group-hover:w-full"></span>
@@ -81,17 +81,17 @@ const Header = () => {
           </nav>
 
           {/* Right Side: Theme Toggle + Social Links */}
-          <div className="hidden xl:flex items-center space-x-3">
+          <div className="hidden xl:flex items-center space-x-2 lg:space-x-3">
             {/* Theme Toggle Button */}
             <button
               onClick={toggleTheme}
-              className="w-10 h-10 bg-gray-100 hover:bg-primary-500 text-gray-600 hover:text-white rounded-full flex items-center justify-center transition-all duration-300 hover:-translate-y-1 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-primary-500"
+              className="w-9 h-9 lg:w-10 lg:h-10 bg-gray-100 hover:bg-primary-500 text-gray-600 hover:text-white rounded-full flex items-center justify-center transition-all duration-300 hover:-translate-y-1 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-primary-500"
               aria-label="Toggle theme"
             >
               {isDark ? (
-                <i className="bi bi-sun-fill text-lg"></i>
+                <i className="bi bi-sun-fill text-base lg:text-lg"></i>
               ) : (
-                <i className="bi bi-moon-fill text-lg"></i>
+                <i className="bi bi-moon-fill text-base lg:text-lg"></i>
               )}
             </button>
 
@@ -102,15 +102,15 @@ const Header = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={social.label}
-                className="w-10 h-10 bg-gray-100 hover:bg-primary-500 text-gray-600 hover:text-white rounded-full flex items-center justify-center transition-all duration-300 hover:-translate-y-1 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-primary-500"
+                className="w-9 h-9 lg:w-10 lg:h-10 bg-gray-100 hover:bg-primary-500 text-gray-600 hover:text-white rounded-full flex items-center justify-center transition-all duration-300 hover:-translate-y-1 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-primary-500"
               >
-                <i className={social.icon}></i>
+                <i className={`${social.icon} text-sm lg:text-base`}></i>
               </a>
             ))}
           </div>
 
           {/* Mobile: Theme Toggle + Menu Button */}
-          <div className="lg:hidden flex items-center space-x-2">
+          <div className="lg:hidden flex items-center space-x-1 sm:space-x-2">
             {/* Theme Toggle Button - Mobile */}
             <button
               onClick={toggleTheme}
@@ -118,9 +118,9 @@ const Header = () => {
               aria-label="Toggle theme"
             >
               {isDark ? (
-                <i className="bi bi-sun-fill text-xl"></i>
+                <i className="bi bi-sun-fill text-lg sm:text-xl"></i>
               ) : (
-                <i className="bi bi-moon-fill text-xl"></i>
+                <i className="bi bi-moon-fill text-lg sm:text-xl"></i>
               )}
             </button>
 
@@ -130,7 +130,7 @@ const Header = () => {
               className="p-2 text-gray-700 hover:text-primary-500 hover:bg-gray-100 rounded-lg transition-colors duration-300 dark:text-gray-300 dark:hover:bg-gray-800"
               aria-label="Toggle mobile menu"
             >
-              <i className={`text-xl ${isMobileMenuOpen ? 'bi bi-x' : 'bi bi-list'}`}></i>
+              <i className={`text-lg sm:text-xl ${isMobileMenuOpen ? 'bi bi-x' : 'bi bi-list'}`}></i>
             </button>
           </div>
         </div>
@@ -139,16 +139,16 @@ const Header = () => {
         <div 
           className={`lg:hidden transition-all duration-300 overflow-hidden ${
             isMobileMenuOpen 
-              ? 'max-h-96 opacity-100 pb-4' 
+              ? 'max-h-96 opacity-100 pb-3 sm:pb-4' 
               : 'max-h-0 opacity-0'
           }`}
         >
-          <nav className="flex flex-col space-y-2 pt-4 border-t border-gray-200 dark:border-gray-700">
+          <nav className="flex flex-col space-y-1 sm:space-y-2 pt-3 sm:pt-4 border-t border-gray-200 dark:border-gray-700">
             {navItems.map((item) => (
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className="text-left px-4 py-3 text-gray-700 hover:text-primary-500 hover:bg-gray-50 rounded-lg transition-colors duration-300 dark:text-gray-300 dark:hover:bg-gray-800"
+                className="text-left px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base text-gray-700 hover:text-primary-500 hover:bg-gray-50 rounded-lg transition-colors duration-300 dark:text-gray-300 dark:hover:bg-gray-800"
               >
                 {item.label}
               </button>

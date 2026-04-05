@@ -22,24 +22,24 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-gray-900 text-white pt-16 pb-8">
+    <footer className="bg-gray-900 text-white pt-12 sm:pt-16 pb-6 sm:pb-8">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 lg:gap-12 mb-8 sm:mb-12">
 
           {/* Brand Section */}
-          <div className="space-y-4">
-            <h3 className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-blue-200 bg-clip-text text-transparent">
+          <div className="space-y-3 sm:space-y-4">
+            <h3 className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-blue-400 to-blue-200 bg-clip-text text-transparent">
               Ashenafi Portfolio
             </h3>
-            <p className="text-gray-400 leading-relaxed">
+            <p className="text-gray-400 leading-relaxed text-sm sm:text-base">
               Crafting digital experiences with passion and precision. Let's build something amazing together.
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-lg font-semibold mb-6 text-white">Quick Links</h4>
-            <ul className="space-y-3">
+            <h4 className="text-base sm:text-lg font-semibold mb-4 sm:mb-6 text-white">Quick Links</h4>
+            <ul className="space-y-2 sm:space-y-3">
               {quickLinks.map((link, index) => (
                 <li key={index}>
                   <a
@@ -56,8 +56,8 @@ const Footer = () => {
 
           {/* Contact Info */}
           <div>
-            <h4 className="text-lg font-semibold mb-6 text-white">Contact Info</h4>
-            <ul className="space-y-4 text-gray-400">
+            <h4 className="text-base sm:text-lg font-semibold mb-4 sm:mb-6 text-white">Contact Info</h4>
+            <ul className="space-y-3 sm:space-y-4 text-gray-400 text-sm sm:text-base">
               <li className="flex items-start gap-3">
                 <i className="bi bi-geo-alt text-blue-500 mt-1"></i>
                 <span>Kombolcha, Ethiopia</span>
@@ -79,38 +79,38 @@ const Footer = () => {
 
           {/* Newsletter */}
           <div>
-            <h4 className="text-lg font-semibold mb-6 text-white">Newsletter</h4>
-            <p className="text-gray-400 mb-4">Subscribe to get the latest updates and news.</p>
-            <form className="space-y-3" onSubmit={(e) => e.preventDefault()}>
+            <h4 className="text-base sm:text-lg font-semibold mb-4 sm:mb-6 text-white">Newsletter</h4>
+            <p className="text-gray-400 mb-3 sm:mb-4 text-sm sm:text-base">Subscribe to get the latest updates and news.</p>
+            <form className="space-y-2 sm:space-y-3" onSubmit={(e) => e.preventDefault()}>
               <input
                 type="email"
                 placeholder="Your email address"
-                className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500 text-gray-300 placeholder-gray-500 transition-colors"
+                className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500 text-gray-300 placeholder-gray-500 transition-colors text-sm sm:text-base"
               />
               <button
                 type="submit"
-                className="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors duration-300 flex items-center justify-center gap-2"
+                className="w-full py-2 sm:py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors duration-300 flex items-center justify-center gap-2 text-sm sm:text-base"
               >
                 Subscribe
-                <i className="bi bi-send-fill text-sm"></i>
+                <i className="bi bi-send-fill text-xs sm:text-sm"></i>
               </button>
             </form>
           </div>
         </div>
 
         {/* Divider */}
-        <hr className="border-gray-800 mb-8" />
+        <hr className="border-gray-800 mb-6 sm:mb-8" />
 
         {/* Bottom Bar */}
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-          <div className="text-gray-400 text-sm text-center md:text-left">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-4 sm:gap-6">
+          <div className="text-gray-400 text-xs sm:text-sm text-center md:text-left">
             <p>
               © {currentYear} <span className="text-white font-medium">Ashenafi Sileshi</span>. All Rights Reserved.
             </p>
           </div>
 
           {/* Social Icons */}
-          <div className="flex gap-4">
+          <div className="flex gap-3 sm:gap-4">
             {socialLinks.map((social, index) => (
               <a
                 key={index}
@@ -118,16 +118,16 @@ const Footer = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={social.label}
-                className="w-10 h-10 bg-gray-800 hover:bg-blue-600 rounded-full flex items-center justify-center text-gray-400 hover:text-white transition-all duration-300 transform hover:-translate-y-1"
+                className="w-9 h-9 sm:w-10 sm:h-10 bg-gray-800 hover:bg-blue-600 rounded-full flex items-center justify-center text-gray-400 hover:text-white transition-all duration-300 transform hover:-translate-y-1"
               >
-                <i className={`${social.icon} text-lg`}></i>
+                <i className={`${social.icon} text-base sm:text-lg`}></i>
               </a>
             ))}
           </div>
 
           <button
             onClick={scrollToTop}
-            className="hidden md:flex items-center gap-2 text-sm text-gray-400 hover:text-blue-400 transition-colors"
+            className="hidden md:flex items-center gap-2 text-xs sm:text-sm text-gray-400 hover:text-blue-400 transition-colors"
           >
             Back to Top <i className="bi bi-arrow-up"></i>
           </button>
