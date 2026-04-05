@@ -1,13 +1,11 @@
-
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { motion, AnimatePresence, useMotionValue, useTransform, useSpring } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const Portfolio = () => {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState('all');
-  const [hoveredIndex, setHoveredIndex] = useState(null);
 
   useEffect(() => {
     fetchProjects();
@@ -28,102 +26,93 @@ const Portfolio = () => {
         {
           id: 1,
           title: "Amazon Clone",
-          description: "A comprehensive full-stack e-commerce platform featuring advanced product management, intelligent shopping cart functionality, secure payment integration, user authentication, and an intuitive admin dashboard for inventory tracking and order management.",
+          description: "A comprehensive full-stack e-commerce platform featuring product management, shopping cart, secure payment integration, and admin dashboard.",
           image: "/images/ecomerce.png",
           category: "Fullstack",
-          technologies: ["React", "Node.js", "Express", "PostgreSQL", "Tailwind CSS", "Vite"],
-          liveUrl: "https://amazone-frontend-wod3.vercel.app/",
+          technologies: ["React", "Node.js", "Express", "PostgreSQL"],
+          liveUrl: "https://github.com/ashnafi1426/amazone-frontend",
           githubUrl: "https://github.com/ashnafi1426/amazone-frontend",
-          featured: true
-        },
-        {
-          id: 3,
-          title: "Evangadi Forum",
-          description: "An interactive community forum application enabling users to post questions, provide answers, engage in discussions, and build knowledge collaboratively. Features include user authentication, real-time updates, voting system, and comprehensive search functionality.",
-          image: "/images/evangadi.jpg",
-          category: "Fullstack",
-          technologies: ["React", "Node.js", "Express", "PostgreSQL", "Tailwind CSS", "Vite"],
-          liveUrl: "https://evangadi-forum-nu-tawny.vercel.app/",
-          githubUrl: "https://github.com/ashnafi1426/evangadi-forum",
-          featured: true
-        },
-        {
-          id: 4,
-          title: "Garage Management System",
-          description: "A comprehensive garage management solution designed to streamline operations including employee management, customer relationship tracking, service order processing, vehicle maintenance records, and detailed reporting for business analytics and performance monitoring.",
-          image: "/images/graeteee.png?v=1",
-          category: "Fullstack",
-          technologies: ["React", "Node.js", "Express", "PostgreSQL", "Tailwind CSS", "Vite"],
-          liveUrl: "https://garagefrontend-lime.vercel.app/",
-          githubUrl: "https://github.com/ashnafi1426/garagefrontend",
-          featured: false
-        },
-        {
-          id: 5,
-          title: "Blog Website",
-          description: "A modern and elegant blog platform featuring rich text editing, article categorization, tag management, comment system, and a clean reading experience. Includes admin panel for content management, SEO optimization, and social media integration for content sharing.",
-          image: "/images/blog.png?v=1",
-          category: "Fullstack",
-          technologies: ["React", "Node.js", "Express", "PostgreSQL", "Tailwind CSS", "Vite"],
-          liveUrl: "https://blogwebsite55.netlify.app/",
-          githubUrl: "https://github.com/ashnafi1426/blog-website",
-          featured: true
         },
         {
           id: 2,
-          title: "Netflix Clone Website",
-          description: "A sophisticated streaming platform clone replicating Netflix's core features including user authentication, dynamic video browsing with categories, responsive design optimized for all devices, and an engaging user interface with smooth animations and transitions.",
+          title: "Evangadi Forum",
+          description: "An interactive community forum application enabling users to post questions, provide answers, and engage in discussions.",
+          image: "/images/evangadi.jpg",
+          category: "Fullstack",
+          technologies: ["React", "Node.js", "Express", "PostgreSQL"],
+          liveUrl: "https://evangadi-forum-nu-tawny.vercel.app/",
+          githubUrl: "https://github.com/ashnafi1426/evangadi-forum",
+        },
+        {
+          id: 3,
+          title: "Garage Management System",
+          description: "A comprehensive garage management solution for employee management, customer tracking, and service order processing.",
+          image: "/images/graeteee.png",
+          category: "Fullstack",
+          technologies: ["React", "Node.js", "Express", "PostgreSQL"],
+          liveUrl: "https://garagefrontend-lime.vercel.app/",
+          githubUrl: "https://github.com/ashnafi1426/garagefrontend",
+        },
+        {
+          id: 4,
+          title: "Blog Website",
+          description: "A modern blog platform featuring rich text editing, article categorization, comment system, and admin panel for content management.",
+          image: "/images/blog.png",
+          category: "Fullstack",
+          technologies: ["React", "Node.js", "Express", "PostgreSQL"],
+          liveUrl: "https://blogwebsite55.netlify.app/",
+          githubUrl: "https://github.com/ashnafi1426/blog-website",
+        },
+        {
+          id: 5,
+          title: "Netflix Clone",
+          description: "A streaming platform clone with user authentication, dynamic video browsing, and responsive design optimized for all devices.",
           image: "/images/netflix-project.png",
           category: "Fullstack",
-          technologies: ["React", "Node.js", "Express", "PostgreSQL", "Tailwind CSS", "Vite"],
+          technologies: ["React", "Node.js", "Express", "PostgreSQL"],
           liveUrl: "https://github.com/ashnafi1426/Netflixclonee",
           githubUrl: "https://github.com/ashnafi1426/Netflixclonee",
-          featured: true
         },
         {
           id: 6,
-          title: "Personal Portfolio Website",
-          description: "My latest personal portfolio showcasing professional projects, technical skills, and experience with cutting-edge web technologies. Features advanced animations using Framer Motion, responsive design, dark theme, interactive project cards, and smooth scrolling navigation.",
+          title: "Personal Portfolio",
+          description: "My latest portfolio showcasing projects, skills, and experience with advanced animations and responsive design.",
           image: "/images/Ashu.jpg",
           category: "Web Application",
-          technologies: ["React", "Node.js", "Tailwind CSS", "Framer Motion", "Vite"],
+          technologies: ["React", "Tailwind CSS", "Framer Motion"],
           liveUrl: "https://ashenafi-portfolio-eta.vercel.app/",
           githubUrl: "https://github.com/ashnafi1426/Ashenafi_portfolio",
-          featured: true
         },
         {
           id: 7,
           title: "Cryptocurrency Website",
-          description: "A comprehensive cryptocurrency platform built with Laravel and React, featuring real-time crypto price tracking with WebSocket integration, live market analysis, user portfolio management, and secure transaction handling. Includes responsive design, interactive charts, and real-time data updates.",
+          description: "A comprehensive cryptocurrency platform with real-time price tracking, market analysis, and portfolio management.",
           image: "https://t3.ftcdn.net/jpg/04/24/53/50/360_F_424535039_f0HgjloFjZodjP0qDErF6HZrVm7qJ7mo.jpg",
           category: "Fullstack",
-          technologies: ["Laravel", "React", "WebSocket", "PHP", "MySQL", "Tailwind CSS"],
-          liveUrl: "https://github.com/ashnafi1426/crypto_websites",
+          technologies: ["Laravel", "React", "WebSocket", "MySQL"],
+          liveUrl: "https://onchaintradepro.com",
           githubUrl: "https://github.com/ashnafi1426/crypto_websites",
-          featured: true
         },
         {
           id: 8,
           title: "FatShop E-Commerce",
-          description: "A modern e-commerce platform built with React and Node.js, featuring real-time inventory updates via WebSocket, seamless shopping experience, product catalog with advanced filtering, secure checkout process, and responsive design optimized for all devices.",
+          description: "A modern e-commerce platform with real-time inventory updates, product catalog, and secure checkout process.",
           image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcI3liz4WZWQwpYyENgHz8dvit8xFylliTmg&s",
           category: "Fullstack",
-          technologies: ["React", "Node.js", "WebSocket", "Tailwind CSS", "Express", "PostgreSQL"],
-          liveUrl: "https://ecomerce-pearl-nine.vercel.app/",
-          githubUrl: "https://github.com/ashnafi1426/fatshop",
-          featured: true
+          technologies: ["React", "Node.js", "WebSocket", "PostgreSQL"],
+          liveUrl: "https://github.com/ashnafi1426/Ecomerce-full-website-",
+          githubUrl: "https://github.com/ashnafi1426/Ecomerce-full-website-",
         },
         {
           id: 9,
           title: "Real-Time Chat Application",
-          description: "A feature-rich real-time chat application built with React and Node.js, featuring instant messaging with WebSocket integration, user authentication, online status indicators, message history with Supabase database, typing indicators, and a modern responsive interface for seamless communication. Frontend: github.com/ashnafi1426/chat_application_12 | Backend: github.com/ashnafi1426/chat_app_backend",
+          description: "A feature-rich chat app with instant messaging, user authentication, online status, and message history.",
           image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZOMhp5JW1FpJQis_dsvZ4HPXRBNT5tZDOuQ&s",
           category: "Fullstack",
-          technologies: ["React", "Node.js", "WebSocket", "Supabase", "Tailwind CSS", "Express"],
+          technologies: ["React", "Node.js", "WebSocket", "Supabase"],
           liveUrl: "https://github.com/ashnafi1426/chat_app_backend",
           githubUrl: "https://github.com/ashnafi1426/chat_application_12",
-          featured: true
-        }
+        },
       ]);
     } finally {
       setLoading(false);
@@ -138,11 +127,11 @@ const Portfolio = () => {
 
   if (loading) {
     return (
-      <section id="portfolio" className="section-padding bg-gray-50 dark:bg-gray-950">
-        <div className="container-custom">
+      <section id="portfolio" className="py-20 bg-gray-50 dark:bg-gray-900">
+        <div className="container mx-auto px-4">
           <div className="flex flex-col items-center justify-center py-20">
             <div className="w-16 h-16 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
-            <p className="text-gray-600 dark:text-gray-400 text-lg mt-4 font-mono">Loading projects...</p>
+            <p className="text-gray-600 dark:text-gray-400 text-lg mt-4">Loading projects...</p>
           </div>
         </div>
       </section>
@@ -150,70 +139,47 @@ const Portfolio = () => {
   }
 
   return (
-    <section id="portfolio" className="relative py-24 bg-gradient-to-br from-gray-50 via-white to-gray-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 overflow-hidden transition-colors duration-300">
-      {/* Background Elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-600 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-blob"></div>
-        <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-pink-600 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-blob animation-delay-2000"></div>
-        <div className="absolute bottom-1/4 left-1/2 w-96 h-96 bg-blue-600 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-blob animation-delay-4000"></div>
-      </div>
+    <section id="portfolio" className="py-16 sm:py-20 lg:py-24 bg-gray-50 dark:bg-gray-900">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-
-        {/* Header Section */}
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-12 sm:mb-16 md:mb-20"
+          className="text-center mb-12 sm:mb-16"
         >
-          <span className="inline-block px-3 py-1.5 sm:px-4 sm:py-2 bg-purple-100 dark:bg-purple-600/20 border border-purple-200 dark:border-purple-500/30 rounded-full text-purple-600 dark:text-purple-300 text-xs sm:text-sm font-semibold tracking-wide mb-3 sm:mb-4">
-            🚀 My Work
-          </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 px-4">
-            <span className="bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 dark:from-purple-400 dark:via-pink-400 dark:to-blue-400 bg-clip-text text-transparent">
-              Featured Projects
-            </span>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+            My Projects
           </h2>
-          <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto px-4">
+          <div className="w-20 h-1 bg-blue-600 mx-auto rounded-full mb-4"></div>
+          <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
             A collection of projects showcasing my skills in full-stack development
           </p>
         </motion.div>
 
         {/* Filter Buttons */}
-        <div className="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4 mb-12 sm:mb-14 md:mb-16 px-4">
-          {categories.map((category, index) => (
-            <motion.button
+        <div className="flex flex-wrap justify-center gap-3 mb-12">
+          {categories.map((category) => (
+            <button
               key={category}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 + index * 0.05 }}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className={`px-4 sm:px-5 md:px-6 py-1.5 sm:py-2 rounded-full font-semibold text-xs sm:text-sm transition-all duration-300 ${
+              className={`px-5 py-2 rounded-full font-semibold text-sm transition-all duration-300 ${
                 filter === category
-                  ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg shadow-purple-500/30'
-                  : 'bg-white dark:bg-gray-800/50 backdrop-blur-sm border border-gray-200 dark:border-gray-700/50 text-gray-700 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white hover:border-purple-300 dark:hover:border-purple-500/50'
+                  ? 'bg-blue-600 text-white shadow-lg'
+                  : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
               }`}
               onClick={() => setFilter(category)}
             >
               {category === 'all' ? 'All Projects' : category}
-            </motion.button>
+            </button>
           ))}
         </div>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7 md:gap-8 max-w-7xl mx-auto px-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           <AnimatePresence mode="wait">
             {filteredProjects.map((project, index) => (
-              <Card
-                key={project.id}
-                project={project}
-                index={index}
-                hovered={hoveredIndex}
-                setHovered={setHoveredIndex}
-              />
+              <ProjectCard key={project.id} project={project} index={index} />
             ))}
           </AnimatePresence>
         </div>
@@ -222,270 +188,159 @@ const Portfolio = () => {
   );
 };
 
-// Helper for Tech Styling
-const getTechStyle = (tech) => {
-  const t = tech.toLowerCase();
-  if (t.includes('react')) return 'bg-blue-500/20 text-blue-300 border border-blue-500/30';
-  if (t.includes('node')) return 'bg-green-500/20 text-green-300 border border-green-500/30';
-  if (t.includes('express')) return 'bg-gray-500/20 text-gray-300 border border-gray-500/30';
-  if (t.includes('postgres') || t.includes('postgresql')) return 'bg-blue-600/20 text-blue-400 border border-blue-600/30';
-  if (t.includes('mongo')) return 'bg-green-500/20 text-green-300 border border-green-500/30';
-  if (t.includes('mysql')) return 'bg-orange-500/20 text-orange-300 border border-orange-500/30';
-  if (t.includes('tailwind')) return 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/30';
-  if (t.includes('vite')) return 'bg-purple-500/20 text-purple-300 border border-purple-500/30';
-  if (t.includes('framer')) return 'bg-pink-500/20 text-pink-300 border border-pink-500/30';
-  if (t.includes('html') || t.includes('css') || t.includes('javascript')) return 'bg-orange-500/20 text-orange-300 border border-orange-500/30';
-  return 'bg-gray-700/50 text-gray-300 border border-gray-600/50';
-};
-
-const Card = ({ project, index, hovered, setHovered }) => {
+const ProjectCard = ({ project, index }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
-  const [imageSrc, setImageSrc] = useState('');
-
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-
-  const rotateX = useTransform(y, [-0.5, 0.5], [15, -15]);
-  const rotateY = useTransform(x, [-0.5, 0.5], [-15, 15]);
-  const scale = useTransform(x, [-0.5, 0, 0.5], [1.02, 1, 1.02]);
-
-  const springConfig = { damping: 20, stiffness: 200, mass: 0.5 };
-  const rotateXSpring = useSpring(rotateX, springConfig);
-  const rotateYSpring = useSpring(rotateY, springConfig);
-  const scaleSpring = useSpring(scale, springConfig);
-
-  useEffect(() => {
-    if (project.image && (project.image.startsWith('http') || project.image.startsWith('/images/'))) {
-      setImageSrc(project.image);
-    } else {
-      const fallbackUrl = `https://ui-avatars.com/api/?name=${encodeURIComponent(project.title)}&size=400&background=1e293b&color=fff&bold=true&length=2`;
-      setImageSrc(fallbackUrl);
-    }
-  }, [project.image, project.title]);
-
-  const handleMouseMove = (e) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const width = rect.width;
-    const height = rect.height;
-
-    const mouseX = e.clientX - rect.left;
-    const mouseY = e.clientY - rect.top;
-
-    const xPct = (mouseX / width) - 0.5;
-    const yPct = (mouseY / height) - 0.5;
-
-    x.set(xPct);
-    y.set(yPct);
-  };
-
-  const handleMouseLeave = () => {
-    setHovered(null);
-    x.set(0);
-    y.set(0);
-  };
-
-  const isDimmed = hovered !== null && hovered !== index;
 
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ delay: index * 0.1, duration: 0.5 }}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      onMouseEnter={() => setHovered(index)}
-      animate={{
-        scale: isDimmed ? 0.95 : 1,
-        opacity: isDimmed ? 0.5 : 1,
-        filter: isDimmed ? "blur(2px)" : "blur(0px)",
+      transition={{ delay: index * 0.1 }}
+      whileHover={{ 
+        y: -10,
+        rotateX: 5,
+        rotateY: 5,
+        scale: 1.02,
+        transition: { duration: 0.3 }
       }}
       style={{
-        rotateX: rotateXSpring,
-        rotateY: rotateYSpring,
-        scale: scaleSpring,
         transformStyle: "preserve-3d",
         perspective: "1000px",
       }}
-      className="relative h-[550px] sm:h-[580px] md:h-[600px] w-full rounded-2xl sm:rounded-3xl bg-white dark:bg-gray-800/50 backdrop-blur-sm border border-gray-200 dark:border-gray-700/50 group cursor-pointer shadow-2xl hover:shadow-purple-500/20 transition-shadow duration-500"
+      className="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col relative group"
     >
-      {/* Content Container */}
-      <div
-        className="relative h-full w-full p-4 sm:p-5 md:p-6 flex flex-col"
-        style={{ transformStyle: "preserve-3d" }}
-      >
-
-        {/* Browser Window - Top Half */}
-        <motion.div
-          className="relative w-full h-[220px] sm:h-[250px] md:h-[280px] bg-gray-100 dark:bg-gray-900/80 rounded-xl sm:rounded-2xl overflow-hidden mb-4 sm:mb-5 md:mb-6 border border-gray-200 dark:border-gray-700/50 shadow-inner"
-          style={{ transform: "translateZ(40px)" }}
-          whileHover={{ scale: 1.02 }}
-          transition={{ duration: 0.3 }}
-        >
-          {/* Browser UI */}
-          <div className="absolute top-0 left-0 right-0 h-8 sm:h-9 md:h-10 bg-gray-200 dark:bg-gray-900 flex items-center px-2 sm:px-3 md:px-4 gap-1.5 sm:gap-2 z-20 border-b border-gray-300 dark:border-gray-700">
-            <motion.div 
-              className="w-2 h-2 sm:w-2.5 sm:h-2.5 md:w-3 md:h-3 rounded-full bg-[#ff5f56]"
-              whileHover={{ scale: 1.3 }}
-              animate={{ 
-                boxShadow: ["0 0 0 0 rgba(255, 95, 86, 0.7)", "0 0 0 8px rgba(255, 95, 86, 0)"]
-              }}
-              transition={{ duration: 2, repeat: Infinity }}
-            ></motion.div>
-            <motion.div 
-              className="w-2 h-2 sm:w-2.5 sm:h-2.5 md:w-3 md:h-3 rounded-full bg-[#ffbd2e]"
-              whileHover={{ scale: 1.3 }}
-              animate={{ 
-                boxShadow: ["0 0 0 0 rgba(255, 189, 46, 0.7)", "0 0 0 8px rgba(255, 189, 46, 0)"]
-              }}
-              transition={{ duration: 2, repeat: Infinity, delay: 0.2 }}
-            ></motion.div>
-            <motion.div 
-              className="w-2 h-2 sm:w-2.5 sm:h-2.5 md:w-3 md:h-3 rounded-full bg-[#27c93f]"
-              whileHover={{ scale: 1.3 }}
-              animate={{ 
-                boxShadow: ["0 0 0 0 rgba(39, 201, 63, 0.7)", "0 0 0 8px rgba(39, 201, 63, 0)"]
-              }}
-              transition={{ duration: 2, repeat: Infinity, delay: 0.4 }}
-            ></motion.div>
-            <div className="ml-2 sm:ml-3 md:ml-4 flex-1 h-5 sm:h-5.5 md:h-6 bg-gray-100 dark:bg-gray-800 rounded-md sm:rounded-lg text-[8px] sm:text-[9px] md:text-[10px] text-gray-500 flex items-center px-2 sm:px-2.5 md:px-3 font-mono truncate">
-              {project.liveUrl || 'localhost:3000'}
-            </div>
-          </div>
-
-          <div className="w-full h-full pt-8 sm:pt-9 md:pt-10 relative">
-            <div className="absolute inset-0 bg-gray-200 dark:bg-gray-800 animate-pulse" style={{ display: imageLoaded ? 'none' : 'block' }}></div>
-            <motion.img
-              src={imageSrc}
-              alt={project.title}
-              onLoad={() => setImageLoaded(true)}
-              className={`w-full h-full object-cover object-center transition-all duration-700 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
-              whileHover={{ scale: 1.15 }}
-              transition={{ duration: 0.5 }}
-            />
-            {/* Gradient Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent opacity-60"></div>
-            
-            {/* Floating particles effect */}
-            <motion.div
-              className="absolute top-1/4 left-1/4 w-2 h-2 bg-purple-400 rounded-full"
-              animate={{
-                y: [0, -30, 0],
-                x: [0, 20, 0],
-                opacity: [0, 1, 0],
-              }}
-              transition={{ duration: 3, repeat: Infinity, delay: 0 }}
-              style={{ transform: "translateZ(60px)" }}
-            />
-            <motion.div
-              className="absolute top-1/3 right-1/3 w-2 h-2 bg-blue-400 rounded-full"
-              animate={{
-                y: [0, -40, 0],
-                x: [0, -20, 0],
-                opacity: [0, 1, 0],
-              }}
-              transition={{ duration: 3, repeat: Infinity, delay: 1 }}
-              style={{ transform: "translateZ(60px)" }}
-            />
-            <motion.div
-              className="absolute bottom-1/3 left-1/2 w-2 h-2 bg-pink-400 rounded-full"
-              animate={{
-                y: [0, -35, 0],
-                x: [0, 15, 0],
-                opacity: [0, 1, 0],
-              }}
-              transition={{ duration: 3, repeat: Infinity, delay: 2 }}
-              style={{ transform: "translateZ(60px)" }}
-            />
-          </div>
-        </motion.div>
-
-        {/* Text and Actions - Bottom Half */}
-        <motion.div
-          className="flex flex-col flex-grow"
-          style={{ transform: "translateZ(50px)" }}
-        >
-          {/* Title */}
-          <motion.h3 
-            className="text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 bg-gradient-to-r from-pink-600 to-purple-600 dark:from-pink-400 dark:to-purple-400 bg-clip-text text-transparent drop-shadow-sm tracking-tight"
-            whileHover={{ scale: 1.05 }}
-            transition={{ duration: 0.2 }}
-          >
-            {project.title}
-          </motion.h3>
-
-          <p className="text-gray-600 dark:text-gray-400 text-xs sm:text-sm mb-4 sm:mb-5 md:mb-6 line-clamp-2 sm:line-clamp-3 leading-relaxed">
-            {project.description}
-          </p>
-
-          {/* Technologies */}
-          <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-auto">
-            {project.technologies?.slice(0, 4).map((tech, i) => (
-              <motion.span
-                key={i}
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                whileHover={{ scale: 1.1, y: -2 }}
-                transition={{ delay: 0.1 + i * 0.05 }}
-                className={`px-2 sm:px-2.5 md:px-3 py-1 sm:py-1.5 rounded-full text-[10px] sm:text-xs font-bold tracking-wide ${getTechStyle(tech)}`}
-                style={{ transform: "translateZ(30px)" }}
-              >
-                {tech}
-              </motion.span>
-            ))}
-          </div>
-
-          {/* Action Buttons */}
-          <div className="grid grid-cols-2 gap-2 sm:gap-3 md:gap-4 mt-4 sm:mt-5 md:mt-6">
-            <motion.a
-              whileHover={{ scale: 1.08, y: -4 }}
-              whileTap={{ scale: 0.95 }}
-              href={project.liveUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center gap-1 sm:gap-1.5 md:gap-2 px-2 sm:px-3 md:px-4 py-2 sm:py-2.5 md:py-3 rounded-lg sm:rounded-xl font-bold text-white bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 transition-all shadow-lg shadow-pink-500/30 text-xs sm:text-sm"
-              style={{ transform: "translateZ(60px)" }}
-            >
-              <i className="bi bi-rocket-takeoff-fill text-xs sm:text-sm"></i>
-              <span className="hidden xs:inline sm:inline">View Demo</span>
-              <span className="xs:hidden sm:hidden">Demo</span>
-            </motion.a>
-
-            <motion.a
-              whileHover={{ scale: 1.08, y: -4 }}
-              whileTap={{ scale: 0.95 }}
-              href={project.githubUrl || project.liveUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center gap-1 sm:gap-1.5 md:gap-2 px-2 sm:px-3 md:px-4 py-2 sm:py-2.5 md:py-3 rounded-lg sm:rounded-xl font-bold text-blue-600 dark:text-blue-400 bg-gray-100 dark:bg-gray-900/80 border border-blue-300 dark:border-blue-400/50 hover:bg-gray-200 dark:hover:bg-gray-800 hover:border-blue-400 transition-all text-xs sm:text-sm shadow-lg shadow-blue-500/10"
-              style={{ transform: "translateZ(60px)" }}
-            >
-              <i className="bi bi-code-slash text-xs sm:text-sm"></i>
-              <span className="hidden xs:inline sm:inline">Source Code</span>
-              <span className="xs:hidden sm:hidden">Code</span>
-            </motion.a>
-          </div>
-        </motion.div>
-
-      </div>
-
-      {/* Enhanced Glow Effect */}
-      <motion.div 
-        className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none -z-10"
+      {/* 3D Glow Effect */}
+      <motion.div
+        className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none -z-10"
         animate={{
           boxShadow: [
-            '0 0 60px rgba(168, 85, 247, 0.4)',
-            '0 0 80px rgba(236, 72, 153, 0.4)',
-            '0 0 60px rgba(168, 85, 247, 0.4)',
+            '0 0 20px rgba(59, 130, 246, 0.5)',
+            '0 0 40px rgba(147, 51, 234, 0.5)',
+            '0 0 20px rgba(59, 130, 246, 0.5)',
           ]
         }}
-        transition={{ duration: 3, repeat: Infinity }}
+        transition={{ duration: 2, repeat: Infinity }}
       />
-      
+
+      {/* Project Image */}
+      <div className="relative h-48 sm:h-56 overflow-hidden bg-gray-200 dark:bg-gray-700">
+        {!imageLoaded && (
+          <div className="absolute inset-0 bg-gray-300 dark:bg-gray-700 animate-pulse"></div>
+        )}
+        <motion.img
+          src={project.image}
+          alt={project.title}
+          onLoad={() => setImageLoaded(true)}
+          whileHover={{ scale: 1.1 }}
+          transition={{ duration: 0.5 }}
+          className={`w-full h-full object-cover transition-all duration-700 ${
+            imageLoaded ? 'opacity-100' : 'opacity-0'
+          }`}
+          style={{ transformStyle: "preserve-3d", transform: "translateZ(20px)" }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+        
+        {/* Category Badge with 3D effect */}
+        <motion.div 
+          className="absolute top-4 right-4"
+          style={{ transform: "translateZ(40px)" }}
+          whileHover={{ scale: 1.1, rotate: 5 }}
+        >
+          <span className="px-3 py-1 bg-blue-600 text-white text-xs font-semibold rounded-full shadow-lg">
+            {project.category}
+          </span>
+        </motion.div>
+
+        {/* Floating particles */}
+        <motion.div
+          className="absolute top-1/4 left-1/4 w-2 h-2 bg-blue-400 rounded-full opacity-0 group-hover:opacity-100"
+          animate={{
+            y: [0, -30, 0],
+            x: [0, 20, 0],
+            opacity: [0, 1, 0],
+          }}
+          transition={{ duration: 3, repeat: Infinity }}
+          style={{ transform: "translateZ(50px)" }}
+        />
+        <motion.div
+          className="absolute top-1/3 right-1/3 w-2 h-2 bg-purple-400 rounded-full opacity-0 group-hover:opacity-100"
+          animate={{
+            y: [0, -40, 0],
+            x: [0, -20, 0],
+            opacity: [0, 1, 0],
+          }}
+          transition={{ duration: 3, repeat: Infinity, delay: 1 }}
+          style={{ transform: "translateZ(50px)" }}
+        />
+      </div>
+
+      {/* Project Info */}
+      <div className="p-5 sm:p-6 flex flex-col flex-grow" style={{ transform: "translateZ(30px)" }}>
+        {/* Title with 3D effect */}
+        <motion.h3 
+          className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-3"
+          whileHover={{ scale: 1.05, x: 5 }}
+          transition={{ duration: 0.2 }}
+          style={{ transform: "translateZ(40px)" }}
+        >
+          {project.title}
+        </motion.h3>
+
+        {/* Description */}
+        <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-4 line-clamp-3 flex-grow">
+          {project.description}
+        </p>
+
+        {/* Technologies with 3D effect */}
+        <div className="flex flex-wrap gap-2 mb-5">
+          {project.technologies?.slice(0, 4).map((tech, i) => (
+            <motion.span
+              key={i}
+              whileHover={{ scale: 1.1, y: -3 }}
+              transition={{ duration: 0.2 }}
+              style={{ transform: "translateZ(20px)" }}
+              className="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs font-medium rounded-full"
+            >
+              {tech}
+            </motion.span>
+          ))}
+        </div>
+
+        {/* Action Buttons with 3D effect */}
+        <div className="grid grid-cols-2 gap-3" style={{ transform: "translateZ(50px)" }}>
+          <motion.a
+            href={project.liveUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            whileHover={{ scale: 1.05, y: -5 }}
+            whileTap={{ scale: 0.95 }}
+            className="flex items-center justify-center gap-2 px-4 py-2.5 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors text-sm shadow-lg hover:shadow-blue-500/50"
+          >
+            <i className="bi bi-box-arrow-up-right"></i>
+            <span>View Project</span>
+          </motion.a>
+
+          <motion.a
+            href={project.githubUrl || project.liveUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            whileHover={{ scale: 1.05, y: -5 }}
+            whileTap={{ scale: 0.95 }}
+            className="flex items-center justify-center gap-2 px-4 py-2.5 bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white font-semibold rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors text-sm shadow-lg"
+          >
+            <i className="bi bi-github"></i>
+            <span>GitHub</span>
+          </motion.a>
+        </div>
+      </div>
+
       {/* 3D depth indicator lines */}
-      <div className="absolute inset-0 rounded-3xl pointer-events-none opacity-0 group-hover:opacity-20 transition-opacity duration-500">
-        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-purple-500 to-transparent" style={{ transform: "translateZ(70px)" }}></div>
-        <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-500 to-transparent" style={{ transform: "translateZ(70px)" }}></div>
+      <div className="absolute inset-0 rounded-2xl pointer-events-none opacity-0 group-hover:opacity-30 transition-opacity duration-500">
+        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-500 to-transparent"></div>
+        <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-purple-500 to-transparent"></div>
+        <div className="absolute top-0 left-0 h-full w-px bg-gradient-to-b from-transparent via-blue-500 to-transparent"></div>
+        <div className="absolute top-0 right-0 h-full w-px bg-gradient-to-b from-transparent via-purple-500 to-transparent"></div>
       </div>
     </motion.div>
   );
