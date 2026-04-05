@@ -198,39 +198,6 @@ const Hero = () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-gray-900/60 via-transparent to-transparent"></div>
                 </div>
               </motion.div>
-
-              {/* Floating Code Badge - Top Left */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 1, duration: 0.5 }}
-                className="absolute -left-2 sm:-left-4 top-4 sm:top-8 md:top-12 bg-gradient-to-br from-purple-600 to-purple-700 text-white px-3 py-2 sm:px-5 sm:py-3 rounded-xl sm:rounded-2xl shadow-xl"
-                style={{ animation: 'float 3s ease-in-out infinite' }}
-              >
-                <i className="bi bi-code-slash text-lg sm:text-2xl"></i>
-              </motion.div>
-
-              {/* Floating Code Badge - Top Right */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 1.2, duration: 0.5 }}
-                className="absolute -right-2 sm:-right-4 top-2 sm:top-4 md:top-8 bg-gradient-to-br from-blue-600 to-blue-700 text-white px-3 py-2 sm:px-5 sm:py-3 rounded-xl sm:rounded-2xl shadow-xl"
-                style={{ animation: 'float 3s ease-in-out infinite 1s' }}
-              >
-                <span className="text-base sm:text-xl font-mono">&lt;/&gt;</span>
-              </motion.div>
-
-              {/* Floating Laptop Badge - Bottom Right */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 1.4, duration: 0.5 }}
-                className="absolute -right-2 sm:-right-3 bottom-4 sm:bottom-8 md:bottom-12 bg-gradient-to-br from-yellow-500 to-yellow-600 text-white px-3 py-2 sm:px-5 sm:py-3 rounded-xl sm:rounded-2xl shadow-xl"
-                style={{ animation: 'float 3s ease-in-out infinite 2s' }}
-              >
-                <i className="bi bi-laptop text-lg sm:text-2xl"></i>
-              </motion.div>
             </div>
           </motion.div>
 
