@@ -96,27 +96,103 @@ const Skills = () => {
                   initial={{ opacity: 0, scale: 0.8 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
-                  transition={{ delay: index * 0.05 }}
+                  whileHover={{ 
+                    scale: 1.15,
+                    rotate: [0, -5, 5, -5, 0],
+                  }}
+                  whileTap={{ scale: 0.9 }}
+                  animate={{
+                    y: [0, -15, 0],
+                  }}
+                  transition={{
+                    opacity: { delay: index * 0.05, duration: 0.5 },
+                    scale: { delay: index * 0.05, duration: 0.5 },
+                    y: {
+                      duration: 2 + (index % 3) * 0.5,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                      delay: index * 0.2
+                    },
+                    rotate: { duration: 0.5 }
+                  }}
                   className="flex-shrink-0 group relative"
                 >
-                  {/* Circular Skill Icon */}
-                  <div className="w-24 h-24 xs:w-28 xs:h-28 sm:w-32 sm:h-32 rounded-full bg-white dark:bg-gray-800 shadow-lg flex items-center justify-center transition-all duration-300 active:scale-95 border-4 border-gray-100 dark:border-gray-700">
-                    <img 
-                      src={skill.logo || skill.icon} 
-                      alt={skill.name}
-                      className="w-12 h-12 xs:w-14 xs:h-14 sm:w-16 sm:h-16 object-contain"
+                  {/* Circular Skill Icon with Glow Effect */}
+                  <div className="relative">
+                    {/* Animated Glow Ring */}
+                    <motion.div
+                      className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 opacity-0 group-hover:opacity-50 blur-xl"
+                      animate={{
+                        scale: [1, 1.2, 1],
+                        rotate: [0, 180, 360],
+                      }}
+                      transition={{
+                        duration: 3,
+                        repeat: Infinity,
+                        ease: "linear"
+                      }}
+                    />
+                    
+                    {/* Main Icon Container */}
+                    <motion.div 
+                      className="relative w-24 h-24 xs:w-28 xs:h-28 sm:w-32 sm:h-32 rounded-full bg-white dark:bg-gray-800 shadow-2xl flex items-center justify-center transition-all duration-300 active:scale-95 border-4 border-gray-100 dark:border-gray-700 group-hover:border-blue-400 dark:group-hover:border-blue-500"
+                      whileHover={{
+                        boxShadow: "0 20px 40px rgba(59, 130, 246, 0.5)",
+                      }}
+                    >
+                      <motion.img 
+                        src={skill.logo || skill.icon} 
+                        alt={skill.name}
+                        className="w-12 h-12 xs:w-14 xs:h-14 sm:w-16 sm:h-16 object-contain"
+                        style={{
+                          filter: skill.name === 'Express.js' ? 'brightness(0.2)' : 'none'
+                        }}
+                        animate={{
+                          rotate: [0, 5, -5, 0],
+                        }}
+                        transition={{
+                          duration: 2,
+                          repeat: Infinity,
+                          ease: "easeInOut",
+                          delay: index * 0.1
+                        }}
+                      />
+                    </motion.div>
+
+                    {/* Orbiting Particles */}
+                    <motion.div
+                      className="absolute top-0 right-0 w-3 h-3 bg-blue-500 rounded-full"
+                      animate={{
+                        rotate: [0, 360],
+                        scale: [1, 1.5, 1],
+                      }}
+                      transition={{
+                        rotate: { duration: 3, repeat: Infinity, ease: "linear" },
+                        scale: { duration: 1.5, repeat: Infinity, ease: "easeInOut" }
+                      }}
                       style={{
-                        filter: skill.name === 'Express.js' ? 'brightness(0.2)' : 'none'
+                        transformOrigin: "50px 50px"
                       }}
                     />
                   </div>
 
-                  {/* Skill Name - Always Visible on Mobile */}
-                  <div className="mt-3 text-center">
-                    <span className="bg-gray-900 dark:bg-gray-700 text-white text-xs px-3 py-1.5 rounded-full font-medium inline-block">
+                  {/* Skill Name - Always Visible with Animation */}
+                  <motion.div 
+                    className="mt-3 text-center"
+                    animate={{
+                      opacity: [0.7, 1, 0.7],
+                    }}
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                      delay: index * 0.15
+                    }}
+                  >
+                    <span className="bg-gradient-to-r from-blue-600 to-purple-600 text-white text-xs px-3 py-1.5 rounded-full font-medium inline-block shadow-lg">
                       {skill.name}
                     </span>
-                  </div>
+                  </motion.div>
                 </motion.div>
               ))}
             </div>
