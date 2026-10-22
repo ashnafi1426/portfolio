@@ -62,7 +62,7 @@ const Services = () => {
               transition={{ duration: 0.5, delay: idx * 0.1 }}
               className="bg-[#0e1538] rounded-2xl p-7 border border-slate-800 shadow-sm hover:border-slate-700 transition-all"
             >
-              <div className="w-10 h-10 rounded-xl bg-white/[0.04] text-[#ff5a36] border border-slate-800 flex items-center justify-center text-xl mb-4">
+              <div className="w-10 h-10 rounded-xl bg-white/[0.04] text-accent border border-slate-800 flex items-center justify-center text-xl mb-4">
                 <i className={`bi ${service.icon}`}></i>
               </div>
 
@@ -81,7 +81,7 @@ const Services = () => {
                 <div className="grid grid-cols-2 gap-2">
                   {service.deliverables.map((item, dIdx) => (
                     <div key={dIdx} className="flex items-center gap-1.5 text-xs text-slate-300">
-                      <span className="text-[#ff5a36] font-bold">&bull;</span>
+                      <span className="text-accent font-bold">&bull;</span>
                       <span className="truncate">{item}</span>
                     </div>
                   ))}

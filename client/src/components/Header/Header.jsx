@@ -1,12 +1,14 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useTheme } from '../../context/ThemeContext';
 import { personalData } from '../../data/portfolioData';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isThemeOpen, setIsThemeOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
-  const { isDark, toggleTheme } = useTheme();
+  const { currentTheme, selectTheme, themes } = useTheme();
+  const themeMenuRef = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -32,6 +34,19 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Close theme menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (themeMenuRef.current && !themeMenuRef.current.contains(event.target)) {
+        setIsThemeOpen(false);
+      }
+    };
+    if (isThemeOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [isThemeOpen]);
+
   const scrollToSection = (sectionId) => {
     setIsMobileMenuOpen(false);
     const element = document.getElementById(sectionId);
@@ -55,7 +70,7 @@ const Header = () => {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? 'bg-[#0a0e27]/90 dark:bg-[#0a0e27]/90 bg-white/90 backdrop-blur-md border-b border-slate-800/80 dark:border-slate-800/80 shadow-md'
+          ? 'bg-[#0a0e27]/90 dark:bg-[#0a0e27]/90 backdrop-blur-md border-b border-slate-800/80 shadow-md'
           : 'bg-transparent border-b border-transparent'
       }`}
     >
@@ -64,10 +79,10 @@ const Header = () => {
         {/* Brand Wordmark with chip logo */}
         <button
           onClick={() => scrollToSection('home')}
-          className="flex items-center gap-2.5 font-mono text-sm sm:text-[0.9375rem] font-semibold text-slate-900 dark:text-white tracking-tight group focus:outline-none"
+          className="flex items-center gap-2.5 font-mono text-sm sm:text-[0.9375rem] font-semibold text-white tracking-tight group focus:outline-none"
           aria-label="Ashenafi Sileshi, home"
         >
-          <div className="w-7 h-7 rounded-md bg-cyan-950/80 border border-cyan-500/40 flex items-center justify-center text-cyan-400 font-mono text-[11px] font-bold shadow-sm">
+          <div className="w-7 h-7 rounded-md bg-[#111738] border border-cyan-500/40 flex items-center justify-center text-cyan-400 font-mono text-[11px] font-bold shadow-sm">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-cyan-400">
               <rect width="18" height="18" x="3" y="3" rx="2"></rect>
               <path d="M7 7h.01"></path>
@@ -77,7 +92,7 @@ const Header = () => {
             </svg>
           </div>
           <span>
-            ashenafi<span className="text-[#ff5a36]">.</span>sileshi
+            ashenafi<span className="text-accent">.</span>sileshi
           </span>
         </button>
 
@@ -102,23 +117,91 @@ const Header = () => {
         </div>
 
         {/* Right CTA & Controls */}
-        <div className="flex items-center gap-3">
-          {/* Theme Palette Toggle Button */}
-          <button
-            onClick={toggleTheme}
-            className="p-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800/60 transition-colors focus:outline-none"
-            aria-label={isDark ? "Switch to light theme" : "Switch to dark theme"}
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <circle cx="13.5" cy="6.5" r=".5" fill="currentColor"></circle>
-              <circle cx="17.5" cy="10.5" r=".5" fill="currentColor"></circle>
-              <circle cx="8.5" cy="7.5" r=".5" fill="currentColor"></circle>
-              <circle cx="6.5" cy="12.5" r=".5" fill="currentColor"></circle>
-              <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"></path>
-            </svg>
-          </button>
+        <div className="flex items-center gap-3 relative" ref={themeMenuRef}>
+          
+          {/* Theme Palette Button with Popover */}
+          <div className="relative">
+            <button
+              onClick={() => setIsThemeOpen(!isThemeOpen)}
+              className="p-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800/60 transition-colors focus:outline-none"
+              aria-label="Change color theme"
+              aria-expanded={isThemeOpen}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="13.5" cy="6.5" r=".5" fill="currentColor"></circle>
+                <circle cx="17.5" cy="10.5" r=".5" fill="currentColor"></circle>
+                <circle cx="8.5" cy="7.5" r=".5" fill="currentColor"></circle>
+                <circle cx="6.5" cy="12.5" r=".5" fill="currentColor"></circle>
+                <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"></path>
+              </svg>
+            </button>
 
-          {/* Solid Coral "Get in touch" Button */}
+            {/* Reference Theme Picker Dropdown Popover */}
+            {isThemeOpen && (
+              <div className="absolute right-0 top-full mt-3 w-72 sm:w-80 rounded-2xl p-5 bg-[#0e1430]/95 backdrop-blur-xl border border-slate-700/80 shadow-2xl z-50 animate-fade-in">
+                {/* Header title */}
+                <div className="font-mono text-[11px] font-semibold text-slate-400 tracking-[0.2em] uppercase mb-4">
+                  THEME
+                </div>
+
+                {/* 2 Rows of 4 Themes */}
+                <div className="grid grid-cols-4 gap-3 sm:gap-3.5">
+                  {themes.map((t) => {
+                    const isSelected = currentTheme === t.id;
+                    return (
+                      <button
+                        key={t.id}
+                        onClick={() => {
+                          selectTheme(t.id);
+                          setIsThemeOpen(false);
+                        }}
+                        className="group flex flex-col items-center focus:outline-none"
+                      >
+                        {/* Theme Box */}
+                        <div
+                          className={`w-12 h-12 sm:w-14 sm:h-14 rounded-xl relative p-1.5 transition-all duration-200 flex flex-col justify-between ${
+                            isSelected
+                              ? 'border-2 shadow-md'
+                              : 'border border-slate-800 hover:border-slate-600'
+                          }`}
+                          style={{
+                            backgroundColor: t.canvas,
+                            borderColor: isSelected ? t.accent : undefined,
+                          }}
+                        >
+                          {/* Checkmark in top left when selected */}
+                          <div className="h-4 flex items-center">
+                            {isSelected && (
+                              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={t.accent} strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                              </svg>
+                            )}
+                          </div>
+
+                          {/* Accent dot in bottom right */}
+                          <div className="flex justify-end">
+                            <span
+                              className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full"
+                              style={{ backgroundColor: t.dot }}
+                            />
+                          </div>
+                        </div>
+
+                        {/* Theme Name label */}
+                        <span className={`text-[11px] font-mono mt-1.5 transition-colors ${
+                          isSelected ? 'text-white font-semibold' : 'text-slate-400 group-hover:text-slate-200'
+                        }`}>
+                          {t.name}
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Dynamic Solid "Get in touch" Button */}
           <button
             onClick={() => scrollToSection('contact')}
             className="hidden sm:inline-flex btn btn-primary text-xs sm:text-sm font-semibold py-2 px-4 rounded-lg"
@@ -142,11 +225,11 @@ const Header = () => {
       <div
         className={`lg:hidden transition-all duration-300 ease-in-out overflow-hidden border-b ${
           isMobileMenuOpen
-            ? 'max-h-96 opacity-100 bg-[#0a0e27]/98 border-slate-800 shadow-2xl'
+            ? 'max-h-[500px] opacity-100 bg-[#0a0e27]/98 border-slate-800 shadow-2xl'
             : 'max-h-0 opacity-0 border-transparent pointer-events-none'
         }`}
       >
-        <div className="container-site py-4 space-y-1">
+        <div className="container-site py-4 space-y-2">
           {navLinks.map((link) => (
             <button
               key={link.id}
@@ -157,7 +240,30 @@ const Header = () => {
               <i className="bi bi-chevron-right text-xs text-slate-500"></i>
             </button>
           ))}
+
+          {/* Mobile Theme selector strip */}
           <div className="pt-3 border-t border-slate-800">
+            <span className="font-mono text-[10px] text-slate-400 uppercase tracking-widest block mb-2 px-3">
+              Theme Palette
+            </span>
+            <div className="grid grid-cols-4 gap-2 px-3 pb-3">
+              {themes.map((t) => (
+                <button
+                  key={t.id}
+                  onClick={() => selectTheme(t.id)}
+                  className={`p-2 rounded-lg border text-center flex flex-col items-center gap-1 ${
+                    currentTheme === t.id ? 'border-accent bg-white/[0.06]' : 'border-slate-800'
+                  }`}
+                  style={{ backgroundColor: t.canvas }}
+                >
+                  <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: t.dot }} />
+                  <span className="text-[10px] font-mono text-slate-300">{t.name}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="pt-2">
             <a
               href={`mailto:${personalData.email}`}
               className="btn btn-primary w-full text-center py-2.5 text-sm"

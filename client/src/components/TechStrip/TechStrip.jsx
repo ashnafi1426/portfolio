@@ -15,7 +15,7 @@ const TechStrip = () => {
               key={idx}
               className="inline-flex items-center gap-2 text-xs sm:text-sm font-mono text-slate-300 px-3 py-1.5 rounded-lg bg-[#0e1538] border border-slate-800 shadow-sm shrink-0"
             >
-              <i className={`bi ${tech.icon} text-[#ff5a36]`}></i>
+              <i className={`bi ${tech.icon} text-accent`}></i>
               <span className="font-medium">{tech.name}</span>
             </div>
           ))}

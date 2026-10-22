@@ -24,7 +24,7 @@ const Hero = () => {
           href={personalData.github}
           target="_blank"
           rel="noopener noreferrer"
-          className="p-2 text-slate-400 hover:text-[#ff5a36] hover:-translate-y-0.5 transition-all duration-200"
+          className="p-2 text-slate-400 hover:text-accent hover:-translate-y-0.5 transition-all duration-200"
           aria-label="GitHub"
         >
           <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -36,7 +36,7 @@ const Hero = () => {
           href={personalData.linkedin}
           target="_blank"
           rel="noopener noreferrer"
-          className="p-2 text-slate-400 hover:text-[#ff5a36] hover:-translate-y-0.5 transition-all duration-200"
+          className="p-2 text-slate-400 hover:text-accent hover:-translate-y-0.5 transition-all duration-200"
           aria-label="LinkedIn"
         >
           <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -47,7 +47,7 @@ const Hero = () => {
         </a>
         <a
           href={`mailto:${personalData.email}`}
-          className="p-2 text-slate-400 hover:text-[#ff5a36] hover:-translate-y-0.5 transition-all duration-200"
+          className="p-2 text-slate-400 hover:text-accent hover:-translate-y-0.5 transition-all duration-200"
           aria-label="Email"
         >
           <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -84,7 +84,7 @@ const Hero = () => {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="font-display font-bold text-[clamp(2.5rem,5.2vw,4.25rem)] leading-[1.08] tracking-[-0.03em] text-white max-w-[16ch] mb-6"
             >
-              Building the systems businesses <span className="text-[#ff5a36]">run on</span>.
+              Building the systems businesses <span className="text-accent">run on</span>.
             </motion.h1>
 
             {/* Subtitle Bio */}
@@ -190,7 +190,7 @@ const Hero = () => {
       {/* Bottom Center Scroll Indicator */}
       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 hidden lg:flex flex-col items-center gap-2 pointer-events-none" aria-hidden="true">
         <span className="font-mono text-[10px] tracking-[0.25em] uppercase text-slate-500">Scroll</span>
-        <div className="w-px h-8 bg-gradient-to-b from-[#ff5a36] to-transparent" />
+        <div className="w-px h-8 bg-gradient-to-b from-[var(--accent)] to-transparent" />
       </div>
     </section>
   );
