@@ -12,7 +12,7 @@ const Footer = () => {
     { label: 'Work', href: '#projects' },
     { label: 'Stack', href: '#skills' },
     { label: 'Process', href: '#process' },
-    { label: 'Journey', href: '#journey' },
+    { label: 'Services', href: '#services' },
     { label: 'Contact', href: '#contact' },
   ];
 
@@ -24,7 +24,7 @@ const Footer = () => {
           {/* Brand Wordmark & Tagline */}
           <div className="text-center md:text-left">
             <span className="font-mono text-base font-bold text-white tracking-tight">
-              ashenafi<span className="text-[#ff5a36]">.</span>sileshi
+              ashenafi<span className="text-accent">.</span>sileshi
             </span>
             <p className="text-xs sm:text-sm text-slate-500 mt-1 max-w-sm">
               Engineering full-stack web platforms, scalable APIs, and clean digital experiences.

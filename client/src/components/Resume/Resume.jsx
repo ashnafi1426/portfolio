@@ -15,7 +15,7 @@ const Resume = () => {
   ];
 
   return (
-    <section id="journey" className="py-20 lg:py-28 border-b border-slate-800/80 bg-[#0a0e27] relative">
+    <section id="journey" className="py-20 lg:py-28 border-b border-slate-800/80 bg-canvas relative">
       <div className="container-site">
         
         {/* Section Header */}

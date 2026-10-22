@@ -211,6 +211,21 @@
   border-color: var(--accent);
 }
 
+.bg-canvas {
+  background-color: var(--canvas);
+  transition: background-color 0.3s ease;
+}
+
+.bg-surface {
+  background-color: var(--surface);
+  transition: background-color 0.3s ease;
+}
+
+.bg-surface-card {
+  background-color: var(--surface-card);
+  transition: background-color 0.3s ease;
+}
+
 /* Background Grids & Ambient Auroras */
 .hero-grid-bg {
   background-image: 

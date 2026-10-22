@@ -12,7 +12,7 @@ const Hero = () => {
   };
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center pt-24 pb-16 lg:pt-32 lg:pb-24 overflow-hidden bg-[#0a0e27]">
+    <section id="home" className="relative min-h-screen flex items-center pt-24 pb-16 lg:pt-32 lg:pb-24 overflow-hidden bg-canvas">
       {/* Background Subtle Grid & Ambient Aurora */}
       <div className="absolute inset-0 hero-grid-bg opacity-75 pointer-events-none" />
       <div className="hero-aurora" aria-hidden="true" />

@@ -77,7 +77,7 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="py-20 lg:py-28 bg-[#0a0e27] relative">
+    <section id="contact" className="py-20 lg:py-28 bg-canvas relative">
       <div className="container-site">
         
         {/* Section Header */}

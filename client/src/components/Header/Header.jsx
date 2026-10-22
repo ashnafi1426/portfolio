@@ -14,7 +14,7 @@ const Header = () => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 30);
 
-      const sections = ['home', 'about', 'projects', 'skills', 'process', 'journey', 'contact'];
+      const sections = ['home', 'about', 'projects', 'skills', 'process', 'services', 'contact'];
       const scrollPos = window.scrollY + 200;
 
       for (const sectionId of sections) {
@@ -62,7 +62,7 @@ const Header = () => {
     { id: 'projects', label: 'Work' },
     { id: 'skills', label: 'Stack' },
     { id: 'process', label: 'Process' },
-    { id: 'journey', label: 'Journey' },
+    { id: 'services', label: 'Services' },
     { id: 'contact', label: 'Contact' },
   ];
 
@@ -70,7 +70,7 @@ const Header = () => {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? 'bg-[#0a0e27]/90 dark:bg-[#0a0e27]/90 backdrop-blur-md border-b border-slate-800/80 shadow-md'
+          ? 'bg-[#0a0e27]/90 backdrop-blur-md border-b border-slate-800/80 shadow-md'
           : 'bg-transparent border-b border-transparent'
       }`}
     >
@@ -82,14 +82,8 @@ const Header = () => {
           className="flex items-center gap-2.5 font-mono text-sm sm:text-[0.9375rem] font-semibold text-white tracking-tight group focus:outline-none"
           aria-label="Ashenafi Sileshi, home"
         >
-          <div className="w-7 h-7 rounded-md bg-[#111738] border border-cyan-500/40 flex items-center justify-center text-cyan-400 font-mono text-[11px] font-bold shadow-sm">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-cyan-400">
-              <rect width="18" height="18" x="3" y="3" rx="2"></rect>
-              <path d="M7 7h.01"></path>
-              <path d="M17 7h.01"></path>
-              <path d="M7 17h.01"></path>
-              <path d="M17 17h.01"></path>
-            </svg>
+          <div className="w-8 h-8 rounded-lg bg-[#0e1635] border border-cyan-500/40 flex items-center justify-center text-accent font-mono text-xs font-bold shadow-[0_0_12px_var(--accent-alpha)] transition-shadow">
+            <span className="tracking-tighter">AS</span>
           </div>
           <span>
             ashenafi<span className="text-accent">.</span>sileshi
@@ -117,13 +111,17 @@ const Header = () => {
         </div>
 
         {/* Right CTA & Controls */}
-        <div className="flex items-center gap-3 relative" ref={themeMenuRef}>
+        <div className="flex items-center gap-2.5 sm:gap-3 relative" ref={themeMenuRef}>
           
           {/* Theme Palette Button with Popover */}
           <div className="relative">
             <button
               onClick={() => setIsThemeOpen(!isThemeOpen)}
-              className="p-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800/60 transition-colors focus:outline-none"
+              className={`p-2 rounded-lg transition-colors focus:outline-none ${
+                isThemeOpen
+                  ? 'text-white bg-slate-800/80 ring-1 ring-slate-700'
+                  : 'text-slate-400 hover:text-white hover:bg-slate-800/60'
+              }`}
               aria-label="Change color theme"
               aria-expanded={isThemeOpen}
             >
@@ -138,58 +136,63 @@ const Header = () => {
 
             {/* Reference Theme Picker Dropdown Popover */}
             {isThemeOpen && (
-              <div className="absolute right-0 top-full mt-3 w-72 sm:w-80 rounded-2xl p-5 bg-[#0e1430]/95 backdrop-blur-xl border border-slate-700/80 shadow-2xl z-50 animate-fade-in">
+              <div className="absolute right-0 top-full mt-3 w-[290px] sm:w-[316px] rounded-[22px] p-4 sm:p-5 bg-[#0b1022]/95 backdrop-blur-2xl border border-slate-700/60 shadow-2xl shadow-black/80 z-50 animate-fade-in">
                 {/* Header title */}
-                <div className="font-mono text-[11px] font-semibold text-slate-400 tracking-[0.2em] uppercase mb-4">
-                  THEME
+                <div className="font-mono text-[11px] font-semibold text-slate-400 tracking-[0.28em] uppercase mb-3.5 px-0.5">
+                  T H E M E
                 </div>
 
                 {/* 2 Rows of 4 Themes */}
-                <div className="grid grid-cols-4 gap-3 sm:gap-3.5">
+                <div className="grid grid-cols-4 gap-2">
                   {themes.map((t) => {
                     const isSelected = currentTheme === t.id;
                     return (
                       <button
                         key={t.id}
-                        onClick={() => {
-                          selectTheme(t.id);
-                          setIsThemeOpen(false);
+                        onClick={() => selectTheme(t.id)}
+                        className={`group flex flex-col items-center p-1.5 rounded-xl transition-all duration-150 focus:outline-none ${
+                          isSelected
+                            ? 'border bg-white/[0.02]'
+                            : 'border border-transparent hover:bg-white/[0.04]'
+                        }`}
+                        style={{
+                          borderColor: isSelected ? t.accent : 'transparent',
                         }}
-                        className="group flex flex-col items-center focus:outline-none"
+                        aria-label={`Select ${t.name} theme`}
                       >
-                        {/* Theme Box */}
+                        {/* Theme Preview Square */}
                         <div
-                          className={`w-12 h-12 sm:w-14 sm:h-14 rounded-xl relative p-1.5 transition-all duration-200 flex flex-col justify-between ${
-                            isSelected
-                              ? 'border-2 shadow-md'
-                              : 'border border-slate-800 hover:border-slate-600'
-                          }`}
-                          style={{
-                            backgroundColor: t.canvas,
-                            borderColor: isSelected ? t.accent : undefined,
-                          }}
+                          className="w-11 h-11 sm:w-12 sm:h-12 rounded-lg relative flex items-center justify-center transition-transform group-hover:scale-[1.02]"
+                          style={{ backgroundColor: t.canvas }}
                         >
                           {/* Checkmark in top left when selected */}
-                          <div className="h-4 flex items-center">
-                            {isSelected && (
-                              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={t.accent} strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                              </svg>
-                            )}
-                          </div>
+                          {isSelected && (
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="13"
+                              height="13"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke={t.accent}
+                              strokeWidth="3"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              className="absolute top-1.5 left-1.5"
+                            >
+                              <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                          )}
 
                           {/* Accent dot in bottom right */}
-                          <div className="flex justify-end">
-                            <span
-                              className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full"
-                              style={{ backgroundColor: t.dot }}
-                            />
-                          </div>
+                          <span
+                            className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full absolute bottom-1.5 right-1.5 shadow-sm"
+                            style={{ backgroundColor: t.dot }}
+                          />
                         </div>
 
                         {/* Theme Name label */}
-                        <span className={`text-[11px] font-mono mt-1.5 transition-colors ${
-                          isSelected ? 'text-white font-semibold' : 'text-slate-400 group-hover:text-slate-200'
+                        <span className={`text-[11px] font-mono mt-1.5 leading-tight transition-colors ${
+                          isSelected ? 'text-white font-medium' : 'text-slate-400 group-hover:text-slate-200'
                         }`}>
                           {t.name}
                         </span>
