@@ -15,29 +15,35 @@ function App() {
     <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
       <ThemeProvider>
         <AuthProvider>
-          <div className="App min-h-screen flex flex-col bg-white dark:bg-gray-900 transition-colors duration-300">
+          <div className="App min-h-screen flex flex-col bg-slate-50 dark:bg-[#0a0e1a] text-slate-900 dark:text-slate-100 transition-colors duration-300">
             <Routes>
               {/* Public Routes */}
-              <Route path="/" element={
-                <>
-                  <Header />
-                  <main className="flex-1 bg-white dark:bg-gray-900">
-                    <Home />
-                  </main>
-                  <Footer />
-                </>
-              } />
-              
+              <Route
+                path="/"
+                element={
+                  <>
+                    <Header />
+                    <main className="flex-1">
+                      <Home />
+                    </main>
+                    <Footer />
+                  </>
+                }
+              />
+
               {/* Auth Routes */}
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
-              
+
               {/* Protected Routes */}
-              <Route path="/dashboard" element={
-                <ProtectedRoute>
-                  <Dashboard />
-                </ProtectedRoute>
-              } />
+              <Route
+                path="/dashboard"
+                element={
+                  <ProtectedRoute>
+                    <Dashboard />
+                  </ProtectedRoute>
+                }
+              />
             </Routes>
             <ScrollToTop />
           </div>

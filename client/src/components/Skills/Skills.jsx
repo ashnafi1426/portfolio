@@ -1,307 +1,74 @@
-import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import axios from 'axios';
+import { skillsByCategory } from '../../data/portfolioData';
 
 const Skills = () => {
-  const [skills, setSkills] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    fetchSkills();
-  }, []);
-
-  const fetchSkills = async () => {
-    try {
-      const response = await axios.get('http://localhost:5000/api/portfolio/skills');
-      if (response.data.success) {
-        setSkills(response.data.data);
-      }
-    } catch (err) {
-      console.error('Error fetching skills:', err);
-      // Fallback data with logo URLs
-      setSkills([
-        { id: 1, name: "React", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg", color: "#61DBFB" },
-        { id: 2, name: "Node.js", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg", color: "#3C873A" },
-        { id: 3, name: "JavaScript", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg", color: "#F7DF1E" },
-        { id: 4, name: "TypeScript", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg", color: "#3178C6" },
-        { id: 5, name: "Laravel", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-original.svg", color: "#FF2D20" },
-        { id: 6, name: "Vue.js", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg", color: "#4FC08D" },
-        { id: 7, name: "MongoDB", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg", color: "#47A248" },
-        { id: 8, name: "PostgreSQL", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg", color: "#336791" },
-        { id: 9, name: "HTML5", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg", color: "#E34F26" },
-        { id: 10, name: "CSS3", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg", color: "#1572B6" },
-        { id: 11, name: "Tailwind CSS", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg", color: "#06B6D4" },
-        { id: 12, name: "Express.js", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg", color: "#000000" },
-        { id: 13, name: "Git", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg", color: "#F05032" },
-        { id: 14, name: "MySQL", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg", color: "#00618A" }
-      ]);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  if (loading) {
-    return (
-      <section id="skills" className="py-20 bg-gray-50 dark:bg-gray-900">
-        <div className="container mx-auto px-4">
-          <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500 mx-auto"></div>
-          </div>
-        </div>
-      </section>
-    );
-  }
-
   return (
-    <section id="skills" className="relative py-16 sm:py-20 md:py-24 bg-gray-50 dark:bg-gray-900 overflow-hidden transition-colors duration-300">
-      <div className="w-full relative z-10">
+    <section id="skills" className="py-20 lg:py-28 border-b border-slate-200 dark:border-white/[0.08] relative">
+      <div className="container-site">
+        
         {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-12 sm:mb-16 md:mb-20 px-4 sm:px-6 lg:px-8"
+          transition={{ duration: 0.5 }}
+          className="mb-14"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4">
-            Technical Skills
+          <span className="section-label">03 · Technical stack</span>
+          <h2 className="section-title max-w-2xl">
+            Modern tools for resilient applications.
           </h2>
-          <div className="w-16 sm:w-20 h-1 bg-blue-600 dark:bg-blue-500 mx-auto rounded-full mb-4 sm:mb-6"></div>
-          <p className="text-base sm:text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            Technologies and tools I use to bring ideas to life
+          <p className="section-intro">
+            A focused toolkit centered around modern JavaScript/TypeScript, robust PHP/Laravel backends, and relational data architecture.
           </p>
         </motion.div>
 
-        {/* Mobile: Manual Horizontal Scroll (< 768px) */}
-        <div className="block md:hidden relative mb-12">
-          {/* Scroll Hint Text */}
-          <div className="text-center mb-4 px-4">
-            <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 flex items-center justify-center gap-2">
-              <span>👉</span>
-              <span>Swipe to see all skills</span>
-              <span>👈</span>
-            </p>
-          </div>
-
-          {/* Gradient Overlays */}
-          <div className="absolute left-0 top-0 bottom-0 w-8 sm:w-12 bg-gradient-to-r from-gray-50 dark:from-gray-900 to-transparent z-10 pointer-events-none"></div>
-          <div className="absolute right-0 top-0 bottom-0 w-8 sm:w-12 bg-gradient-to-l from-gray-50 dark:from-gray-900 to-transparent z-10 pointer-events-none"></div>
-          
-          {/* Scrollable Container */}
-          <div className="overflow-x-auto overflow-y-hidden scrollbar-hide py-6 px-4">
-            <div className="flex gap-6 sm:gap-8 min-w-max">
-              {skills.map((skill, index) => (
-                <motion.div
-                  key={skill.id}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  whileHover={{ 
-                    scale: 1.15,
-                    rotate: [0, -5, 5, -5, 0],
-                  }}
-                  whileTap={{ scale: 0.9 }}
-                  animate={{
-                    y: [0, -15, 0],
-                  }}
-                  transition={{
-                    opacity: { delay: index * 0.05, duration: 0.5 },
-                    scale: { delay: index * 0.05, duration: 0.5 },
-                    y: {
-                      duration: 2 + (index % 3) * 0.5,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                      delay: index * 0.2
-                    },
-                    rotate: { duration: 0.5 }
-                  }}
-                  className="flex-shrink-0 group relative"
-                >
-                  {/* Circular Skill Icon with Glow Effect */}
-                  <div className="relative">
-                    {/* Animated Glow Ring */}
-                    <motion.div
-                      className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 opacity-0 group-hover:opacity-50 blur-xl"
-                      animate={{
-                        scale: [1, 1.2, 1],
-                        rotate: [0, 180, 360],
-                      }}
-                      transition={{
-                        duration: 3,
-                        repeat: Infinity,
-                        ease: "linear"
-                      }}
-                    />
-                    
-                    {/* Main Icon Container */}
-                    <motion.div 
-                      className="relative w-24 h-24 xs:w-28 xs:h-28 sm:w-32 sm:h-32 rounded-full bg-white dark:bg-gray-800 shadow-2xl flex items-center justify-center transition-all duration-300 active:scale-95 border-4 border-gray-100 dark:border-gray-700 group-hover:border-blue-400 dark:group-hover:border-blue-500"
-                      whileHover={{
-                        boxShadow: "0 20px 40px rgba(59, 130, 246, 0.5)",
-                      }}
-                    >
-                      <motion.img 
-                        src={skill.logo || skill.icon} 
-                        alt={skill.name}
-                        className="w-12 h-12 xs:w-14 xs:h-14 sm:w-16 sm:h-16 object-contain"
-                        style={{
-                          filter: skill.name === 'Express.js' ? 'brightness(0.2)' : 'none'
-                        }}
-                        animate={{
-                          rotate: [0, 5, -5, 0],
-                        }}
-                        transition={{
-                          duration: 2,
-                          repeat: Infinity,
-                          ease: "easeInOut",
-                          delay: index * 0.1
-                        }}
-                      />
-                    </motion.div>
-
-                    {/* Orbiting Particles */}
-                    <motion.div
-                      className="absolute top-0 right-0 w-3 h-3 bg-blue-500 rounded-full"
-                      animate={{
-                        rotate: [0, 360],
-                        scale: [1, 1.5, 1],
-                      }}
-                      transition={{
-                        rotate: { duration: 3, repeat: Infinity, ease: "linear" },
-                        scale: { duration: 1.5, repeat: Infinity, ease: "easeInOut" }
-                      }}
-                      style={{
-                        transformOrigin: "50px 50px"
-                      }}
-                    />
-                  </div>
-
-                  {/* Skill Name - Always Visible with Animation */}
-                  <motion.div 
-                    className="mt-3 text-center"
-                    animate={{
-                      opacity: [0.7, 1, 0.7],
-                    }}
-                    transition={{
-                      duration: 2,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                      delay: index * 0.15
-                    }}
-                  >
-                    <span className="bg-gradient-to-r from-blue-600 to-purple-600 text-white text-xs px-3 py-1.5 rounded-full font-medium inline-block shadow-lg">
-                      {skill.name}
-                    </span>
-                  </motion.div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Desktop: Auto-scrolling Animation (>= 768px) */}
-        <div className="hidden md:block relative mb-12 sm:mb-16">
-          {/* Gradient Overlays */}
-          <div className="absolute left-0 top-0 bottom-0 w-24 lg:w-32 bg-gradient-to-r from-gray-50 dark:from-gray-900 to-transparent z-10 pointer-events-none"></div>
-          <div className="absolute right-0 top-0 bottom-0 w-24 lg:w-32 bg-gradient-to-l from-gray-50 dark:from-gray-900 to-transparent z-10 pointer-events-none"></div>
-          
-          {/* Auto-scrolling Container */}
-          <div className="overflow-hidden py-8">
-            <div className="flex animate-scroll-horizontal hover:pause-animation gap-10 lg:gap-12">
-              {/* Duplicate skills 3 times for seamless loop */}
-              {[...skills, ...skills, ...skills].map((skill, index) => (
-                <div
-                  key={`${skill.id}-${index}`}
-                  className="flex-shrink-0 group relative"
-                >
-                  {/* Circular Skill Icon */}
-                  <div className="w-28 h-28 lg:w-32 lg:h-32 rounded-full bg-white dark:bg-gray-800 shadow-lg flex items-center justify-center transition-all duration-300 group-hover:shadow-2xl border-4 border-gray-100 dark:border-gray-700 group-hover:border-blue-100 dark:group-hover:border-blue-500 group-hover:scale-110">
-                    <img 
-                      src={skill.logo || skill.icon} 
-                      alt={skill.name}
-                      className="w-14 h-14 lg:w-16 lg:h-16 object-contain transition-transform duration-300 group-hover:scale-110"
-                      style={{
-                        filter: skill.name === 'Express.js' ? 'brightness(0.2)' : 'none'
-                      }}
-                    />
-                  </div>
-
-                  {/* Skill Name Tooltip */}
-                  <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap pointer-events-none">
-                    <span className="bg-gray-900 dark:bg-gray-700 text-white text-xs px-3 py-1.5 rounded-full font-medium">
-                      {skill.name}
-                    </span>
-                  </div>
+        {/* 4-Category Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+          {skillsByCategory.map((category, catIndex) => (
+            <motion.div
+              key={catIndex}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: catIndex * 0.1 }}
+              className="bg-white dark:bg-slate-900/60 rounded-2xl p-6 sm:p-8 border border-slate-200 dark:border-white/[0.08] shadow-sm hover:border-cyan-500/30 transition-all duration-300"
+            >
+              {/* Category Header */}
+              <div className="flex items-center gap-3.5 mb-3">
+                <div className="w-10 h-10 rounded-xl bg-cyan-500/10 dark:bg-cyan-500/20 text-cyan-600 dark:text-cyan-400 flex items-center justify-center text-lg">
+                  <i className={`bi ${category.icon}`}></i>
                 </div>
-              ))}
-            </div>
-          </div>
+                <h3 className="font-display text-xl font-bold text-slate-900 dark:text-white">
+                  {category.title}
+                </h3>
+              </div>
+
+              <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mb-6 leading-relaxed">
+                {category.description}
+              </p>
+
+              {/* Skills List */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                {category.skills.map((skill, sIdx) => (
+                  <div
+                    key={sIdx}
+                    className="p-2.5 rounded-xl bg-slate-50 dark:bg-white/[0.03] border border-slate-200/80 dark:border-white/[0.05] flex items-center justify-between"
+                  >
+                    <span className="text-xs sm:text-sm font-medium text-slate-800 dark:text-slate-200">
+                      {skill.name}
+                    </span>
+                    <span className="font-mono text-[10px] px-2 py-0.5 rounded bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700">
+                      {skill.badge}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          ))}
         </div>
 
-        {/* Additional Info */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.6, duration: 0.6 }}
-          className="mt-12 sm:mt-16 md:mt-20 text-center px-4 sm:px-6 lg:px-8"
-        >
-          <p className="text-gray-600 dark:text-gray-300 mb-6 sm:mb-8 text-base sm:text-lg">
-            Always learning and exploring new technologies
-          </p>
-          <div className="flex justify-center gap-2 sm:gap-3 md:gap-4 flex-wrap">
-            <span className="px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 md:py-3 bg-white dark:bg-gray-800 rounded-full shadow-sm text-xs sm:text-sm text-gray-700 dark:text-gray-300 hover:shadow-md transition-all duration-300 border border-gray-200 dark:border-gray-700">
-              🚀 Fast Learner
-            </span>
-            <span className="px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 md:py-3 bg-white dark:bg-gray-800 rounded-full shadow-sm text-xs sm:text-sm text-gray-700 dark:text-gray-300 hover:shadow-md transition-all duration-300 border border-gray-200 dark:border-gray-700">
-              🎯 Problem Solver
-            </span>
-            <span className="px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 md:py-3 bg-white dark:bg-gray-800 rounded-full shadow-sm text-xs sm:text-sm text-gray-700 dark:text-gray-300 hover:shadow-md transition-all duration-300 border border-gray-200 dark:border-gray-700">
-              💡 Creative Thinker
-            </span>
-            <span className="px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 md:py-3 bg-white dark:bg-gray-800 rounded-full shadow-sm text-xs sm:text-sm text-gray-700 dark:text-gray-300 hover:shadow-md transition-all duration-300 border border-gray-200 dark:border-gray-700">
-              🤝 Team Player
-            </span>
-          </div>
-        </motion.div>
       </div>
-
-      {/* CSS Animation */}
-      <style>{`
-        /* Hide scrollbar for mobile */
-        .scrollbar-hide {
-          -ms-overflow-style: none;
-          scrollbar-width: none;
-        }
-        
-        .scrollbar-hide::-webkit-scrollbar {
-          display: none;
-        }
-
-        /* Smooth scrolling for touch devices */
-        .overflow-x-auto {
-          -webkit-overflow-scrolling: touch;
-          scroll-behavior: smooth;
-        }
-
-        /* Desktop auto-scroll animation */
-        @keyframes scroll-horizontal {
-          0% {
-            transform: translateX(0);
-          }
-          100% {
-            transform: translateX(-33.333%);
-          }
-        }
-
-        .animate-scroll-horizontal {
-          animation: scroll-horizontal 25s linear infinite;
-        }
-
-        .hover\\:pause-animation:hover {
-          animation-play-state: paused;
-        }
-      `}</style>
     </section>
   );
 };

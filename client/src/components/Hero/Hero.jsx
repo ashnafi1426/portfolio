@@ -1,48 +1,14 @@
-import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+import { personalData } from '../../data/portfolioData';
 import { downloadCV } from '../../utils/downloadCV';
 
 const Hero = () => {
-  const [displayText, setDisplayText] = useState('');
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isDeleting, setIsDeleting] = useState(false);
-  
-  const titles = [
-    'Fullstack Developer',
-    'Laravel Developer',
-    'React Developer',
-    'Node.js Developer',
-    'Problem Solver'
-  ];
-
-  useEffect(() => {
-    const currentTitle = titles[currentIndex];
-    const speed = isDeleting ? 50 : 100;
-
-    const timer = setTimeout(() => {
-      if (!isDeleting) {
-        setDisplayText(currentTitle.substring(0, displayText.length + 1));
-        
-        if (displayText === currentTitle) {
-          setTimeout(() => setIsDeleting(true), 2000);
-        }
-      } else {
-        setDisplayText(currentTitle.substring(0, displayText.length - 1));
-        
-        if (displayText === '') {
-          setIsDeleting(false);
-          setCurrentIndex((prev) => (prev + 1) % titles.length);
-        }
-      }
-    }, speed);
-
-    return () => clearTimeout(timer);
-  }, [displayText, currentIndex, isDeleting, titles]);
-
-  const scrollToSection = (sectionId) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+  const scrollTo = (id) => {
+    const el = document.getElementById(id);
+    if (el) {
+      const yOffset = -70;
+      const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: 'smooth' });
     }
   };
 
@@ -51,219 +17,180 @@ const Hero = () => {
   };
 
   return (
-    <section id="hero" className="relative min-h-screen flex items-center bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50 dark:from-gray-900 dark:via-[#1a1f35] dark:to-gray-900 overflow-hidden pt-16 sm:pt-20 transition-colors duration-300">
-      {/* Animated Background Particles */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 bg-purple-600 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-blob"></div>
-        <div className="absolute top-1/3 right-1/4 w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 bg-blue-600 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-blob animation-delay-2000"></div>
-        <div className="absolute bottom-1/4 left-1/2 w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 bg-pink-600 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-blob animation-delay-4000"></div>
-      </div>
+    <section id="home" className="relative min-h-[92vh] flex items-center pt-24 pb-16 lg:pt-32 lg:pb-24 overflow-hidden">
+      {/* Background Subtle Grid & Ambient Glow */}
+      <div className="absolute inset-0 hero-grid-bg opacity-40 dark:opacity-30 pointer-events-none" />
+      <div className="absolute top-1/4 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] hero-glow-blob pointer-events-none blur-3xl opacity-60 dark:opacity-40" />
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-12 xl:gap-16 items-center">
+      {/* Floating Vertical Social Rail (Desktop) */}
+      <aside className="hidden 2xl:flex fixed left-8 top-1/2 -translate-y-1/2 flex-col items-center gap-4 z-40">
+        <div className="w-px h-12 bg-gradient-to-b from-transparent to-slate-400 dark:to-slate-700" />
+        <a
+          href={personalData.github}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="p-2 text-slate-500 hover:text-cyan-500 dark:text-slate-400 dark:hover:text-cyan-400 transition-colors"
+          aria-label="GitHub"
+        >
+          <i className="bi bi-github text-lg"></i>
+        </a>
+        <a
+          href={personalData.linkedin}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="p-2 text-slate-500 hover:text-cyan-500 dark:text-slate-400 dark:hover:text-cyan-400 transition-colors"
+          aria-label="LinkedIn"
+        >
+          <i className="bi bi-linkedin text-lg"></i>
+        </a>
+        <a
+          href={personalData.telegram}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="p-2 text-slate-500 hover:text-cyan-500 dark:text-slate-400 dark:hover:text-cyan-400 transition-colors"
+          aria-label="Telegram"
+        >
+          <i className="bi bi-telegram text-lg"></i>
+        </a>
+        <a
+          href={`mailto:${personalData.email}`}
+          className="p-2 text-slate-500 hover:text-cyan-500 dark:text-slate-400 dark:hover:text-cyan-400 transition-colors"
+          aria-label="Email"
+        >
+          <i className="bi bi-envelope-fill text-lg"></i>
+        </a>
+        <div className="w-px h-12 bg-gradient-to-t from-transparent to-slate-400 dark:to-slate-700" />
+      </aside>
+
+      <div className="container-site relative z-10 w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           
-          {/* Hero Text - Left Side */}
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center lg:text-left order-2 lg:order-1 py-8 sm:py-10 lg:py-0"
-          >
-            {/* Welcome Badge */}
+          {/* Hero Left Content */}
+          <div className="lg:col-span-7 flex flex-col items-start">
+            {/* Status Pill */}
             <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.2, duration: 0.6 }}
-              className="inline-block mb-4 sm:mb-6"
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full border border-slate-200 dark:border-white/10 bg-slate-100/80 dark:bg-slate-900/80 backdrop-blur-sm mb-6"
             >
-              <span className="text-gray-900 dark:text-white text-base sm:text-lg md:text-xl font-medium">
-                Welcome <span className="inline-block animate-wave">👋</span>
+              <span className="status-dot" />
+              <span className="font-mono text-xs font-medium text-slate-700 dark:text-slate-300">
+                {personalData.availability}
               </span>
             </motion.div>
 
-            {/* Main Heading */}
-            <motion.h1 
+            {/* Headline */}
+            <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.6 }}
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold leading-tight mb-4 sm:mb-6"
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="font-display font-extrabold text-[clamp(2.35rem,5.2vw,4.15rem)] leading-[1.08] tracking-[-0.03em] text-slate-900 dark:text-white max-w-[17ch] mb-6"
             >
-              <span className="text-gray-900 dark:text-white block">Hi, I'm</span>
-              <span className="text-gray-900 dark:text-white block">Ashenafi</span>
+              Engineering the web systems that businesses{' '}
+              <span className="text-cyan-500">rely on</span>.
             </motion.h1>
 
-            {/* Animated Role */}
-            <motion.h2 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.5, duration: 0.6 }}
-              className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold text-gray-800 dark:text-white mb-6 sm:mb-8 flex items-center justify-center lg:justify-start gap-2"
+            {/* Introduction */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="text-base sm:text-lg text-slate-600 dark:text-slate-400 leading-relaxed max-w-[48ch] mb-8"
             >
-              <span className="truncate">{displayText}</span>
-              <motion.span 
-                animate={{ opacity: [1, 0, 1] }}
-                transition={{ duration: 0.8, repeat: Infinity }}
-                className="text-purple-600 dark:text-purple-400"
-              >
-                |
-              </motion.span>
-            </motion.h2>
-            
-            {/* CTA Buttons */}
+              Hi, I&apos;m <span className="font-semibold text-slate-900 dark:text-white">{personalData.name}</span>. 
+              I design and develop full-stack platforms, scalable APIs, and clean user interfaces that hold up under real-world load.
+            </motion.p>
+
+            {/* CTA Actions */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.7, duration: 0.6 }}
-              className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start mb-8 sm:mb-10"
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="flex flex-wrap items-center gap-3 sm:gap-4 mb-10"
             >
-              <motion.button 
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => scrollToSection('portfolio')} 
-                className="px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-purple-600 to-blue-600 text-white font-semibold rounded-full hover:from-purple-700 hover:to-blue-700 transition-all duration-300 shadow-lg hover:shadow-purple-500/50 flex items-center justify-center gap-2 text-sm sm:text-base"
+              <button
+                onClick={() => scrollTo('projects')}
+                className="btn btn-primary"
               >
-                View My Work
-                <i className="bi bi-arrow-right"></i>
-              </motion.button>
-              <motion.button
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.95 }}
+                <span>View Selected Work</span>
+                <i className="bi bi-arrow-down-short text-lg"></i>
+              </button>
+
+              <button
+                onClick={() => scrollTo('contact')}
+                className="btn btn-ghost"
+              >
+                <span>Get in touch</span>
+                <i className="bi bi-chat-text text-sm"></i>
+              </button>
+
+              <button
                 onClick={handleDownloadCV}
-                className="px-6 sm:px-8 py-3 sm:py-4 bg-gray-200 dark:bg-white/10 backdrop-blur-sm text-gray-900 dark:text-white font-semibold rounded-full border-2 border-gray-300 dark:border-white/20 hover:bg-gray-300 dark:hover:bg-white/20 transition-all duration-300 flex items-center justify-center gap-2 text-sm sm:text-base"
+                className="btn btn-ghost"
+                title="Download verified resume"
               >
-                Download CV
-                <i className="bi bi-download"></i>
-              </motion.button>
+                <i className="bi bi-file-earmark-pdf text-sm text-cyan-500"></i>
+                <span>Download CV</span>
+              </button>
             </motion.div>
 
-            {/* Social Links */}
-            <motion.div 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.9, duration: 0.6 }}
-              className="flex gap-3 sm:gap-4 justify-center lg:justify-start"
+            {/* Key Metrics / Stats */}
+            <motion.dl
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="grid grid-cols-3 gap-3 sm:gap-8 pt-6 border-t border-slate-200 dark:border-white/10 w-full max-w-lg"
             >
-              <motion.a 
-                whileHover={{ scale: 1.2, y: -3 }}
-                href="https://github.com/ashnafi1426" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="w-10 h-10 sm:w-12 sm:h-12 bg-gray-200 dark:bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center text-gray-900 dark:text-white hover:bg-purple-600 hover:text-white transition-all duration-300"
-              >
-                <i className="bi bi-github text-lg sm:text-xl"></i>
-              </motion.a>
-              <motion.a 
-                whileHover={{ scale: 1.2, y: -3 }}
-                href="https://www.linkedin.com/in/ashenafi-sileshi-3736aa362/" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="w-10 h-10 sm:w-12 sm:h-12 bg-gray-200 dark:bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center text-gray-900 dark:text-white hover:bg-blue-600 hover:text-white transition-all duration-300"
-              >
-                <i className="bi bi-linkedin text-lg sm:text-xl"></i>
-              </motion.a>
-              <motion.a 
-                whileHover={{ scale: 1.2, y: -3 }}
-                href="https://t.me/ashe1426" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="w-10 h-10 sm:w-12 sm:h-12 bg-gray-200 dark:bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center text-gray-900 dark:text-white hover:bg-sky-500 hover:text-white transition-all duration-300"
-              >
-                <i className="bi bi-telegram text-lg sm:text-xl"></i>
-              </motion.a>
-            </motion.div>
-          </motion.div>
-
-          {/* Hero Image - Right Side */}
-          <motion.div 
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.4, duration: 0.8 }}
-            className="flex justify-center lg:justify-end order-1 lg:order-2 relative px-4 sm:px-0"
-          >
-            <div className="relative w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-2xl">
-              {/* Main Image Container - Workspace Setup */}
-              <motion.div 
-                initial={{ scale: 0.9, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ delay: 0.5, duration: 0.8 }}
-                className="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl"
-              >
-                <div className="relative aspect-[4/3] w-full">
-                  <img 
-                    src="/images/ashuu.avif" 
-                    alt="Ashenafi Sileshi - Developer Workspace"
-                    className="w-full h-full object-cover"
-                  />
-                  {/* Gradient Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-gray-900/60 via-transparent to-transparent"></div>
+              {personalData.stats.map((stat, i) => (
+                <div key={i} className="flex flex-col">
+                  <dd className="font-display text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-1">
+                    {stat.value}
+                  </dd>
+                  <dt className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">
+                    {stat.label}
+                  </dt>
                 </div>
-              </motion.div>
-            </div>
-          </motion.div>
+              ))}
+            </motion.dl>
+          </div>
+
+          {/* Hero Right Visual: Authentic Framed Portrait */}
+          <div className="lg:col-span-5 flex justify-center lg:justify-end">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.25 }}
+              className="relative w-full max-w-[300px] sm:max-w-[340px] lg:max-w-[370px]"
+            >
+              {/* Decorative Subtle Frame Backdrop */}
+              <div className="absolute -inset-1.5 rounded-3xl bg-gradient-to-tr from-cyan-500/20 via-blue-500/10 to-transparent blur-sm" />
+
+              {/* Main Photo Card */}
+              <div className="relative rounded-2xl overflow-hidden border border-slate-200 dark:border-white/10 bg-slate-900 shadow-2xl group">
+                <div className="aspect-[4/5] w-full overflow-hidden">
+                  <img
+                    src="/images/Ashu.jpg"
+                    alt="Ashenafi Sileshi - Full Stack Developer"
+                    className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent pointer-events-none" />
+                </div>
+
+                {/* Location & Timezone Pill */}
+                <div className="absolute bottom-3 left-3 right-3 py-2 px-3.5 rounded-xl bg-slate-900/90 dark:bg-slate-950/90 backdrop-blur-md border border-white/10 flex items-center justify-between text-xs text-slate-300">
+                  <div className="flex items-center gap-1.5">
+                    <i className="bi bi-geo-alt-fill text-cyan-400"></i>
+                    <span>Addis Ababa, Ethiopia</span>
+                  </div>
+                  <span className="font-mono text-[11px] text-cyan-400 font-semibold">{personalData.timezone}</span>
+                </div>
+              </div>
+            </motion.div>
+          </div>
 
         </div>
-
-        {/* Scroll Indicator */}
-        <motion.div 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.5, duration: 0.6 }}
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 hidden md:block"
-        >
-          <button 
-            onClick={() => scrollToSection('about')}
-            className="flex flex-col items-center gap-2 text-gray-600 dark:text-white/60 hover:text-gray-900 dark:hover:text-white transition-colors duration-300 group"
-            aria-label="Scroll to about section"
-          >
-            <span className="text-sm font-medium">Scroll Down</span>
-            <div className="w-6 h-10 border-2 border-gray-400 dark:border-white/30 rounded-full flex items-start justify-center p-2 group-hover:border-gray-600 dark:group-hover:border-white/60 transition-colors">
-              <motion.div 
-                animate={{ y: [0, 12, 0] }}
-                transition={{ duration: 1.5, repeat: Infinity }}
-                className="w-1 h-2 bg-gray-600 dark:bg-white/60 rounded-full"
-              />
-            </div>
-          </button>
-        </motion.div>
       </div>
-
-      {/* CSS for animations */}
-      <style>{`
-        @keyframes wave {
-          0%, 100% { transform: rotate(0deg); }
-          25% { transform: rotate(20deg); }
-          75% { transform: rotate(-20deg); }
-        }
-
-        .animate-wave {
-          display: inline-block;
-          animation: wave 2s ease-in-out infinite;
-        }
-
-        @keyframes float {
-          0%, 100% { transform: translateY(0px); }
-          50% { transform: translateY(-20px); }
-        }
-
-        @keyframes blob {
-          0%, 100% { transform: translate(0, 0) scale(1); }
-          25% { transform: translate(20px, -50px) scale(1.1); }
-          50% { transform: translate(-20px, 20px) scale(0.9); }
-          75% { transform: translate(50px, 50px) scale(1.05); }
-        }
-
-        .animate-blob {
-          animation: blob 20s infinite;
-        }
-
-        .animation-delay-2000 {
-          animation-delay: 2s;
-        }
-
-        .animation-delay-4000 {
-          animation-delay: 4s;
-        }
-      `}</style>
     </section>
   );
 };

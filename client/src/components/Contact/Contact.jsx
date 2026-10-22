@@ -1,134 +1,273 @@
-const Contact = () => {
-  const contactInfo = [
-    {
-      icon: 'bi bi-envelope-at',
-      title: 'Email',
-      value: 'ashenafisileshi7@gmail.com',
-      link: 'mailto:ashenafisileshi7@gmail.com'
-    },
-    {
-      icon: 'bi bi-telephone',
-      title: 'Phone',
-      value: '+251968277909',
-      link: 'tel:+251968277909'
-    },
-    {
-      icon: 'bi bi-geo-alt',
-      title: 'Location',
-      value: 'Kombolcha, Ethiopia',
-      link: 'https://www.google.com/maps/search/Kombolcha+Ethiopia'
-    }
-  ];
+import { useState } from 'react';
+import { motion } from 'framer-motion';
+import { personalData } from '../../data/portfolioData';
 
-  const socialLinks = [
-    { href: 'https://github.com/ashnafi1426', icon: 'bi bi-github', label: 'GitHub' },
-    { href: 'https://www.linkedin.com/in/ashenafi-sileshi-3736aa362/', icon: 'bi bi-linkedin', label: 'LinkedIn' },
-    { href: 'https://t.me/ashe1426', icon: 'bi bi-telegram', label: 'Telegram' },
+const Contact = () => {
+  const [copied, setCopied] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: '',
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [statusMessage, setStatusMessage] = useState(null);
+
+  const copyEmail = () => {
+    navigator.clipboard.writeText(personalData.email);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2500);
+  };
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    // Create mailto link with encoded form data for guaranteed delivery without backend dependency
+    const subjectEncoded = encodeURIComponent(`[Portfolio Inquiry] ${formData.subject || 'Project Discussion'}`);
+    const bodyEncoded = encodeURIComponent(
+      `Hello Ashenafi,\n\nName: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}\n`
+    );
+
+    // Open user's default email client
+    window.location.href = `mailto:${personalData.email}?subject=${subjectEncoded}&body=${bodyEncoded}`;
+
+    setTimeout(() => {
+      setIsSubmitting(false);
+      setStatusMessage({
+        type: 'success',
+        text: 'Your email draft is prepared! Feel free to send it directly.',
+      });
+      setFormData({ name: '', email: '', subject: '', message: '' });
+    }, 500);
+  };
+
+  const contactChannels = [
+    {
+      label: "Direct Email",
+      value: personalData.email,
+      icon: "bi-envelope-at-fill",
+      action: copyEmail,
+      actionLabel: copied ? "Copied to clipboard!" : "Click to copy email",
+      isCopy: true,
+    },
+    {
+      label: "Telegram",
+      value: "@ashe1426",
+      icon: "bi-telegram",
+      href: personalData.telegram,
+      actionLabel: "Direct chat &rarr;",
+    },
+    {
+      label: "LinkedIn",
+      value: "Ashenafi Sileshi",
+      icon: "bi-linkedin",
+      href: personalData.linkedin,
+      actionLabel: "View profile &rarr;",
+    },
+    {
+      label: "GitHub",
+      value: "ashnafi1426",
+      icon: "bi-github",
+      href: personalData.github,
+      actionLabel: "Explore repositories &rarr;",
+    },
   ];
 
   return (
-    <section id="contact" className="py-12 sm:py-16 lg:py-20 bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12 sm:mb-16">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4">Get in Touch</h2>
-          <div className="w-20 h-1 bg-blue-600 mx-auto rounded-full mb-4"></div>
-          <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto px-4">
-            Feel free to reach out for collaborations, opportunities, or just to say hello!
+    <section id="contact" className="py-20 lg:py-28 relative">
+      <div className="container-site">
+        
+        {/* Section Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="mb-14"
+        >
+          <span className="section-label">06 · Contact & Collaboration</span>
+          <h2 className="section-title max-w-2xl">
+            Have an idea? Let&apos;s build something useful.
+          </h2>
+          <p className="section-intro">
+            Whether you have a specific project in mind, need full-stack engineering expertise, or want to discuss opportunities, I&apos;d love to hear from you.
           </p>
-        </div>
+        </motion.div>
 
-        <div className="max-w-6xl mx-auto">
-          {/* Main Email CTA */}
-          <div className="bg-white dark:bg-gray-900 rounded-2xl p-8 sm:p-12 lg:p-16 shadow-xl text-center mb-12 sm:mb-16">
-            <div className="mb-8">
-              <div className="w-20 h-20 sm:w-24 sm:h-24 bg-gradient-to-br from-blue-500 to-blue-600 text-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
-                <i className="bi bi-envelope-heart text-3xl sm:text-4xl"></i>
-              </div>
-              <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">Let's Work Together</h3>
-              <p className="text-gray-600 dark:text-gray-400 text-base sm:text-lg max-w-2xl mx-auto mb-8 px-4">
-                I'm always interested in hearing about new projects and opportunities. 
-                Whether you have a question or just want to say hi, feel free to drop me an email!
-              </p>
-            </div>
+        {/* 2-Column Grid: Channels on Left, Form on Right */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+          
+          {/* Channels Left Column */}
+          <div className="lg:col-span-5 space-y-4">
+            <div className="bg-white dark:bg-slate-900/60 rounded-2xl p-6 sm:p-7 border border-slate-200 dark:border-white/[0.08] shadow-sm">
+              <h3 className="font-mono text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-5">
+                Direct Communication Channels
+              </h3>
 
-            <a
-              href="mailto:ashenafisileshi7@gmail.com"
-              className="inline-flex items-center gap-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold py-4 px-8 sm:px-10 rounded-xl hover:from-blue-700 hover:to-blue-800 focus:ring-4 focus:ring-blue-200 transition-all duration-300 transform hover:-translate-y-1 shadow-lg hover:shadow-xl text-base sm:text-lg"
-            >
-              <i className="bi bi-envelope-fill text-xl"></i>
-              <span>Send Me an Email</span>
-              <i className="bi bi-arrow-right text-xl"></i>
-            </a>
+              <div className="space-y-4">
+                {contactChannels.map((channel, idx) => (
+                  <div
+                    key={idx}
+                    className="p-3.5 rounded-xl bg-slate-50 dark:bg-white/[0.03] border border-slate-200/80 dark:border-white/[0.05] flex items-center justify-between gap-3"
+                  >
+                    <div className="flex items-center gap-3 min-w-0">
+                      <div className="w-9 h-9 rounded-lg bg-cyan-500/10 dark:bg-cyan-500/20 text-cyan-600 dark:text-cyan-400 flex items-center justify-center shrink-0">
+                        <i className={`bi ${channel.icon} text-base`}></i>
+                      </div>
+                      <div className="min-w-0">
+                        <span className="block text-[11px] font-mono text-slate-400 uppercase tracking-wider">
+                          {channel.label}
+                        </span>
+                        <span className="text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200 truncate block">
+                          {channel.value}
+                        </span>
+                      </div>
+                    </div>
 
-            <p className="text-sm sm:text-base text-gray-500 dark:text-gray-400 mt-6">
-              ashenafisileshi7@gmail.com
-            </p>
-          </div>
-
-          {/* Contact Info Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-12 sm:mb-16">
-            {contactInfo.map((info, index) => (
-              <a
-                key={index}
-                href={info.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-white dark:bg-gray-900 rounded-xl p-6 sm:p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group"
-              >
-                <div className="w-14 h-14 sm:w-16 sm:h-16 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300">
-                  <i className={`${info.icon} text-2xl sm:text-3xl`}></i>
-                </div>
-                <h3 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white text-center mb-2">{info.title}</h3>
-                <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 text-center break-all px-2">{info.value}</p>
-              </a>
-            ))}
-          </div>
-
-          {/* Social Links Section */}
-          <div className="bg-white dark:bg-gray-900 rounded-2xl p-8 sm:p-10 shadow-lg">
-            <h4 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white text-center mb-6 sm:mb-8">Connect With Me</h4>
-            <div className="flex flex-wrap justify-center gap-4 sm:gap-6">
-              {socialLinks.map((social, index) => (
-                <a
-                  key={index}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={social.label}
-                  className="group flex flex-col items-center"
-                >
-                  <div className="w-14 h-14 sm:w-16 sm:h-16 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded-full flex items-center justify-center hover:bg-blue-600 hover:text-white transition-all duration-300 hover:-translate-y-1 shadow-md hover:shadow-lg mb-2">
-                    <i className={`${social.icon} text-2xl sm:text-3xl`}></i>
+                    {channel.isCopy ? (
+                      <button
+                        onClick={channel.action}
+                        className="text-xs font-mono font-medium text-cyan-600 dark:text-cyan-400 hover:underline shrink-0"
+                      >
+                        {copied ? (
+                          <span className="text-emerald-500 font-semibold flex items-center gap-1">
+                            <i className="bi bi-check-lg"></i> Copied
+                          </span>
+                        ) : (
+                          "Copy"
+                        )}
+                      </button>
+                    ) : (
+                      <a
+                        href={channel.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-xs font-mono font-medium text-cyan-600 dark:text-cyan-400 hover:underline shrink-0"
+                      >
+                        Open &rarr;
+                      </a>
+                    )}
                   </div>
-                  <span className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300 font-medium">
-                    {social.label}
-                  </span>
-                </a>
-              ))}
+                ))}
+              </div>
+            </div>
+
+            {/* Quick Availability Badge */}
+            <div className="p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center gap-3">
+              <span className="status-dot shrink-0" />
+              <div className="text-xs text-slate-700 dark:text-slate-300">
+                <span className="font-semibold text-slate-900 dark:text-white">Current Availability:</span>{' '}
+                Open for full-time roles, contracts, and software consulting.
+              </div>
             </div>
           </div>
+
+          {/* Interactive Form Right Column */}
+          <div className="lg:col-span-7 bg-white dark:bg-slate-900/60 rounded-2xl p-6 sm:p-8 border border-slate-200 dark:border-white/[0.08] shadow-sm">
+            <h3 className="font-display text-xl font-bold text-slate-900 dark:text-white mb-2">
+              Send a Direct Message
+            </h3>
+            <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mb-6">
+              Fill in your details and I will reply within 24 hours.
+            </p>
+
+            {statusMessage && (
+              <div className="mb-5 p-3.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-xs flex items-center gap-2">
+                <i className="bi bi-check-circle-fill"></i>
+                <span>{statusMessage.text}</span>
+              </div>
+            )}
+
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label htmlFor="name" className="block text-xs font-mono text-slate-600 dark:text-slate-400 mb-1.5 uppercase tracking-wider">
+                    Your Name *
+                  </label>
+                  <input
+                    id="name"
+                    type="text"
+                    name="name"
+                    required
+                    value={formData.name}
+                    onChange={handleChange}
+                    placeholder="e.g. Alex Johnson"
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white text-sm placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-cyan-500 transition-all"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="email" className="block text-xs font-mono text-slate-600 dark:text-slate-400 mb-1.5 uppercase tracking-wider">
+                    Email Address *
+                  </label>
+                  <input
+                    id="email"
+                    type="email"
+                    name="email"
+                    required
+                    value={formData.email}
+                    onChange={handleChange}
+                    placeholder="alex@company.com"
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white text-sm placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-cyan-500 transition-all"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label htmlFor="subject" className="block text-xs font-mono text-slate-600 dark:text-slate-400 mb-1.5 uppercase tracking-wider">
+                  Subject / Project Scope
+                </label>
+                <input
+                  id="subject"
+                  type="text"
+                  name="subject"
+                  value={formData.subject}
+                  onChange={handleChange}
+                  placeholder="e.g. Full-Stack Web Platform or Consulting"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white text-sm placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-cyan-500 transition-all"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="message" className="block text-xs font-mono text-slate-600 dark:text-slate-400 mb-1.5 uppercase tracking-wider">
+                  Project Details / Message *
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  rows={4}
+                  required
+                  value={formData.message}
+                  onChange={handleChange}
+                  placeholder="Tell me about what you are planning to build, target timeline, or inquiry..."
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white text-sm placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-cyan-500 transition-all resize-none"
+                />
+              </div>
+
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="btn btn-primary w-full py-3 text-sm font-semibold"
+              >
+                {isSubmitting ? (
+                  <span>Preparing Draft...</span>
+                ) : (
+                  <>
+                    <span>Send Message</span>
+                    <i className="bi bi-send-fill text-xs"></i>
+                  </>
+                )}
+              </button>
+            </form>
+          </div>
+
         </div>
 
-        {/* Footer Bottom */}
-        <div className="mt-12 sm:mt-16 pt-8 border-t border-gray-200 dark:border-gray-700">
-          <div className="max-w-6xl mx-auto">
-            <div className="flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-6">
-              <div className="text-center sm:text-left">
-                <h5 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-1">Ashenafi Sileshi</h5>
-                <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400">Full Stack Developer</p>
-              </div>
-              
-              <div className="text-center sm:text-right">
-                <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-1">
-                  © {new Date().getFullYear()} All rights reserved
-                </p>
-                <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-500">
-                  Built with React & Tailwind CSS
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
   );

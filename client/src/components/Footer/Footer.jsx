@@ -1,114 +1,94 @@
-import React from 'react';
+import { personalData } from '../../data/portfolioData';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
-
-  const socialLinks = [
-    { href: 'https://github.com/ashnafi1426', icon: 'bi bi-github', label: 'GitHub' },
-    { href: 'https://www.linkedin.com/in/ashenafi-sileshi-3736aa362/', icon: 'bi bi-linkedin', label: 'LinkedIn' },
-    { href: 'https://t.me/ashe1426', icon: 'bi bi-telegram', label: 'Telegram' },
-  ];
-
-  const quickLinks = [
-    { name: 'Home', href: '#hero' },
-    { name: 'About', href: '#about' },
-    { name: 'Services', href: '#services' },
-    { name: 'Portfolio', href: '#portfolio' },
-    { name: 'Contact', href: '#contact' },
-  ];
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const navLinks = [
+    { label: 'About', href: '#about' },
+    { label: 'Work', href: '#projects' },
+    { label: 'Stack', href: '#skills' },
+    { label: 'Process', href: '#process' },
+    { label: 'Journey', href: '#journey' },
+    { label: 'Contact', href: '#contact' },
+  ];
+
   return (
-    <footer className="bg-gray-900 text-white pt-12 sm:pt-16 pb-6 sm:pb-8">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 lg:gap-12 mb-8 sm:mb-12">
-
-          {/* Brand Section */}
-          <div className="space-y-3 sm:space-y-4">
-            <h3 className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-blue-400 to-blue-200 bg-clip-text text-transparent">
-              Ashenafi Sileshi
-            </h3>
-            <p className="text-gray-400 leading-relaxed text-sm sm:text-base">
-              Full Stack Developer crafting digital experiences with passion and precision. Let's build something amazing together.
+    <footer className="border-t border-slate-200 dark:border-white/[0.08] bg-slate-100/60 dark:bg-slate-950/80 py-12 transition-colors">
+      <div className="container-site">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-slate-200 dark:border-white/[0.06]">
+          
+          {/* Brand Wordmark & Tagline */}
+          <div className="text-center md:text-left">
+            <span className="font-mono text-base font-bold text-slate-900 dark:text-white tracking-tight">
+              ashenafi<span className="text-cyan-500">.</span>sileshi
+            </span>
+            <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1 max-w-sm">
+              Engineering full-stack web platforms, scalable APIs, and clean digital experiences.
             </p>
-            <div className="flex gap-3 sm:gap-4 pt-2">
-              {socialLinks.map((social, index) => (
-                <a
-                  key={index}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={social.label}
-                  className="w-9 h-9 sm:w-10 sm:h-10 bg-gray-800 hover:bg-blue-600 rounded-full flex items-center justify-center text-gray-400 hover:text-white transition-all duration-300 transform hover:-translate-y-1"
-                >
-                  <i className={`${social.icon} text-base sm:text-lg`}></i>
-                </a>
-              ))}
-            </div>
           </div>
 
-          {/* Quick Links */}
-          <div>
-            <h4 className="text-base sm:text-lg font-semibold mb-4 sm:mb-6 text-white">Quick Links</h4>
-            <ul className="space-y-2 sm:space-y-3">
-              {quickLinks.map((link, index) => (
-                <li key={index}>
-                  <a
-                    href={link.href}
-                    className="text-gray-400 hover:text-blue-400 transition-colors duration-300 flex items-center gap-2 group text-sm sm:text-base"
-                  >
-                    <span className="opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300">→</span>
-                    {link.name}
-                  </a>
-                </li>
-              ))}
-            </ul>
+          {/* Quick Nav Links */}
+          <div className="flex flex-wrap items-center justify-center gap-5 sm:gap-6 text-xs sm:text-sm font-medium text-slate-600 dark:text-slate-400">
+            {navLinks.map((link, idx) => (
+              <a
+                key={idx}
+                href={link.href}
+                className="hover:text-cyan-500 dark:hover:text-cyan-400 transition-colors"
+              >
+                {link.label}
+              </a>
+            ))}
           </div>
 
-          {/* Contact Info */}
-          <div>
-            <h4 className="text-base sm:text-lg font-semibold mb-4 sm:mb-6 text-white">Contact Info</h4>
-            <ul className="space-y-3 sm:space-y-4 text-gray-400 text-sm sm:text-base">
-              <li className="flex items-start gap-3">
-                <i className="bi bi-geo-alt text-blue-500 mt-1 flex-shrink-0"></i>
-                <span>Kombolcha, Ethiopia</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <i className="bi bi-envelope text-blue-500 mt-1 flex-shrink-0"></i>
-                <a href="mailto:ashenafisileshi7@gmail.com" className="hover:text-white transition-colors break-all">
-                  ashenafisileshi7@gmail.com
-                </a>
-              </li>
-              <li className="flex items-center gap-3">
-                <i className="bi bi-telephone text-blue-500 flex-shrink-0"></i>
-                <a href="tel:+251968277909" className="hover:text-white transition-colors">
-                  +251968277909
-                </a>
-              </li>
-            </ul>
+          {/* Social Icons */}
+          <div className="flex items-center gap-3">
+            <a
+              href={personalData.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-9 h-9 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-white/10 flex items-center justify-center text-slate-600 dark:text-slate-400 hover:text-cyan-500 hover:border-cyan-500 transition-all text-sm"
+              aria-label="GitHub profile"
+            >
+              <i className="bi bi-github"></i>
+            </a>
+            <a
+              href={personalData.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-9 h-9 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-white/10 flex items-center justify-center text-slate-600 dark:text-slate-400 hover:text-cyan-500 hover:border-cyan-500 transition-all text-sm"
+              aria-label="LinkedIn profile"
+            >
+              <i className="bi bi-linkedin"></i>
+            </a>
+            <a
+              href={personalData.telegram}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-9 h-9 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-white/10 flex items-center justify-center text-slate-600 dark:text-slate-400 hover:text-cyan-500 hover:border-cyan-500 transition-all text-sm"
+              aria-label="Telegram chat"
+            >
+              <i className="bi bi-telegram"></i>
+            </a>
           </div>
+
         </div>
 
-        {/* Divider */}
-        <hr className="border-gray-800 mb-6 sm:mb-8" />
-
-        {/* Bottom Bar */}
-        <div className="flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-6">
-          <div className="text-gray-400 text-xs sm:text-sm text-center sm:text-left">
-            <p>
-              © {currentYear} <span className="text-white font-medium">Ashenafi Sileshi</span>. All Rights Reserved.
-            </p>
-            <p className="text-gray-500 mt-1">Built with React & Tailwind CSS</p>
+        {/* Bottom Bar: Copyright & Back to Top */}
+        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 dark:text-slate-400">
+          <div>
+            &copy; {currentYear} {personalData.name}. All rights reserved. Built with React &amp; Tailwind CSS.
           </div>
 
           <button
             onClick={scrollToTop}
-            className="flex items-center gap-2 text-xs sm:text-sm text-gray-400 hover:text-blue-400 transition-colors px-4 py-2 rounded-lg hover:bg-gray-800"
+            className="flex items-center gap-1.5 hover:text-cyan-500 dark:hover:text-cyan-400 transition-colors font-mono text-[11px] uppercase tracking-wider"
           >
-            Back to Top <i className="bi bi-arrow-up"></i>
+            <span>Back to top</span>
+            <i className="bi bi-arrow-up"></i>
           </button>
         </div>
       </div>
