@@ -37,7 +37,7 @@ const Process = () => {
               className="bg-[#0e1538] rounded-2xl p-6 border border-slate-800 flex flex-col justify-between hover:border-slate-700 transition-colors"
             >
               <div>
-                <div className="font-mono text-3xl font-bold text-[#ff5a36] mb-4 opacity-90">
+                <div className="font-mono text-3xl font-bold text-accent mb-4 opacity-90">
                   {step.step}
                 </div>
                 <h3 className="font-display text-lg font-bold text-white mb-2">
@@ -51,7 +51,7 @@ const Process = () => {
               <ul className="space-y-2 pt-4 border-t border-slate-800/80">
                 {step.points.map((pt, pIdx) => (
                   <li key={pIdx} className="flex items-start gap-2 text-xs text-slate-400">
-                    <span className="text-[#ff5a36] font-bold">&bull;</span>
+                    <span className="text-accent font-bold">&bull;</span>
                     <span>{pt}</span>
                   </li>
                 ))}

@@ -20,10 +20,10 @@
   --surface-card: #13171e;
   --surface-raised: #21262d;
   --border-line: rgba(255, 255, 255, 0.08);
-  --accent: #38bdf8;
-  --accent-hover: #0ea5e9;
+  --accent: #00d8f6;
+  --accent-hover: #00bfda;
   --accent-text: #0e1117;
-  --accent-alpha: rgba(56, 189, 248, 0.18);
+  --accent-alpha: rgba(0, 216, 246, 0.18);
 }
 
 [data-theme="petrol"] {
@@ -32,10 +32,10 @@
   --surface-card: #09171d;
   --surface-raised: #122b36;
   --border-line: rgba(255, 255, 255, 0.08);
-  --accent: #2dd4bf;
-  --accent-hover: #14b8a6;
+  --accent: #00d8f6;
+  --accent-hover: #00bfda;
   --accent-text: #061217;
-  --accent-alpha: rgba(45, 212, 191, 0.18);
+  --accent-alpha: rgba(0, 216, 246, 0.18);
 }
 
 [data-theme="espresso"] {
@@ -44,21 +44,21 @@
   --surface-card: #17120f;
   --surface-raised: #261e1a;
   --border-line: rgba(255, 255, 255, 0.08);
-  --accent: #38bdf8;
-  --accent-hover: #0ea5e9;
+  --accent: #00d8f6;
+  --accent-hover: #00bfda;
   --accent-text: #120e0c;
-  --accent-alpha: rgba(56, 189, 248, 0.18);
+  --accent-alpha: rgba(0, 216, 246, 0.18);
 }
 
 [data-theme="amber"] {
-  --canvas: #0c0d18;
-  --surface: #141628;
-  --surface-card: #101222;
-  --surface-raised: #1d2038;
+  --canvas: #0a0e27;
+  --surface: #111738;
+  --surface-card: #0d1433;
+  --surface-raised: #161e48;
   --border-line: rgba(255, 255, 255, 0.08);
   --accent: #f59e0b;
   --accent-hover: #d97706;
-  --accent-text: #0c0d18;
+  --accent-text: #0a0e27;
   --accent-alpha: rgba(245, 158, 11, 0.18);
 }
 
@@ -75,26 +75,26 @@
 }
 
 [data-theme="emerald"] {
-  --canvas: #07120e;
-  --surface: #0d2019;
-  --surface-card: #0a1914;
-  --surface-raised: #132f25;
+  --canvas: #0a0e27;
+  --surface: #111738;
+  --surface-card: #0d1433;
+  --surface-raised: #161e48;
   --border-line: rgba(255, 255, 255, 0.08);
   --accent: #10b981;
   --accent-hover: #059669;
-  --accent-text: #07120e;
+  --accent-text: #0a0e27;
   --accent-alpha: rgba(16, 185, 129, 0.18);
 }
 
 [data-theme="violet"] {
-  --canvas: #0d0c1e;
-  --surface: #161432;
-  --surface-card: #121028;
-  --surface-raised: #1e1c44;
+  --canvas: #0a0e27;
+  --surface: #111738;
+  --surface-card: #0d1433;
+  --surface-raised: #161e48;
   --border-line: rgba(255, 255, 255, 0.08);
   --accent: #a855f7;
   --accent-hover: #9333ea;
-  --accent-text: #0d0c1e;
+  --accent-text: #0a0e27;
   --accent-alpha: rgba(168, 85, 247, 0.18);
 }
 

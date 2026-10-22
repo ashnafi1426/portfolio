@@ -52,7 +52,7 @@ const Portfolio = () => {
               onClick={() => setFilter(cat.id)}
               className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-medium transition-all duration-200 ${
                 filter === cat.id
-                  ? 'bg-[#ff5a36] text-[#0a0e27] font-semibold shadow-md'
+                  ? 'btn-primary shadow-md'
                   : 'bg-white/[0.04] text-slate-400 hover:text-white border border-slate-800'
               }`}
             >
@@ -95,7 +95,7 @@ const Portfolio = () => {
                       <div className="absolute inset-0 bg-[#0a0e27]/40 group-hover:bg-[#0a0e27]/60 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100 duration-300">
                         <span className="px-4 py-2 rounded-xl bg-slate-900/95 text-white text-xs font-semibold backdrop-blur-md border border-white/10 shadow-lg flex items-center gap-2">
                           <span>Inspect architecture</span>
-                          <i className="bi bi-arrows-fullscreen text-[11px] text-[#ff5a36]"></i>
+                          <i className="bi bi-arrows-fullscreen text-[11px] text-accent"></i>
                         </span>
                       </div>
                     </div>
@@ -140,7 +140,7 @@ const Portfolio = () => {
                           href={project.liveUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1.5 text-sm font-semibold text-white hover:text-[#ff5a36] transition-colors"
+                          className="inline-flex items-center gap-1.5 text-sm font-semibold text-white hover:text-accent transition-colors"
                         >
                           <span>Live site</span>
                           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-3.5 h-3.5">
@@ -164,7 +164,7 @@ const Portfolio = () => {
 
                       <button
                         onClick={() => setSelectedProject(project)}
-                        className="text-xs text-slate-500 hover:text-[#ff5a36] transition-colors ml-auto font-mono underline underline-offset-4"
+                        className="text-xs text-slate-500 hover:text-accent transition-colors ml-auto font-mono underline underline-offset-4"
                       >
                         Details &rarr;
                       </button>
@@ -196,7 +196,7 @@ const Portfolio = () => {
                 <i className="bi bi-x-lg text-lg"></i>
               </button>
 
-              <div className="flex items-center gap-2 mb-2 font-mono text-xs text-[#ff5a36] font-semibold uppercase">
+              <div className="flex items-center gap-2 mb-2 font-mono text-xs text-accent font-semibold uppercase">
                 <span>{selectedProject.category}</span>
                 <span>&bull;</span>
                 <span className="text-emerald-400">{selectedProject.status}</span>
@@ -219,21 +219,21 @@ const Portfolio = () => {
 
               <div className="space-y-4 text-sm text-slate-300 mb-6">
                 <div>
-                  <h4 className="font-semibold text-xs uppercase font-mono tracking-wider mb-1 text-[#ff5a36]">
+                  <h4 className="font-semibold text-xs uppercase font-mono tracking-wider mb-1 text-accent">
                     Operational Challenge
                   </h4>
                   <p className="text-slate-400 leading-relaxed">{selectedProject.problem}</p>
                 </div>
 
                 <div>
-                  <h4 className="font-semibold text-xs uppercase font-mono tracking-wider mb-1 text-[#ff5a36]">
+                  <h4 className="font-semibold text-xs uppercase font-mono tracking-wider mb-1 text-accent">
                     Engineering Solution
                   </h4>
                   <p className="text-slate-400 leading-relaxed">{selectedProject.solution}</p>
                 </div>
 
                 <div>
-                  <h4 className="font-semibold text-xs uppercase font-mono tracking-wider mb-1 text-[#ff5a36]">
+                  <h4 className="font-semibold text-xs uppercase font-mono tracking-wider mb-1 text-accent">
                     Impact & Deliverable
                   </h4>
                   <p className="text-slate-400 leading-relaxed">{selectedProject.metrics}</p>

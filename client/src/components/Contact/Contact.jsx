@@ -116,7 +116,7 @@ const Contact = () => {
                     className="p-3.5 rounded-xl bg-[#0a0f28]/60 border border-slate-800 flex items-center justify-between gap-3"
                   >
                     <div className="flex items-center gap-3 min-w-0">
-                      <div className="w-9 h-9 rounded-lg bg-white/[0.04] text-[#ff5a36] border border-slate-800 flex items-center justify-center shrink-0">
+                      <div className="w-9 h-9 rounded-lg bg-white/[0.04] text-accent border border-slate-800 flex items-center justify-center shrink-0">
                         <i className={`bi ${channel.icon} text-base`}></i>
                       </div>
                       <div className="min-w-0">
@@ -132,7 +132,7 @@ const Contact = () => {
                     {channel.isCopy ? (
                       <button
                         onClick={channel.action}
-                        className="text-xs font-mono font-medium text-[#ff5a36] hover:underline shrink-0"
+                        className="text-xs font-mono font-medium text-accent hover:underline shrink-0"
                       >
                         {copied ? (
                           <span className="text-emerald-400 font-semibold flex items-center gap-1">
@@ -147,7 +147,7 @@ const Contact = () => {
                         href={channel.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-xs font-mono font-medium text-[#ff5a36] hover:underline shrink-0"
+                        className="text-xs font-mono font-medium text-accent hover:underline shrink-0"
                       >
                         Open &rarr;
                       </a>
@@ -197,7 +197,7 @@ const Contact = () => {
                     value={formData.name}
                     onChange={handleChange}
                     placeholder="e.g. Alex Johnson"
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-[#0a0f28]/80 border border-slate-800 text-white text-sm placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-[#ff5a36] transition-all"
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-[#0a0f28]/80 border border-slate-800 text-white text-sm placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-[var(--accent)] transition-all"
                   />
                 </div>
 
@@ -213,7 +213,7 @@ const Contact = () => {
                     value={formData.email}
                     onChange={handleChange}
                     placeholder="alex@company.com"
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-[#0a0f28]/80 border border-slate-800 text-white text-sm placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-[#ff5a36] transition-all"
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-[#0a0f28]/80 border border-slate-800 text-white text-sm placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-[var(--accent)] transition-all"
                   />
                 </div>
               </div>
@@ -229,7 +229,7 @@ const Contact = () => {
                   value={formData.subject}
                   onChange={handleChange}
                   placeholder="e.g. Full-Stack Web Platform or Consulting"
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-[#0a0f28]/80 border border-slate-800 text-white text-sm placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-[#ff5a36] transition-all"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-[#0a0f28]/80 border border-slate-800 text-white text-sm placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-[var(--accent)] transition-all"
                 />
               </div>
 
@@ -245,7 +245,7 @@ const Contact = () => {
                   value={formData.message}
                   onChange={handleChange}
                   placeholder="Tell me about what you are planning to build, target timeline, or inquiry..."
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-[#0a0f28]/80 border border-slate-800 text-white text-sm placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-[#ff5a36] transition-all resize-none"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-[#0a0f28]/80 border border-slate-800 text-white text-sm placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-[var(--accent)] transition-all resize-none"
                 />
               </div>
 

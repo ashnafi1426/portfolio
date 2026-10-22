@@ -58,10 +58,10 @@ const Resume = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="bg-[#0e1538] rounded-2xl p-6 sm:p-7 border border-slate-800 shadow-sm relative pl-7 sm:pl-8 before:absolute before:left-3 sm:before:left-4 before:top-8 before:bottom-8 before:w-0.5 before:bg-[#ff5a36]/40"
+                className="bg-[#0e1538] rounded-2xl p-6 sm:p-7 border border-slate-800 shadow-sm relative pl-7 sm:pl-8 before:absolute before:left-3 sm:before:left-4 before:top-8 before:bottom-8 before:w-0.5 before:bg-[var(--accent)]/40"
               >
                 <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
-                  <span className="font-mono text-xs font-semibold text-[#ff5a36]">
+                  <span className="font-mono text-xs font-semibold text-accent">
                     {item.period}
                   </span>
                   <span className="text-xs text-slate-500 flex items-center gap-1">
@@ -84,7 +84,7 @@ const Resume = () => {
                 <ul className="space-y-1.5 pt-3 border-t border-slate-800">
                   {item.achievements.map((ach, aIdx) => (
                     <li key={aIdx} className="flex items-start gap-2 text-xs text-slate-400">
-                      <span className="text-[#ff5a36] font-bold">&bull;</span>
+                      <span className="text-accent font-bold">&bull;</span>
                       <span>{ach}</span>
                     </li>
                   ))}
@@ -106,7 +106,7 @@ const Resume = () => {
                     key={cIdx}
                     className="p-3.5 rounded-xl bg-[#0a0f28]/60 border border-slate-800 flex items-start gap-3.5"
                   >
-                    <div className="w-8 h-8 rounded-lg bg-white/[0.04] text-[#ff5a36] border border-slate-800 flex items-center justify-center shrink-0 mt-0.5">
+                    <div className="w-8 h-8 rounded-lg bg-white/[0.04] text-accent border border-slate-800 flex items-center justify-center shrink-0 mt-0.5">
                       <i className={`bi ${cert.icon}`}></i>
                     </div>
                     <div className="flex-1 min-w-0">
@@ -128,7 +128,7 @@ const Resume = () => {
             </div>
 
             {/* Quick Summary Pill */}
-            <div className="p-5 rounded-2xl bg-[#ff5a36]/5 border border-[#ff5a36]/20 text-xs text-slate-300 leading-relaxed">
+            <div className="p-5 rounded-2xl bg-[var(--accent)]/5 border border-[var(--accent)]/20 text-xs text-slate-300 leading-relaxed">
               <strong className="text-white block mb-1 font-mono uppercase text-[11px]">
                 Academic Commitment:
               </strong>
