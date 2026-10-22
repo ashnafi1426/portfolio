@@ -8,7 +8,7 @@
   }
   
   body {
-    @apply bg-[#0a0e1a] text-slate-100 transition-colors duration-300 antialiased;
+    @apply bg-[#0a0e27] text-slate-100 transition-colors duration-300 antialiased font-sans;
     overflow-x: hidden;
   }
 
@@ -17,7 +17,7 @@
   }
   
   ::selection {
-    @apply bg-cyan-500 text-white;
+    @apply bg-[#ff5a36] text-white;
   }
 }
 
@@ -27,7 +27,7 @@
   }
   
   .section-label {
-    @apply inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-cyan-500 dark:text-cyan-400 font-semibold mb-3;
+    @apply inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-[#ff5a36] font-semibold mb-3;
   }
   
   .section-title {
@@ -40,7 +40,7 @@
 
   /* Status Indicator */
   .status-dot {
-    @apply relative flex h-2.5 w-2.5 shrink-0;
+    @apply relative flex h-2 w-2 shrink-0;
   }
   
   .status-dot::before {
@@ -50,20 +50,20 @@
   
   .status-dot::after {
     content: '';
-    @apply relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500;
+    @apply relative inline-flex rounded-full h-2 w-2 bg-emerald-500;
   }
 
   /* Buttons */
   .btn {
-    @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl font-medium text-sm transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2;
+    @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg font-medium text-sm transition-all duration-200 focus:outline-none;
   }
 
   .btn-primary {
-    @apply bg-cyan-500 text-white hover:bg-cyan-600 focus:ring-cyan-400 dark:focus:ring-offset-slate-900 shadow-lg shadow-cyan-500/20 hover:shadow-cyan-500/35 hover:-translate-y-0.5 active:translate-y-0;
+    @apply bg-[#ff5a36] text-[#0a0e27] font-semibold hover:bg-[#ff6e4d] shadow-lg shadow-[#ff5a36]/25 hover:-translate-y-0.5 active:translate-y-0 transition-all;
   }
 
   .btn-ghost {
-    @apply bg-slate-100 dark:bg-white/[0.05] text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-white/10 hover:bg-slate-200 dark:hover:bg-white/10 hover:-translate-y-0.5 transition-all;
+    @apply bg-slate-100 dark:bg-white/[0.04] text-slate-800 dark:text-slate-200 border border-slate-300 dark:border-slate-700/70 hover:bg-slate-200 dark:hover:bg-white/[0.08] hover:-translate-y-0.5 transition-all;
   }
 
   /* Tags */
@@ -71,7 +71,7 @@
     @apply inline-flex items-center px-2.5 py-1 rounded-md text-xs font-mono font-medium bg-slate-100 dark:bg-slate-800/80 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700/60;
   }
 
-  /* Project Image Mockup Frame */
+  /* Project Mockup Frame */
   .shot-frame {
     @apply relative overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-800/80 bg-slate-900 shadow-xl transition-all duration-300;
   }
@@ -80,18 +80,24 @@
 /* Background Grids & Ambient Auroras */
 .hero-grid-bg {
   background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
-  background-size: 48px 48px;
+    linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 52px 52px;
 }
 
 html:not(.dark) .hero-grid-bg {
   background-image: 
     linear-gradient(to right, rgba(0, 0, 0, 0.04) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
-  background-size: 48px 48px;
+  background-size: 52px 52px;
 }
 
-.hero-glow-blob {
-  background: radial-gradient(circle, rgba(14, 165, 233, 0.15) 0%, rgba(59, 130, 246, 0.05) 50%, transparent 70%);
+.hero-aurora {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 650px;
+  height: 650px;
+  background: radial-gradient(circle at 70% 30%, rgba(255, 90, 54, 0.08) 0%, rgba(56, 189, 248, 0.05) 40%, transparent 70%);
+  pointer-events-none;
 }

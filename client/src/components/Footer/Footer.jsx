@@ -17,27 +17,27 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="border-t border-slate-200 dark:border-white/[0.08] bg-slate-100/60 dark:bg-slate-950/80 py-12 transition-colors">
+    <footer className="border-t border-slate-800/80 bg-[#070b1e] py-12 transition-colors">
       <div className="container-site">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-slate-200 dark:border-white/[0.06]">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-slate-800/60">
           
           {/* Brand Wordmark & Tagline */}
           <div className="text-center md:text-left">
-            <span className="font-mono text-base font-bold text-slate-900 dark:text-white tracking-tight">
-              ashenafi<span className="text-cyan-500">.</span>sileshi
+            <span className="font-mono text-base font-bold text-white tracking-tight">
+              ashenafi<span className="text-[#ff5a36]">.</span>sileshi
             </span>
-            <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1 max-w-sm">
+            <p className="text-xs sm:text-sm text-slate-500 mt-1 max-w-sm">
               Engineering full-stack web platforms, scalable APIs, and clean digital experiences.
             </p>
           </div>
 
           {/* Quick Nav Links */}
-          <div className="flex flex-wrap items-center justify-center gap-5 sm:gap-6 text-xs sm:text-sm font-medium text-slate-600 dark:text-slate-400">
+          <div className="flex flex-wrap items-center justify-center gap-5 sm:gap-6 text-xs sm:text-sm font-medium text-slate-400">
             {navLinks.map((link, idx) => (
               <a
                 key={idx}
                 href={link.href}
-                className="hover:text-cyan-500 dark:hover:text-cyan-400 transition-colors"
+                className="hover:text-white transition-colors"
               >
                 {link.label}
               </a>
@@ -50,7 +50,7 @@ const Footer = () => {
               href={personalData.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-9 h-9 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-white/10 flex items-center justify-center text-slate-600 dark:text-slate-400 hover:text-cyan-500 hover:border-cyan-500 transition-all text-sm"
+              className="w-9 h-9 rounded-xl bg-[#0e1538] border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-slate-700 transition-all text-sm"
               aria-label="GitHub profile"
             >
               <i className="bi bi-github"></i>
@@ -59,7 +59,7 @@ const Footer = () => {
               href={personalData.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-9 h-9 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-white/10 flex items-center justify-center text-slate-600 dark:text-slate-400 hover:text-cyan-500 hover:border-cyan-500 transition-all text-sm"
+              className="w-9 h-9 rounded-xl bg-[#0e1538] border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-slate-700 transition-all text-sm"
               aria-label="LinkedIn profile"
             >
               <i className="bi bi-linkedin"></i>
@@ -68,7 +68,7 @@ const Footer = () => {
               href={personalData.telegram}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-9 h-9 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-white/10 flex items-center justify-center text-slate-600 dark:text-slate-400 hover:text-cyan-500 hover:border-cyan-500 transition-all text-sm"
+              className="w-9 h-9 rounded-xl bg-[#0e1538] border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-slate-700 transition-all text-sm"
               aria-label="Telegram chat"
             >
               <i className="bi bi-telegram"></i>
@@ -78,17 +78,17 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar: Copyright & Back to Top */}
-        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 dark:text-slate-400">
+        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
           <div>
-            &copy; {currentYear} {personalData.name}. All rights reserved. Built with React &amp; Tailwind CSS.
+            &copy; {currentYear} {personalData.name}. All rights reserved.
           </div>
 
           <button
             onClick={scrollToTop}
-            className="flex items-center gap-1.5 hover:text-cyan-500 dark:hover:text-cyan-400 transition-colors font-mono text-[11px] uppercase tracking-wider"
+            className="flex items-center gap-1.5 hover:text-white transition-colors font-mono text-[11px] uppercase tracking-wider"
           >
             <span>Back to top</span>
-            <i className="bi bi-arrow-up"></i>
+            <i className="bi bi-arrow-up text-[#ff5a36]"></i>
           </button>
         </div>
       </div>

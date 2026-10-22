@@ -29,7 +29,7 @@ const Services = () => {
   ];
 
   return (
-    <section id="services" className="py-20 lg:py-28 border-b border-slate-200 dark:border-white/[0.08] relative">
+    <section id="services" className="py-20 lg:py-28 border-b border-slate-800/80 bg-[#0a0e27] relative">
       <div className="container-site">
         
         {/* Section Header */}
@@ -40,7 +40,9 @@ const Services = () => {
           transition={{ duration: 0.5 }}
           className="mb-14"
         >
-          <span className="section-label">What I Offer</span>
+          <span className="section-label">
+            <b className="text-white">Services</b> &middot; What I Offer
+          </span>
           <h2 className="section-title max-w-2xl">
             Software capabilities tailored for growth.
           </h2>
@@ -58,28 +60,28 @@ const Services = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="bg-white dark:bg-slate-900/60 rounded-2xl p-7 border border-slate-200 dark:border-white/[0.08] shadow-sm hover:border-cyan-500/30 transition-all"
+              className="bg-[#0e1538] rounded-2xl p-7 border border-slate-800 shadow-sm hover:border-slate-700 transition-all"
             >
-              <div className="w-10 h-10 rounded-xl bg-cyan-500/10 dark:bg-cyan-500/20 text-cyan-600 dark:text-cyan-400 flex items-center justify-center text-xl mb-4">
+              <div className="w-10 h-10 rounded-xl bg-white/[0.04] text-[#ff5a36] border border-slate-800 flex items-center justify-center text-xl mb-4">
                 <i className={`bi ${service.icon}`}></i>
               </div>
 
-              <h3 className="font-display text-xl font-bold text-slate-900 dark:text-white mb-2">
+              <h3 className="font-display text-xl font-bold text-white mb-2">
                 {service.title}
               </h3>
 
-              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+              <p className="text-xs sm:text-sm text-slate-400 leading-relaxed mb-6">
                 {service.description}
               </p>
 
-              <div className="pt-4 border-t border-slate-100 dark:border-white/[0.05]">
-                <span className="font-mono text-[11px] uppercase tracking-wider text-slate-400 dark:text-slate-500 block mb-2 font-semibold">
+              <div className="pt-4 border-t border-slate-800">
+                <span className="font-mono text-[11px] uppercase tracking-wider text-slate-500 block mb-2 font-semibold">
                   Core Deliverables
                 </span>
                 <div className="grid grid-cols-2 gap-2">
                   {service.deliverables.map((item, dIdx) => (
-                    <div key={dIdx} className="flex items-center gap-1.5 text-xs text-slate-700 dark:text-slate-300">
-                      <span className="text-cyan-500 font-bold">&bull;</span>
+                    <div key={dIdx} className="flex items-center gap-1.5 text-xs text-slate-300">
+                      <span className="text-[#ff5a36] font-bold">&bull;</span>
                       <span className="truncate">{item}</span>
                     </div>
                   ))}

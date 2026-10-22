@@ -22,7 +22,7 @@ const Portfolio = () => {
   });
 
   return (
-    <section id="projects" className="py-20 lg:py-28 border-b border-slate-200 dark:border-white/[0.08] relative">
+    <section id="projects" className="py-20 lg:py-28 border-b border-slate-800/80 bg-[#0a0e27] relative">
       <div className="container-site">
         
         {/* Section Header */}
@@ -33,25 +33,27 @@ const Portfolio = () => {
           transition={{ duration: 0.5 }}
           className="mb-12"
         >
-          <span className="section-label">02 · Selected work</span>
+          <span className="section-label">
+            <b className="text-white">02</b> &middot; Selected work
+          </span>
           <h2 className="section-title max-w-2xl">
             Production systems, shipped and maintained.
           </h2>
           <p className="section-intro">
-            Real full-stack platforms and applications I have engineered end-to-end. Built with scalable databases, secure authentication, and clean interfaces.
+            Platforms and applications I&apos;ve designed and engineered end-to-end. Built for real users, production operations, and data integrity.
           </p>
         </motion.div>
 
         {/* Filter Pills */}
-        <div className="flex flex-wrap gap-2 mb-14">
+        <div className="flex flex-wrap gap-2 mb-16">
           {categories.map((cat) => (
             <button
               key={cat.id}
               onClick={() => setFilter(cat.id)}
               className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-medium transition-all duration-200 ${
                 filter === cat.id
-                  ? 'bg-slate-900 dark:bg-white text-white dark:text-slate-900 shadow-md'
-                  : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white border border-slate-200 dark:border-white/[0.08]'
+                  ? 'bg-[#ff5a36] text-[#0a0e27] font-semibold shadow-md'
+                  : 'bg-white/[0.04] text-slate-400 hover:text-white border border-slate-800'
               }`}
             >
               {cat.label}
@@ -59,8 +61,8 @@ const Portfolio = () => {
           ))}
         </div>
 
-        {/* 12-Column Editorial Projects Showcase */}
-        <div className="space-y-16 lg:space-y-24">
+        {/* 12-Column Editorial Showcase matching reference */}
+        <div className="flex flex-col gap-16 lg:gap-24">
           <AnimatePresence mode="popLayout">
             {filteredProjects.map((project, index) => {
               const isEven = index % 2 === 0;
@@ -68,95 +70,83 @@ const Portfolio = () => {
                 <motion.article
                   key={project.id}
                   layout
-                  initial={{ opacity: 0, y: 28 }}
+                  initial={{ opacity: 0, y: 32 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: '-50px' }}
                   transition={{ duration: 0.55 }}
-                  className={`grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center ${
+                  className={`grid grid-cols-1 lg:grid-cols-12 gap-7 lg:gap-12 items-center ${
                     isEven ? '' : 'lg:[&>*:first-child]:order-last'
                   }`}
                 >
-                  {/* Left (or Right): Project Screenshot Mockup Frame */}
+                  {/* Screenshot Mockup Frame (7 cols) */}
                   <div className="lg:col-span-7">
-                    <div className="shot-frame aspect-[16/10] group cursor-pointer" onClick={() => setSelectedProject(project)}>
+                    <div 
+                      className="shot-frame aspect-[16/10] group cursor-pointer border border-slate-800 bg-[#0d1433] rounded-2xl overflow-hidden relative shadow-2xl"
+                      onClick={() => setSelectedProject(project)}
+                    >
                       <img
                         src={project.image}
                         alt={`${project.title} screenshot`}
                         loading="lazy"
                         className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
                       />
-                      
-                      {/* Subtle Overlay & View Case Study Pill */}
-                      <div className="absolute inset-0 bg-slate-950/20 group-hover:bg-slate-950/40 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100 duration-300">
-                        <span className="px-4 py-2 rounded-xl bg-white/90 dark:bg-slate-900/90 text-slate-900 dark:text-white text-xs font-semibold backdrop-blur-md shadow-lg flex items-center gap-1.5">
-                          <span>View System Details</span>
-                          <i className="bi bi-arrows-fullscreen text-[11px]"></i>
-                        </span>
-                      </div>
 
-                      {/* Top Badges */}
-                      <div className="absolute top-3 left-3 flex items-center gap-2">
-                        <span className="px-2.5 py-1 rounded-md bg-slate-950/80 backdrop-blur-md text-[11px] font-mono text-emerald-400 font-semibold border border-white/10">
-                          {project.status}
+                      {/* Subtle hover overlay */}
+                      <div className="absolute inset-0 bg-[#0a0e27]/40 group-hover:bg-[#0a0e27]/60 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100 duration-300">
+                        <span className="px-4 py-2 rounded-xl bg-slate-900/95 text-white text-xs font-semibold backdrop-blur-md border border-white/10 shadow-lg flex items-center gap-2">
+                          <span>Inspect architecture</span>
+                          <i className="bi bi-arrows-fullscreen text-[11px] text-[#ff5a36]"></i>
                         </span>
                       </div>
                     </div>
                   </div>
 
-                  {/* Right (or Left): Project Narrative & Specs */}
+                  {/* Narrative Specs (5 cols) */}
                   <div className="lg:col-span-5 flex flex-col items-start">
-                    {/* Meta Category */}
-                    <div className="flex items-center gap-3 mb-2">
-                      <span className="font-mono text-xs text-cyan-600 dark:text-cyan-400 font-medium">
+                    {/* Status Chip & Genre */}
+                    <div className="flex items-center gap-3 mb-3">
+                      <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-[11px] font-mono font-medium text-emerald-400">
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                        {project.status}
+                      </span>
+                      <span className="font-mono text-xs text-slate-500">
                         {project.category}
                       </span>
                     </div>
 
                     {/* Title */}
-                    <h3 className="font-display text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-2 tracking-tight">
+                    <h3 className="font-display text-2xl sm:text-[1.75rem] font-semibold tracking-tight text-white mb-2">
                       {project.title}
                     </h3>
 
-                    {/* Subtitle */}
-                    <p className="text-sm font-medium text-slate-700 dark:text-slate-300 mb-3">
-                      {project.subtitle}
-                    </p>
-
-                    {/* Overview */}
-                    <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+                    {/* Description */}
+                    <p className="text-slate-400 text-[0.9375rem] leading-[1.75] mb-4">
                       {project.overview}
                     </p>
 
-                    {/* Problem/Solution Highlight Box */}
-                    <div className="p-3.5 rounded-xl bg-slate-100/80 dark:bg-slate-900/60 border border-slate-200 dark:border-white/[0.06] mb-5 w-full">
-                      <div className="text-xs text-slate-500 dark:text-slate-400 mb-1 font-mono uppercase tracking-wider">
-                        Key Engineering Challenge:
-                      </div>
-                      <p className="text-xs text-slate-700 dark:text-slate-300 leading-normal">
-                        {project.solution}
-                      </p>
-                    </div>
-
-                    {/* Technologies Tags */}
-                    <div className="flex flex-wrap gap-1.5 mb-6">
+                    {/* Tech Tags */}
+                    <div className="flex flex-wrap gap-2 mb-6">
                       {project.technologies.map((tech, i) => (
-                        <span key={i} className="tag text-[11px]">
+                        <span key={i} className="tag">
                           {tech}
                         </span>
                       ))}
                     </div>
 
-                    {/* Action Links */}
-                    <div className="flex flex-wrap items-center gap-4">
+                    {/* Action Links matching reference */}
+                    <div className="flex flex-wrap items-center gap-5">
                       {project.liveUrl && (
                         <a
                           href={project.liveUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="btn btn-primary text-xs py-2 px-3.5"
+                          className="inline-flex items-center gap-1.5 text-sm font-semibold text-white hover:text-[#ff5a36] transition-colors"
                         >
-                          <span>Live Site</span>
-                          <i className="bi bi-box-arrow-up-right text-xs"></i>
+                          <span>Live site</span>
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-3.5 h-3.5">
+                            <path d="M7 7h10v10"></path>
+                            <path d="M7 17 17 7"></path>
+                          </svg>
                         </a>
                       )}
 
@@ -165,18 +155,18 @@ const Portfolio = () => {
                           href={project.githubUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="btn btn-ghost text-xs py-2 px-3.5"
+                          className="inline-flex items-center gap-1.5 text-sm font-medium text-slate-400 hover:text-white transition-colors"
                         >
-                          <i className="bi bi-github text-sm"></i>
-                          <span>Source Code</span>
+                          <i className="bi bi-github"></i>
+                          <span>Source code</span>
                         </a>
                       )}
 
                       <button
                         onClick={() => setSelectedProject(project)}
-                        className="text-xs text-slate-500 hover:text-cyan-500 dark:text-slate-400 dark:hover:text-cyan-400 underline underline-offset-4 transition-colors ml-auto font-medium"
+                        className="text-xs text-slate-500 hover:text-[#ff5a36] transition-colors ml-auto font-mono underline underline-offset-4"
                       >
-                        Architecture breakdown &rarr;
+                        Details &rarr;
                       </button>
                     </div>
                   </div>
@@ -191,35 +181,35 @@ const Portfolio = () => {
       {/* Case Study Modal Breakdown */}
       <AnimatePresence>
         {selectedProject && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm overflow-y-auto">
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md overflow-y-auto">
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
-              className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-white/10 rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6 sm:p-8 shadow-2xl relative"
+              className="bg-[#0e1538] border border-slate-800 rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6 sm:p-8 shadow-2xl relative"
             >
               <button
                 onClick={() => setSelectedProject(null)}
-                className="absolute top-5 right-5 p-2 rounded-xl text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/[0.06] transition-colors"
+                className="absolute top-5 right-5 p-2 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
                 aria-label="Close modal"
               >
                 <i className="bi bi-x-lg text-lg"></i>
               </button>
 
-              <div className="flex items-center gap-2 mb-2 font-mono text-xs text-cyan-500 font-semibold uppercase">
+              <div className="flex items-center gap-2 mb-2 font-mono text-xs text-[#ff5a36] font-semibold uppercase">
                 <span>{selectedProject.category}</span>
                 <span>&bull;</span>
-                <span className="text-emerald-500">{selectedProject.status}</span>
+                <span className="text-emerald-400">{selectedProject.status}</span>
               </div>
 
-              <h3 className="font-display text-2xl font-bold text-slate-900 dark:text-white mb-1">
+              <h3 className="font-display text-2xl font-bold text-white mb-1">
                 {selectedProject.title}
               </h3>
-              <p className="text-sm font-medium text-slate-600 dark:text-slate-300 mb-6">
+              <p className="text-sm font-medium text-slate-400 mb-6">
                 {selectedProject.subtitle}
               </p>
 
-              <div className="rounded-xl overflow-hidden mb-6 border border-slate-200 dark:border-white/10">
+              <div className="rounded-xl overflow-hidden mb-6 border border-slate-800">
                 <img
                   src={selectedProject.image}
                   alt={selectedProject.title}
@@ -227,30 +217,30 @@ const Portfolio = () => {
                 />
               </div>
 
-              <div className="space-y-4 text-sm text-slate-600 dark:text-slate-300 mb-6">
+              <div className="space-y-4 text-sm text-slate-300 mb-6">
                 <div>
-                  <h4 className="font-semibold text-slate-900 dark:text-white text-xs uppercase font-mono tracking-wider mb-1 text-cyan-600 dark:text-cyan-400">
-                    The Problem
+                  <h4 className="font-semibold text-xs uppercase font-mono tracking-wider mb-1 text-[#ff5a36]">
+                    Operational Challenge
                   </h4>
-                  <p>{selectedProject.problem}</p>
+                  <p className="text-slate-400 leading-relaxed">{selectedProject.problem}</p>
                 </div>
 
                 <div>
-                  <h4 className="font-semibold text-slate-900 dark:text-white text-xs uppercase font-mono tracking-wider mb-1 text-cyan-600 dark:text-cyan-400">
+                  <h4 className="font-semibold text-xs uppercase font-mono tracking-wider mb-1 text-[#ff5a36]">
                     Engineering Solution
                   </h4>
-                  <p>{selectedProject.solution}</p>
+                  <p className="text-slate-400 leading-relaxed">{selectedProject.solution}</p>
                 </div>
 
                 <div>
-                  <h4 className="font-semibold text-slate-900 dark:text-white text-xs uppercase font-mono tracking-wider mb-1 text-cyan-600 dark:text-cyan-400">
-                    Key Metric / Impact
+                  <h4 className="font-semibold text-xs uppercase font-mono tracking-wider mb-1 text-[#ff5a36]">
+                    Impact & Deliverable
                   </h4>
-                  <p>{selectedProject.metrics}</p>
+                  <p className="text-slate-400 leading-relaxed">{selectedProject.metrics}</p>
                 </div>
               </div>
 
-              <div className="pt-4 border-t border-slate-200 dark:border-white/10 flex flex-wrap items-center justify-between gap-4">
+              <div className="pt-4 border-t border-slate-800 flex flex-wrap items-center justify-between gap-4">
                 <div className="flex flex-wrap gap-1.5">
                   {selectedProject.technologies.map((t, idx) => (
                     <span key={idx} className="tag text-xs">{t}</span>
@@ -265,7 +255,7 @@ const Portfolio = () => {
                       rel="noopener noreferrer"
                       className="btn btn-primary text-xs py-2 px-3.5"
                     >
-                      <span>Visit Live</span>
+                      <span>Live Site</span>
                       <i className="bi bi-box-arrow-up-right text-xs"></i>
                     </a>
                   )}
@@ -277,7 +267,7 @@ const Portfolio = () => {
                       className="btn btn-ghost text-xs py-2 px-3.5"
                     >
                       <i className="bi bi-github"></i>
-                      <span>GitHub</span>
+                      <span>Source Code</span>
                     </a>
                   )}
                 </div>

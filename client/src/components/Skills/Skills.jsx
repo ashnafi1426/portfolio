@@ -3,7 +3,7 @@ import { skillsByCategory } from '../../data/portfolioData';
 
 const Skills = () => {
   return (
-    <section id="skills" className="py-20 lg:py-28 border-b border-slate-200 dark:border-white/[0.08] relative">
+    <section id="skills" className="py-20 lg:py-28 border-b border-slate-800/80 bg-[#0a0e27] relative">
       <div className="container-site">
         
         {/* Section Header */}
@@ -14,7 +14,9 @@ const Skills = () => {
           transition={{ duration: 0.5 }}
           className="mb-14"
         >
-          <span className="section-label">03 · Technical stack</span>
+          <span className="section-label">
+            <b className="text-white">03</b> &middot; Stack
+          </span>
           <h2 className="section-title max-w-2xl">
             Modern tools for resilient applications.
           </h2>
@@ -32,19 +34,19 @@ const Skills = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: catIndex * 0.1 }}
-              className="bg-white dark:bg-slate-900/60 rounded-2xl p-6 sm:p-8 border border-slate-200 dark:border-white/[0.08] shadow-sm hover:border-cyan-500/30 transition-all duration-300"
+              className="bg-[#0e1538] rounded-2xl p-6 sm:p-8 border border-slate-800 shadow-sm hover:border-slate-700 transition-all duration-300"
             >
               {/* Category Header */}
               <div className="flex items-center gap-3.5 mb-3">
-                <div className="w-10 h-10 rounded-xl bg-cyan-500/10 dark:bg-cyan-500/20 text-cyan-600 dark:text-cyan-400 flex items-center justify-center text-lg">
+                <div className="w-10 h-10 rounded-xl bg-white/[0.04] text-[#ff5a36] border border-slate-800 flex items-center justify-center text-lg">
                   <i className={`bi ${category.icon}`}></i>
                 </div>
-                <h3 className="font-display text-xl font-bold text-slate-900 dark:text-white">
+                <h3 className="font-display text-xl font-bold text-white">
                   {category.title}
                 </h3>
               </div>
 
-              <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mb-6 leading-relaxed">
+              <p className="text-xs sm:text-sm text-slate-400 mb-6 leading-relaxed">
                 {category.description}
               </p>
 
@@ -53,12 +55,12 @@ const Skills = () => {
                 {category.skills.map((skill, sIdx) => (
                   <div
                     key={sIdx}
-                    className="p-2.5 rounded-xl bg-slate-50 dark:bg-white/[0.03] border border-slate-200/80 dark:border-white/[0.05] flex items-center justify-between"
+                    className="p-2.5 rounded-xl bg-[#0a0f28]/60 border border-slate-800/80 flex items-center justify-between"
                   >
-                    <span className="text-xs sm:text-sm font-medium text-slate-800 dark:text-slate-200">
+                    <span className="text-xs sm:text-sm font-medium text-slate-200">
                       {skill.name}
                     </span>
-                    <span className="font-mono text-[10px] px-2 py-0.5 rounded bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700">
+                    <span className="font-mono text-[10px] px-2 py-0.5 rounded bg-[#131b44] text-slate-400 border border-slate-800">
                       {skill.badge}
                     </span>
                   </div>
