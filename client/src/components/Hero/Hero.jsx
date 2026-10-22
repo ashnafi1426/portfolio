@@ -87,7 +87,7 @@ const Hero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="font-display font-bold text-[clamp(2.5rem,5.2vw,4.25rem)] leading-[1.08] tracking-[-0.03em] text-white max-w-[16ch] mb-6"
+              className="font-display font-bold text-[clamp(2.125rem,6.5vw,4.25rem)] leading-[1.08] tracking-[-0.03em] text-white max-w-[16ch] mb-6"
             >
               Building the systems businesses <span className="text-accent">run on</span>.
             </motion.h1>
@@ -107,18 +107,18 @@ const Hero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
-              className="flex flex-wrap items-center gap-3 sm:gap-4 mb-12"
+              className="flex flex-wrap items-center gap-3 sm:gap-4 mb-10 sm:mb-12"
             >
               <button
                 onClick={() => scrollTo('projects')}
-                className="btn btn-primary px-6 py-3 rounded-xl font-semibold text-sm"
+                className="btn btn-primary px-5 sm:px-6 py-3 rounded-xl font-semibold text-sm"
               >
                 View selected work
               </button>
 
               <button
                 onClick={() => scrollTo('contact')}
-                className="btn btn-ghost px-6 py-3 rounded-xl text-sm font-medium"
+                className="btn btn-ghost px-5 sm:px-6 py-3 rounded-xl text-sm font-medium"
               >
                 Get in touch
               </button>
@@ -129,31 +129,31 @@ const Hero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
-              className="grid grid-cols-3 gap-4 sm:gap-8 pt-4 w-full max-w-xl"
+              className="grid grid-cols-3 gap-2 sm:gap-6 pt-4 w-full max-w-xl"
             >
-              <div className="border-r border-slate-800/80 pr-4 sm:pr-6">
+              <div className="border-r border-slate-800/80 pr-2 sm:pr-4">
                 <dd className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-1">
                   3+
                 </dd>
-                <dt className="text-[11px] font-mono tracking-wider uppercase text-slate-500">
+                <dt className="text-[10px] sm:text-[11px] font-mono tracking-wider uppercase text-slate-500 leading-tight">
                   YEARS EXPERIENCE
                 </dt>
               </div>
 
-              <div className="border-r border-slate-800/80 pr-4 sm:pr-6">
+              <div className="border-r border-slate-800/80 pr-2 sm:pr-4">
                 <dd className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-1">
                   10+
                 </dd>
-                <dt className="text-[11px] font-mono tracking-wider uppercase text-slate-500">
+                <dt className="text-[10px] sm:text-[11px] font-mono tracking-wider uppercase text-slate-500 leading-tight">
                   SYSTEMS SHIPPED
                 </dt>
               </div>
 
-              <div>
+              <div className="pl-1 sm:pl-0">
                 <dd className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-1">
                   100%
                 </dd>
-                <dt className="text-[11px] font-mono tracking-wider uppercase text-slate-500">
+                <dt className="text-[10px] sm:text-[11px] font-mono tracking-wider uppercase text-slate-500 leading-tight">
                   CLIENT SATISFACTION
                 </dt>
               </div>

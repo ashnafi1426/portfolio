@@ -69,8 +69,8 @@ const Header = () => {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? 'bg-[#0a0e27]/90 backdrop-blur-md border-b border-slate-800/80 shadow-md'
+        isScrolled || isMobileMenuOpen
+          ? 'bg-[#0a0e27] backdrop-blur-md border-b border-slate-800/80 shadow-md'
           : 'bg-transparent border-b border-transparent'
       }`}
     >
@@ -228,7 +228,7 @@ const Header = () => {
       <div
         className={`lg:hidden transition-all duration-300 ease-in-out overflow-hidden border-b ${
           isMobileMenuOpen
-            ? 'max-h-[500px] opacity-100 bg-[#0a0e27]/98 border-slate-800 shadow-2xl'
+            ? 'max-h-[600px] opacity-100 bg-[#0a0e27] border-slate-800 shadow-2xl shadow-black/90'
             : 'max-h-0 opacity-0 border-transparent pointer-events-none'
         }`}
       >
@@ -264,6 +264,37 @@ const Header = () => {
                 </button>
               ))}
             </div>
+          </div>
+
+          {/* Mobile Social Links */}
+          <div className="pt-3 border-t border-slate-800 flex items-center justify-center gap-4 px-3 py-1">
+            <a
+              href={personalData.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2 rounded-lg bg-[#0e1538] border border-slate-800 text-slate-400 hover:text-white text-sm"
+              aria-label="GitHub profile"
+            >
+              <i className="bi bi-github"></i>
+            </a>
+            <a
+              href={personalData.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2 rounded-lg bg-[#0e1538] border border-slate-800 text-slate-400 hover:text-white text-sm"
+              aria-label="LinkedIn profile"
+            >
+              <i className="bi bi-linkedin"></i>
+            </a>
+            <a
+              href={personalData.telegram}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2 rounded-lg bg-[#0e1538] border border-slate-800 text-slate-400 hover:text-white text-sm"
+              aria-label="Telegram chat"
+            >
+              <i className="bi bi-telegram"></i>
+            </a>
           </div>
 
           <div className="pt-2">

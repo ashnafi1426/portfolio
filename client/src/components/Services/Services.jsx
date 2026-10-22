@@ -78,11 +78,11 @@ const Services = () => {
                 <span className="font-mono text-[11px] uppercase tracking-wider text-slate-500 block mb-2 font-semibold">
                   Core Deliverables
                 </span>
-                <div className="grid grid-cols-2 gap-2">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                   {service.deliverables.map((item, dIdx) => (
                     <div key={dIdx} className="flex items-center gap-1.5 text-xs text-slate-300">
                       <span className="text-accent font-bold">&bull;</span>
-                      <span className="truncate">{item}</span>
+                      <span>{item}</span>
                     </div>
                   ))}
                 </div>
