@@ -119,7 +119,27 @@
 
 @layer components {
   .container-site {
-    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full;
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:pl-28 lg:pr-8 xl:pl-32 xl:pr-12 w-full;
+  }
+
+  .social-rail {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 40;
+    left: 1.25rem;
+  }
+
+  @media (min-width: 1024px) {
+    .social-rail {
+      left: 2rem;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .social-rail {
+      left: max(2rem, calc((100vw - 80rem) / 2 + 2rem));
+    }
   }
   
   .section-label {

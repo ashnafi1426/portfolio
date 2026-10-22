@@ -18,8 +18,11 @@ const Hero = () => {
       <div className="hero-aurora" aria-hidden="true" />
 
       {/* Floating Vertical Social Rail (Desktop) */}
-      <aside className="hidden xl:flex fixed left-8 top-1/2 -translate-y-1/2 flex-col items-center gap-4 z-40">
-        <div className="w-px h-14 bg-gradient-to-b from-transparent to-slate-700" />
+      <aside
+        className="hidden lg:flex social-rail flex-col items-center z-40"
+        aria-label="Social links"
+      >
+        <div className="w-px h-16 bg-gradient-to-b from-transparent via-slate-700/60 to-slate-700" />
         <a
           href={personalData.github}
           target="_blank"
@@ -32,6 +35,7 @@ const Hero = () => {
             <path d="M9 18c-4.51 2-5-2-7-2"></path>
           </svg>
         </a>
+        <div className="w-px h-5 bg-slate-700/80" />
         <a
           href={personalData.linkedin}
           target="_blank"
@@ -45,6 +49,7 @@ const Hero = () => {
             <circle cx="4" cy="4" r="2"></circle>
           </svg>
         </a>
+        <div className="w-px h-5 bg-slate-700/80" />
         <a
           href={`mailto:${personalData.email}`}
           className="p-2 text-slate-400 hover:text-accent hover:-translate-y-0.5 transition-all duration-200"
@@ -55,7 +60,7 @@ const Hero = () => {
             <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
           </svg>
         </a>
-        <div className="w-px h-14 bg-gradient-to-t from-transparent to-slate-700" />
+        <div className="w-px h-16 bg-gradient-to-t from-transparent via-slate-700/60 to-slate-700" />
       </aside>
 
       <div className="container-site relative z-10 w-full">
@@ -162,7 +167,7 @@ const Hero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.25 }}
-              className="w-[280px] sm:w-[330px] lg:w-[370px]"
+              className="w-[280px] sm:w-[320px] lg:w-[330px] xl:w-[360px]"
             >
               <div className="rounded-3xl overflow-hidden border border-slate-800 bg-[#0d1433] shadow-2xl">
                 {/* Photo */}
