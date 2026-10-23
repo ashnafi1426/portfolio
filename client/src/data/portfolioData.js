@@ -66,7 +66,7 @@ export const featuredProjects = [
         description: "Browse room options and live availability, capture guest check-in/out details, prevent overlapping reservations, and track reservation lifecycle states.",
       },
     ],
-    technologies: ["React", "Node.js", "Express", "PostgreSQL", "Tailwind CSS"],
+    technologies: ["Laravel", "Vue.js", "TypeScript", "Tailwind CSS"],
     liveUrl: "https://one-hotel-lemon.vercel.app/",
     githubUrl: "https://github.com/ashnafi1426/executive-hotel",
     metrics: "Multi-tenant data boundaries, QR guest routing & automated hotel billing",
