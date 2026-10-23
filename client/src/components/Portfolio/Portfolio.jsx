@@ -232,6 +232,27 @@ const Portfolio = () => {
                   <p className="text-slate-400 leading-relaxed">{selectedProject.solution}</p>
                 </div>
 
+                {selectedProject.features && selectedProject.features.length > 0 && (
+                  <div>
+                    <h4 className="font-semibold text-xs uppercase font-mono tracking-wider mb-2.5 text-accent">
+                      Key Architectural Modules
+                    </h4>
+                    <div className="space-y-2.5">
+                      {selectedProject.features.map((feat, fIdx) => (
+                        <div key={fIdx} className="p-3.5 rounded-xl bg-[#0a0f28]/70 border border-slate-800">
+                          <h5 className="font-mono text-xs font-semibold text-white mb-1 flex items-center gap-2">
+                            <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent)]" />
+                            {feat.title}
+                          </h5>
+                          <p className="text-xs text-slate-400 leading-relaxed pl-3.5">
+                            {feat.description}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
                 <div>
                   <h4 className="font-semibold text-xs uppercase font-mono tracking-wider mb-1 text-accent">
                     Impact & Deliverable

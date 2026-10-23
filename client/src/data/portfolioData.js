@@ -36,6 +36,43 @@ export const technologiesStrip = [
 export const featuredProjects = [
   {
     id: 1,
+    title: "Executive Hotel & Multi-Tenant Hospitality SaaS",
+    subtitle: "Enterprise Hotel Operations, QR Guest Dining & Reservation Platform",
+    category: "Fullstack · SaaS",
+    status: "Enterprise Platform",
+    image: "/images/executive-hotel.png",
+    overview: "A comprehensive multi-tenant hotel and hospitality platform featuring tenant data isolation, QR-driven guest dining, customizable digital menus, automated VAT & service charge calculations, and real-time room reservations.",
+    problem: "Hospitality venues struggle with disjointed systems for room bookings, dining orders, and guest tracking, often lacking strict tenant data boundaries, dynamic taxation configurations, and seamless QR-based guest routing.",
+    solution: "Engineered an end-to-end multi-tenant architecture with hotel-specific data boundaries, contextual QR resolution for rooms and tables, automated cart pricing engines with VAT and service charges, and reservation state tracking with conflict prevention.",
+    features: [
+      {
+        title: "1. Multi-Tenant Management",
+        description: "Hotel-specific data boundaries, tenant-specific branding, currency, VAT, and service-charge configuration, and tenant-scoped reporting and staff access.",
+      },
+      {
+        title: "2. QR Code and Guest Context",
+        description: "QR resolution for room, table, and walk-in contexts, room QR association with active reservations where applicable, and guest-facing routing based on resolved QR context.",
+      },
+      {
+        title: "3. Digital Menu",
+        description: "Menu categories and items, descriptions, images, prices, preparation times, availability toggles, and dietary tags and allergen information where configured.",
+      },
+      {
+        title: "4. Cart and Ordering",
+        description: "Add/remove items and adjust quantities, support for special instructions, unique order reference tracking, and automated calculation of item subtotal, service charge, VAT, discounts, and final total using tenant configuration.",
+      },
+      {
+        title: "5. Room Booking and Reservations",
+        description: "Browse room options and live availability, capture guest check-in/out details, prevent overlapping reservations, and track reservation lifecycle states.",
+      },
+    ],
+    technologies: ["React", "Node.js", "Express", "PostgreSQL", "Tailwind CSS"],
+    liveUrl: "https://executive-hotel.vercel.app",
+    githubUrl: "https://github.com/ashnafi1426/executive-hotel",
+    metrics: "Multi-tenant data boundaries, QR guest routing & automated hotel billing",
+  },
+  {
+    id: 2,
     title: "Garage Management SaaS",
     subtitle: "Enterprise Auto Services & Workflow Platform",
     category: "Fullstack · SaaS",
@@ -50,7 +87,7 @@ export const featuredProjects = [
     metrics: "Automates multi-technician service queues & client billing",
   },
   {
-    id: 2,
+    id: 3,
     title: "Evangadi Community Forum",
     subtitle: "Collaborative Technical Q&A Knowledge Base",
     category: "Fullstack · Community",
@@ -65,7 +102,7 @@ export const featuredProjects = [
     metrics: "Serves hundreds of tech student Q&As with responsive real-time data",
   },
   {
-    id: 3,
+    id: 4,
     title: "Cryptocurrency Market Platform",
     subtitle: "Real-Time Digital Asset Tracker & Analytics",
     category: "FinTech · Real-Time",
@@ -80,7 +117,7 @@ export const featuredProjects = [
     metrics: "Low-latency WebSocket streaming with automated price feeds",
   },
   {
-    id: 4,
+    id: 5,
     title: "Full-Stack E-Commerce Engine",
     subtitle: "Multi-Category Store with Integrated Checkout",
     category: "Fullstack · E-Commerce",
@@ -95,7 +132,7 @@ export const featuredProjects = [
     metrics: "End-to-end shopping pipeline with cart and order tracking",
   },
   {
-    id: 5,
+    id: 6,
     title: "Editorial Blog & CMS",
     subtitle: "Content Publishing Platform with Markdown",
     category: "Fullstack · CMS",
@@ -110,7 +147,7 @@ export const featuredProjects = [
     metrics: "Clean typography, fast reader engagement, and author portal",
   },
   {
-    id: 6,
+    id: 7,
     title: "Netflix Streaming Experience",
     subtitle: "Dynamic Media Catalog & Trailer Explorer",
     category: "Frontend · Media",
