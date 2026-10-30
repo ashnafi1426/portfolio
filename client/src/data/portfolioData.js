@@ -112,7 +112,7 @@ export const featuredProjects = [
     problem: "Investors require sub-second live price sync and low-latency charting across multiple exchanges without lagging browser tabs.",
     solution: "Implemented Laravel broadcasting with WebSockets and Redis caching, feeding live price ticks directly into a dynamic React frontend.",
     technologies: ["Laravel", "React", "WebSocket", "Redis", "MySQL"],
-    liveUrl: "https://onchaintradepro.com",
+    liveUrl: "https://github.com/ashnafi1426/crypto_websites",
     githubUrl: "https://github.com/ashnafi1426/crypto_websites",
     metrics: "Low-latency WebSocket streaming with automated price feeds",
   },
